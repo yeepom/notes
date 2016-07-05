@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sparkSQL," />
+  <meta name="keywords" content="SparkSQL," />
 
 
 
@@ -86,29 +86,26 @@
 
 
 
-<meta name="description" content="spark官方在介绍SparkSQL的概念时，像下面写的：
-  sparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
+<meta name="description" content="Spark官方在介绍SparkSQL的概念时，如下：
+  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
   SparkSQL
-  在databrick的一篇slideshare中，有一张ppt，也进行了解释。  
-  处理bigdata最快的方">
+  dataFrame的介绍如下：  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sparkSQL(dataFrame)为什么比rdd更高效">
+<meta property="og:title" content="SparkSQL(dataFrame)为什么比rdd更高效">
 <meta property="og:url" content="http://yoursite.com/2016/07/05/sparkSQL_vs_rdd/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="spark官方在介绍SparkSQL的概念时，像下面写的：
-  sparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
+<meta property="og:description" content="Spark官方在介绍SparkSQL的概念时，如下：
+  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
   SparkSQL
-  在databrick的一篇slideshare中，有一张ppt，也进行了解释。  
-  处理bigdata最快的方">
+  dataFrame的介绍如下：  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据">
 <meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160705_2.png">
-<meta property="og:updated_time" content="2016-07-05T10:31:54.000Z">
+<meta property="og:updated_time" content="2016-07-05T10:47:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sparkSQL(dataFrame)为什么比rdd更高效">
-<meta name="twitter:description" content="spark官方在介绍SparkSQL的概念时，像下面写的：
-  sparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
+<meta name="twitter:title" content="SparkSQL(dataFrame)为什么比rdd更高效">
+<meta name="twitter:description" content="Spark官方在介绍SparkSQL的概念时，如下：
+  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
   SparkSQL
-  在databrick的一篇slideshare中，有一张ppt，也进行了解释。  
-  处理bigdata最快的方">
+  dataFrame的介绍如下：  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据">
 <meta name="twitter:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160705_2.png">
 
 
@@ -132,7 +129,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/07/05/sparkSQL_vs_rdd/"/>
 
-  <title> sparkSQL(dataFrame)为什么比rdd更高效 | yan </title>
+  <title> SparkSQL(dataFrame)为什么比rdd更高效 | yan </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +249,7 @@
             
             
               
-                sparkSQL(dataFrame)为什么比rdd更高效
+                SparkSQL(dataFrame)为什么比rdd更高效
               
             
           </h1>
@@ -292,9 +289,10 @@
       
 
       
-        <p>  spark官方在介绍SparkSQL的概念时，像下面写的：</p>
-<p>  sparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。</p>
+        <p>  Spark官方在介绍SparkSQL的概念时，如下：</p>
+<p>  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。</p>
 <p>  <a href="http://spark.apache.org/docs/latest/sql-programming-guide.html#sql" target="_blank" rel="external">SparkSQL</a></p>
+<p>  dataFrame的介绍如下：<br>  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据库中的表，但更丰富。</p>
 <p>  在databrick的一篇slideshare中，有一张ppt，也进行了解释。<br>  <img src="http://o9kchgjar.bkt.clouddn.com/Snip20160705_2.png" alt="databrick ppt"></p>
 <p>  处理bigdata最快的方式是不读取它。<br>  SparkSQL可以读取更少的数据。</p>
 <pre><code>转换成更高效的格式
@@ -324,7 +322,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/sparkSQL/" rel="tag">#sparkSQL</a>
+            <a href="/tags/SparkSQL/" rel="tag">#SparkSQL</a>
           
         </div>
       
@@ -403,7 +401,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
