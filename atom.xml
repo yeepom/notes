@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-05T10:47:38.000Z</updated>
+  <updated>2016-07-05T13:59:47.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Coursera机器学习-linearRegression公式总结</title>
+    <link href="http://yoursite.com/2016/07/05/coursera_machine_learning_lesson_1/"/>
+    <id>http://yoursite.com/2016/07/05/coursera_machine_learning_lesson_1/</id>
+    <published>2016-07-05T12:18:25.000Z</published>
+    <updated>2016-07-05T13:59:47.000Z</updated>
+    
+    <content type="html">&lt;p&gt;假设函数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/linear_regression_h_theta.gif&quot; alt=&quot;hypothesis function&quot;&gt;&lt;/p&gt;
+&lt;p&gt;损失函数:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/linear_regression_cost_function.gif&quot; alt=&quot;cost function&quot;&gt;&lt;/p&gt;
+&lt;p&gt;梯度下降:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/linear_regression_gradient_descent.gif&quot; alt=&quot;gradient descent&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;假设函数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/linear_regression_h_theta.gif&quot; alt=&quot;hypothesis function&quot;&gt;&lt;/p&gt;
+&lt;p&gt;损失函数:&lt;/p&gt;
+&lt;p&gt;&lt;im
+    
+    </summary>
+    
+    
+      <category term="coursera" scheme="http://yoursite.com/tags/coursera/"/>
+    
+      <category term="machinelearning" scheme="http://yoursite.com/tags/machinelearning/"/>
+    
+  </entry>
   
   <entry>
     <title>SparkSQL(dataFrame)为什么比rdd更高效</title>
