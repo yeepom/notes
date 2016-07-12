@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LeetCode," />
 
 
 
@@ -86,15 +86,27 @@
 
 
 
-<meta name="description" content="this is my blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yan">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="题目链接
+这是一道dp题目，需要拆解子问题，分析如下:
+a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包含；不包含a点，则为其左右节点可抢劫最大值之和。
+123best_with(a) = a.val + best_without(b) + best_without(c)best_without(a) = max(best_with(b),best_withou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode-HouseRobberIII">
+<meta property="og:url" content="http://yoursite.com/2016/07/12/leetcode_house_robber_iii/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="this is my blog">
+<meta property="og:description" content="题目链接
+这是一道dp题目，需要拆解子问题，分析如下:
+a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包含；不包含a点，则为其左右节点可抢劫最大值之和。
+123best_with(a) = a.val + best_without(b) + best_without(c)best_without(a) = max(best_with(b),best_withou">
+<meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160712_57.png">
+<meta property="og:updated_time" content="2016-07-12T13:51:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yan">
-<meta name="twitter:description" content="this is my blog">
+<meta name="twitter:title" content="LeetCode-HouseRobberIII">
+<meta name="twitter:description" content="题目链接
+这是一道dp题目，需要拆解子问题，分析如下:
+a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包含；不包含a点，则为其左右节点可抢劫最大值之和。
+123best_with(a) = a.val + best_without(b) + best_without(c)best_without(a) = max(best_with(b),best_withou">
+<meta name="twitter:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160712_57.png">
 
 
 
@@ -115,9 +127,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/12/leetcode_house_robber_iii/"/>
 
-  <title> yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> LeetCode-HouseRobberIII | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,9 +150,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -239,10 +249,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/07/12/leetcode_house_robber_iii/" itemprop="url">
-                  LeetCode-HouseRobberIII
-                </a>
+                LeetCode-HouseRobberIII
               
             
           </h1>
@@ -282,9 +289,7 @@
       
 
       
-        
-          
-            <p><a href="https://leetcode.com/problems/house-robber-iii/" target="_blank" rel="external">题目链接</a></p>
+        <p><a href="https://leetcode.com/problems/house-robber-iii/" target="_blank" rel="external">题目链接</a></p>
 <p>这是一道dp题目，需要拆解子问题，分析如下:<br><img src="http://o9kchgjar.bkt.clouddn.com/Snip20160712_57.png" alt="dp photo"></p>
 <p>a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。<br>包含a点，其左右节点就不能包含；<br>不包含a点，则为其左右节点可抢劫最大值之和。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">best_with(a) = a.val + best_without(b) + best_without(c)</span><br><span class="line"></span><br><span class="line">best_without(a) = max(best_with(b),best_without(b)) + max(best_with(c),best_without(c))</span><br></pre></td></tr></table></figure>
@@ -296,240 +301,58 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int rob(TreeNode root)</span><br><span class="line">    &#123;</span><br><span class="line">    	 int[] rst = &#123;0,0&#125;;</span><br><span class="line">    	 rst = dfs(root);</span><br><span class="line">        return Math.max(rst[0],rst[1]);</span><br><span class="line">    &#125;</span><br><span class="line">    public int[] dfs(TreeNode root) &#123;</span><br><span class="line">        int [] robber = &#123;0,0&#125;;</span><br><span class="line">        if (root != null)</span><br><span class="line">        &#123;</span><br><span class="line">            int[] robLeft = dfs(root.left);  </span><br><span class="line">            int[] robRight = dfs(root.right);</span><br><span class="line">            robber[0] = Math.max(robLeft[0],robLeft[1])+Math.max(robRight[0],robRight[1]);</span><br><span class="line">            robber[1] = root.val+robLeft[0]+robRight[0];</span><br><span class="line">        &#125;</span><br><span class="line">        return robber;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>robber[1]存储的是在包含当前节点的情况下，当前节点可抢劫的最大值。<br>robber[0]存储的是在不包含当前节点情况下，当前节点可抢劫的最大值。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/coursera_machine_learning_lesson_1/" itemprop="url">
-                  Coursera机器学习-linearRegression公式总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T20:18:25+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>假设函数：</p>
-<p><img src="http://o9kchgjar.bkt.clouddn.com/linear_regression_h_theta.gif" alt="hypothesis function"></p>
-<p>损失函数:</p>
-<p><img src="http://o9kchgjar.bkt.clouddn.com/linear_regression_cost_function.gif" alt="cost function"></p>
-<p>梯度下降:</p>
-<p><img src="http://o9kchgjar.bkt.clouddn.com/linear_regression_gradient_descent.gif" alt="gradient descent"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/05/coursera_machine_learning_lesson_1/" rel="next" title="Coursera机器学习-linearRegression公式总结">
+                <i class="fa fa-chevron-left"></i> Coursera机器学习-linearRegression公式总结
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/07/05/sparkSQL_vs_rdd/" itemprop="url">
-                  SparkSQL(dataFrame)为什么比rdd更高效
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T18:00:55+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>  Spark官方在介绍SparkSQL的概念时，如下：</p>
-<p>  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。</p>
-<p>  <a href="http://spark.apache.org/docs/latest/sql-programming-guide.html#sql" target="_blank" rel="external">SparkSQL</a></p>
-<p>  dataFrame的介绍如下：<br>  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据库中的表，但更丰富。</p>
-<p>  在databrick的一篇slideshare中，有一张ppt，也进行了解释。<br>  <img src="http://o9kchgjar.bkt.clouddn.com/Snip20160705_2.png" alt="databrick ppt"></p>
-<p>  处理bigdata最快的方式是不读取它。<br>  SparkSQL可以读取更少的数据。</p>
-<pre><code>转换成更高效的格式
-用column列的格式
-使用partition(例如，根据年份、月份)
-使用数据统计跳过读取
-把断言推向存储系统(例如，JDBC)
-</code></pre><p>  <a href="http://www.slideshare.net/databricks/spark-sqlsse2015public" target="_blank" rel="external">databrick slideshare</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -537,6 +360,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -556,8 +383,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o9kchgjar.bkt.clouddn.com/11949811256_99cd5cbd55_b.jpg"
@@ -607,6 +443,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -711,6 +558,10 @@ MathJax.Hub.Config({
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
