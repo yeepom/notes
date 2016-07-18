@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SparkSQL," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,27 +86,15 @@
 
 
 
-<meta name="description" content="Spark官方在介绍SparkSQL的概念时，如下：
-  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
-  SparkSQL
-  dataFrame的介绍如下：  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SparkSQL(dataFrame)为什么比rdd更高效">
-<meta property="og:url" content="http://yoursite.com/2016/07/05/sparkSQL_vs_rdd/index.html">
+<meta name="description" content="this is my blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yan">
+<meta property="og:url" content="http://yoursite.com/tags/probability/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="Spark官方在介绍SparkSQL的概念时，如下：
-  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
-  SparkSQL
-  dataFrame的介绍如下：  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据">
-<meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160705_2.png">
-<meta property="og:updated_time" content="2016-07-05T10:47:38.000Z">
+<meta property="og:description" content="this is my blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SparkSQL(dataFrame)为什么比rdd更高效">
-<meta name="twitter:description" content="Spark官方在介绍SparkSQL的概念时，如下：
-  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。
-  SparkSQL
-  dataFrame的介绍如下：  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据">
-<meta name="twitter:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160705_2.png">
+<meta name="twitter:title" content="yan">
+<meta name="twitter:description" content="this is my blog">
 
 
 
@@ -127,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/05/sparkSQL_vs_rdd/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/probability/"/>
 
-  <title> SparkSQL(dataFrame)为什么比rdd更高效 | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 标签: probability | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -150,7 +138,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,132 +216,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        probability
+        <small>标签</small>
+      </h2>
+    </div>
 
     
-      <header class="post-header">
+      
 
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/07/18/reservoir_sampling/" itemprop="url">
               
-                SparkSQL(dataFrame)为什么比rdd更高效
+                <span itemprop="name">蓄水池抽样问题（Reservoir Sampling）</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T18:00:55+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-07-18T12:59:09+08:00"
+              content="2016-07-18" >
+          07-18
+        </time>
+      </div>
 
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>  Spark官方在介绍SparkSQL的概念时，如下：</p>
-<p>  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDDAPI，sparkSQL的接口提供了更丰富的信息，关于数据和优化后计算的结构。SparkSQL用这些信息来优化。</p>
-<p>  <a href="http://spark.apache.org/docs/latest/sql-programming-guide.html#sql" target="_blank" rel="external">SparkSQL</a></p>
-<p>  dataFrame的介绍如下：<br>  一个dataFrame是一个分布式数据集，它的数据被命名的列管理。它在概念上类似于数据库中的表，但更丰富。</p>
-<p>  在databrick的一篇slideshare中，有一张ppt，也进行了解释。<br>  <img src="http://o9kchgjar.bkt.clouddn.com/Snip20160705_2.png" alt="databrick ppt"></p>
-<p>  处理bigdata最快的方式是不读取它。<br>  SparkSQL可以读取更少的数据。</p>
-<pre><code>转换成更高效的格式
-用column列的格式
-使用partition(例如，根据年份、月份)
-使用数据统计跳过读取
-把断言推向存储系统(例如，JDBC)
-</code></pre><p>  <a href="http://www.slideshare.net/databricks/spark-sqlsse2015public" target="_blank" rel="external">databrick slideshare</a></p>
-
-      
-    </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/SparkSQL/" rel="tag">#SparkSQL</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/05/coursera_machine_learning_lesson_1/" rel="prev" title="Coursera机器学习-linearRegression公式总结">
-                Coursera机器学习-linearRegression公式总结 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -361,10 +263,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -384,17 +282,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o9kchgjar.bkt.clouddn.com/11949811256_99cd5cbd55_b.jpg"
@@ -444,17 +333,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -559,10 +437,6 @@ MathJax.Hub.Config({
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
