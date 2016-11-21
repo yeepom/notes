@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/21/twoSum/</loc>
+    
+    <lastmod>2016-11-21T07:03:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/07/18/reservoir_sampling/</loc>
     
     <lastmod>2016-07-18T05:47:33.000Z</lastmod>

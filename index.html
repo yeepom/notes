@@ -240,6 +240,106 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/21/twoSum/" itemprop="url">
+                  twoSum
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T14:04:53+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>leetcode上easy的一道题。</p>
+<p>用cpp跑了两种算法。</p>
+<p>1.先将拷贝一份vector。对新的数组排序，并找出相加等于target的对应值first、second。再在原始数组中扫一遍，找出first和second的相应位置。代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        vector&lt;int&gt; nums_copy = nums;</span><br><span class="line">        vector&lt;int&gt; rst;</span><br><span class="line">        sort(nums_copy.begin(), nums_copy.end());</span><br><span class="line">        auto it = nums_copy.begin();</span><br><span class="line">        auto last_it = it + nums_copy.size()-1;</span><br><span class="line">        int first,second;</span><br><span class="line">        while(it != last_it)</span><br><span class="line">        &#123;</span><br><span class="line">            int sum = *it + *last_it;</span><br><span class="line">            if(sum &lt; target)</span><br><span class="line">            &#123;</span><br><span class="line">                it++;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(sum &gt; target)</span><br><span class="line">            &#123;</span><br><span class="line">                last_it--;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                first = *it;</span><br><span class="line">                second = *last_it;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        it = nums.begin();</span><br><span class="line">        for(;it != nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*it == first)</span><br><span class="line">                rst.push_back(it-nums.begin());</span><br><span class="line">            else if(*it == second)</span><br><span class="line">                rst.push_back(it-nums.begin());</span><br><span class="line">        &#125;</span><br><span class="line">        return rst;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>结果：9ms，超过96.22%。</p>
+<p>2.使用map，存储&lt;数值，数值的位置&gt;。遍历整个数组。遍历过程中，其中map中key存储target－已遍历元素的值，value存储已遍历元素的位置。如果下一个元素在map中可以找到相应的key，则满足条件；如果下一个元素找不到相应的key，就将<target-元素的值,元素的位置>存入map中。代码如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int,int&gt; m;</span><br><span class="line">        vector&lt;int&gt; rst;</span><br><span class="line">        auto it = nums.begin();</span><br><span class="line">        size_t i = 0;</span><br><span class="line">        for(;it != nums.end(); it++,i++)</span><br><span class="line">        &#123;</span><br><span class="line">            auto find_it = m.find(*it);</span><br><span class="line">            if(find_it == m.end())</span><br><span class="line">            &#123;</span><br><span class="line">                m.insert(pair&lt;int,int&gt;(target-*it,i));</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                rst.push_back(find_it-&gt;second);</span><br><span class="line">                rst.push_back(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return rst;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></target-元素的值,元素的位置></p>
+<p>结果：19ms，超过58.82%。这里使用了unordered_map，要比使用map快(29ms)。unordered_map是基于hash实现的，map是基于tree实现的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/18/reservoir_sampling/" itemprop="url">
                   蓄水池抽样问题（Reservoir Sampling）
                 </a>
@@ -673,7 +773,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
