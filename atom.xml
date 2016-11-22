@@ -43,10 +43,10 @@
   
   <entry>
     <title>c++智能指针用法</title>
-    <link href="http://yoursite.com/2016/11/22/c-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E7%94%A8%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/11/22/c-智能指针用法/</id>
+    <link href="http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/"/>
+    <id>http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/</id>
     <published>2016-11-22T08:34:17.000Z</published>
-    <updated>2016-11-22T12:25:14.000Z</updated>
+    <updated>2016-11-22T12:43:22.000Z</updated>
     
     <content type="html">&lt;p&gt;一、shared_ptr定义&lt;/p&gt;
 &lt;p&gt;c++新标准库提供了两种智能指针类型来管理动态对象。shared_ptr和unique_ptr。头文件memory。&lt;/p&gt;
@@ -159,10 +159,10 @@ unique_ptr则“独占”所指
   
   <entry>
     <title>c++中explicit修饰词</title>
-    <link href="http://yoursite.com/2016/11/22/c-%E4%B8%ADexplicit%E4%BF%AE%E9%A5%B0%E8%AF%8D/"/>
-    <id>http://yoursite.com/2016/11/22/c-中explicit修饰词/</id>
+    <link href="http://yoursite.com/2016/11/22/c-plus-plus-explicit-specifier/"/>
+    <id>http://yoursite.com/2016/11/22/c-plus-plus-explicit-specifier/</id>
     <published>2016-11-22T03:29:13.000Z</published>
-    <updated>2016-11-22T12:38:23.000Z</updated>
+    <updated>2016-11-22T12:43:01.000Z</updated>
     
     <content type="html">&lt;p&gt;explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。&lt;/p&gt;
 &lt;p&gt;备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。&lt;/p&gt;
