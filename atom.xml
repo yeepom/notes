@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-22T12:35:39.000Z</updated>
+  <updated>2016-11-22T12:51:54.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/11/22/3SumClosest/"/>
     <id>http://yoursite.com/2016/11/22/3SumClosest/</id>
     <published>2016-11-22T12:27:52.000Z</published>
-    <updated>2016-11-22T12:35:39.000Z</updated>
+    <updated>2016-11-22T12:51:54.000Z</updated>
     
     <content type="html">&lt;p&gt;难度：medium&lt;/p&gt;
 &lt;p&gt;解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。&lt;br&gt;代码如下。&lt;/p&gt;
