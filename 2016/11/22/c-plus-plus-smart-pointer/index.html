@@ -104,7 +104,7 @@ unique_ptr则“独占”所指向的对象
 智能指针是模板，要在尖括号内给出类型。
 shared_ptr&amp;lt;string&amp;gt; p1;
 shared_ptr&amp;lt;list&amp;lt;int&amp;g">
-<meta property="og:updated_time" content="2016-11-22T12:43:22.000Z">
+<meta property="og:updated_time" content="2016-11-22T13:21:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++智能指针用法">
 <meta name="twitter:description" content="一、shared_ptr定义
@@ -387,7 +387,47 @@ shared_ptr&lt;list&lt;int&gt;&gt; p2;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr&lt;double&gt; p1;		</span><br><span class="line">shared_ptr&lt;int&gt; p2(new int(42));</span><br></pre></td></tr></table></figure>
 <p>接受指针参数的智能指针构造函数是explicit的，不能将一个内置指针隐式转换为一个智能指针。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr&lt;int&gt; p1 = new int(1024);		//错误：必须使用直接初始化形式</span><br><span class="line">shared_ptr&lt;int&gt; p2(new int(1024));		//正确：使用了直接初始化形式</span><br><span class="line"></span><br><span class="line">shared_ptr&lt;int&gt; clone(int p)</span><br><span class="line">&#123;</span><br><span class="line">	return new int(p);	//错误：隐式转换为shared_ptr&lt;int&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">shared_ptr&lt;int&gt; clone(int p)</span><br><span class="line">&#123;</span><br><span class="line">	//正确：显示地用int*创建shared_ptr&lt;int&gt;</span><br><span class="line">	return shared_ptr&lt;int&gt; (new int(p));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>定义和改变shared_ptr的其他方法</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shared_ptr&lt; T &gt; p(q)</td>
+<td>p管理内置指针q所指向的对象；q必须指向new分配的内存，且能够转换为T*类型</td>
+</tr>
+<tr>
+<td>shared_ptr&lt; T &gt; p(u)</td>
+<td>p从unique_ptr u那里接管了对象的所有权；将u置为空</td>
+</tr>
+<tr>
+<td>shared_ptr&lt; T &gt; p(q, d)</td>
+<td>p接管了内置指针q所指向的对象的所有权。q必须能转换为T*类型。p将使用可调用对象d来代替delete</td>
+</tr>
+<tr>
+<td>shared_ptr&lt; T &gt; p(p2, d)</td>
+<td>p是shared_ptr p2的拷贝，唯一的区别是p将用可调用对象d来代替delete</td>
+</tr>
+<tr>
+<td>p.reset()</td>
+<td>若p是唯一指向其对象的shared_ptr，reset会释放次对象。若传递了可选的参数内置指针q，会令p指向q，否则会将p置为空。若还传递了参数d，讲会调用d而不是delete来释放q。</td>
+</tr>
+<tr>
+<td>p.reset(q)</td>
+<td></td>
+</tr>
+<tr>
+<td>p.reset(p,d)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>不要混合使用普通指针和智能指针。<br>不要使用get初始化另一个智能指针或为智能指针赋值。<br>其他操作。reset成员经常与unique一起使用，来控制多个shared_ptr共享的对象，在改变底层对象之前，我们检查自己是否是当前对象仅有的用户。如果不是，在改变之前要制作一份新的拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(!p.unique())</span><br><span class="line">	p.reset(new string(*p));</span><br><span class="line">*p += newVal;</span><br></pre></td></tr></table></figure>
       
     </div>
 

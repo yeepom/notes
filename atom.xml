@@ -46,7 +46,7 @@
     <link href="http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/"/>
     <id>http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/</id>
     <published>2016-11-22T08:34:17.000Z</published>
-    <updated>2016-11-22T12:43:22.000Z</updated>
+    <updated>2016-11-22T13:21:00.000Z</updated>
     
     <content type="html">&lt;p&gt;一、shared_ptr定义&lt;/p&gt;
 &lt;p&gt;c++新标准库提供了两种智能指针类型来管理动态对象。shared_ptr和unique_ptr。头文件memory。&lt;/p&gt;
@@ -139,7 +139,47 @@ shared_ptr&amp;lt;list&amp;lt;int&amp;gt;&amp;gt; p2;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;double&amp;gt; p1;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p2(new int(42));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;接受指针参数的智能指针构造函数是explicit的，不能将一个内置指针隐式转换为一个智能指针。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p1 = new int(1024);		//错误：必须使用直接初始化形式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p2(new int(1024));		//正确：使用了直接初始化形式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; clone(int p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return new int(p);	//错误：隐式转换为shared_ptr&amp;lt;int&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; clone(int p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	//正确：显示地用int*创建shared_ptr&amp;lt;int&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return shared_ptr&amp;lt;int&amp;gt; (new int(p));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
+&lt;p&gt;定义和改变shared_ptr的其他方法&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(q)&lt;/td&gt;
+&lt;td&gt;p管理内置指针q所指向的对象；q必须指向new分配的内存，且能够转换为T*类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(u)&lt;/td&gt;
+&lt;td&gt;p从unique_ptr u那里接管了对象的所有权；将u置为空&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(q, d)&lt;/td&gt;
+&lt;td&gt;p接管了内置指针q所指向的对象的所有权。q必须能转换为T*类型。p将使用可调用对象d来代替delete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(p2, d)&lt;/td&gt;
+&lt;td&gt;p是shared_ptr p2的拷贝，唯一的区别是p将用可调用对象d来代替delete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p.reset()&lt;/td&gt;
+&lt;td&gt;若p是唯一指向其对象的shared_ptr，reset会释放次对象。若传递了可选的参数内置指针q，会令p指向q，否则会将p置为空。若还传递了参数d，讲会调用d而不是delete来释放q。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p.reset(q)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p.reset(p,d)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;不要混合使用普通指针和智能指针。&lt;br&gt;不要使用get初始化另一个智能指针或为智能指针赋值。&lt;br&gt;其他操作。reset成员经常与unique一起使用，来控制多个shared_ptr共享的对象，在改变底层对象之前，我们检查自己是否是当前对象仅有的用户。如果不是，在改变之前要制作一份新的拷贝。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;if(!p.unique())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	p.reset(new string(*p));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*p += newVal;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
     
     <summary type="html">
     
