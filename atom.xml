@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-21T09:45:34.000Z</updated>
+  <updated>2016-11-22T12:35:39.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,176 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>3SumClosest</title>
+    <link href="http://yoursite.com/2016/11/22/3SumClosest/"/>
+    <id>http://yoursite.com/2016/11/22/3SumClosest/</id>
+    <published>2016-11-22T12:27:52.000Z</published>
+    <updated>2016-11-22T12:35:39.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：medium&lt;/p&gt;
+&lt;p&gt;解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。&lt;br&gt;代码如下。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int threeSumClosest(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(nums.size() &amp;lt; 3) return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto it = nums.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto end_it = nums.end();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        sort(it, end_it);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int threeSumClosest = *it+*(it+1)+*(it+2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(;it+2 != end_it; it++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            auto first_it = it+1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            auto second_it = end_it-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            while(first_it != second_it)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                int threeSum = *it + *first_it + *second_it;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(abs(threeSum-target) &amp;lt; abs(threeSumClosest-target))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    threeSumClosest = threeSum;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    if(threeSum &amp;lt; target)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        first_it++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        second_it--;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    if(threeSum &amp;lt; target)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        first_it++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        second_it--;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return threeSumClosest;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：medium&lt;/p&gt;
+&lt;p&gt;解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。&lt;br&gt;代码如下。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++智能指针用法</title>
+    <link href="http://yoursite.com/2016/11/22/c-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E7%94%A8%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/11/22/c-智能指针用法/</id>
+    <published>2016-11-22T08:34:17.000Z</published>
+    <updated>2016-11-22T12:25:14.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一、shared_ptr定义&lt;/p&gt;
+&lt;p&gt;c++新标准库提供了两种智能指针类型来管理动态对象。shared_ptr和unique_ptr。头文件memory。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;shared_ptr允许多个指针指向同一个对象
+unique_ptr则“独占”所指向的对象    
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;智能指针是模板，要在尖括号内给出类型。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;shared_ptr&amp;lt;string&amp;gt; p1;
+shared_ptr&amp;lt;list&amp;lt;int&amp;gt;&amp;gt; p2;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解引用一个智能指针返回它指向的对象。如果在一个条件判断中使用智能指针，效果就是检测它是否为空。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//如果p1不为空，检查它是否指向一个空string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if(p1 &amp;amp;&amp;amp; p1-&amp;gt;empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	*p1 = &amp;quot;hi&amp;quot;;//	如果p1指向一个空string，解引用p1，将一个新值赋予string&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;shared_ptr unique_ptr都支持的操作    &lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; sp&lt;/td&gt;
+&lt;td&gt;空智能指针，可以指向类型为T的对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;unique_ptr&amp;lt; T &amp;gt; up&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;将p用作一个条件判断，若p指向一个对象，则为true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;*p&lt;/td&gt;
+&lt;td&gt;解引用p，获得它指向的对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p-&amp;gt;mem&lt;/td&gt;
+&lt;td&gt;等价于(*p).mem&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p.get()&lt;/td&gt;
+&lt;td&gt;返回p中保存的指针。要小心使用，若智能指针释放其对象，返回的指针指向的对象也消失了&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;swap(p, q)&lt;/td&gt;
+&lt;td&gt;交换p和q的指针&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p.swap(q)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;shared_ptr独享的操作&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;make_shared&amp;lt; T &amp;gt; (args)&lt;/td&gt;
+&lt;td&gt;返回一个shared_ptr，指向一个动态分配的类型为T的对象。使用args初始化次对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(q)&lt;/td&gt;
+&lt;td&gt;p是shared_ptr q的拷贝：此操作会递增q中的计数器。q中的指针必须能转换为T*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p = q&lt;/td&gt;
+&lt;td&gt;p和q都是shared_ptr,所保存的指针必须能相互转换。此操作会递减p的引用计数，递增q的引用计数；若p的引用计数变为0，则将其管理的原内存释放。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p.unique&lt;/td&gt;
+&lt;td&gt;若p.use_count() 为1，返回true；否则返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p.use_count()&lt;/td&gt;
+&lt;td&gt;返回与p共享对象的智能指针数量；可能很慢，主要用于调试    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;make_shared函数&lt;br&gt;此函数在动态内存分配一个对象并初始化它，返回指向此对象的shared_ptr。头文件memory。&lt;br&gt;使用时要保持类型一致。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//指向一个值为42的int的shared_ptr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p3 = make_shared&amp;lt;int&amp;gt;(42);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p4指向一个值为&amp;quot;9999999999&amp;quot;的string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;string&amp;gt; p4 = make_shared&amp;lt;string&amp;gt;(10,&amp;apos;9&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p5指向一个值初始化的int，即，值为0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p5 = make_shared&amp;lt;int&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//使用auto，p6指向一个动态分配的空vector&amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto p6 = make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;shared_ptr的拷贝和赋值&lt;br&gt;当进行拷贝或赋值操作时，每个shared_ptr都会记录有多少个其他shared_ptr指向相同的对象。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;auto p = make_shared&amp;lt;int&amp;gt; (42);	//p指向的对象只有p一个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto q(p);	//p和q指向相同对象，此对象有两个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto r = make_shared&amp;lt;int&amp;gt; (42);	//r指向的int只有一个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r = q;	//给r赋值，令它指向另一个地址&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//递增q指向的对象的引用计数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//递减r原来指向的对象的引用计数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//r原来指向的对象已没有引用者，会自动释放&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;二、shared_ptr和new结合&lt;br&gt;可以用new返回的指针来初始化智能指针。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;double&amp;gt; p1;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p2(new int(42));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;接受指针参数的智能指针构造函数是explicit的，不能将一个内置指针隐式转换为一个智能指针。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p1 = new int(1024);		//错误：必须使用直接初始化形式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p2(new int(1024));		//正确：使用了直接初始化形式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; clone(int p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return new int(p);	//错误：隐式转换为shared_ptr&amp;lt;int&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; clone(int p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	//正确：显示地用int*创建shared_ptr&amp;lt;int&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return shared_ptr&amp;lt;int&amp;gt; (new int(p));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一、shared_ptr定义&lt;/p&gt;
+&lt;p&gt;c++新标准库提供了两种智能指针类型来管理动态对象。shared_ptr和unique_ptr。头文件memory。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;shared_ptr允许多个指针指向同一个对象
+unique_ptr则“独占”所指
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="智能指针" scheme="http://yoursite.com/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++中explicit修饰词</title>
+    <link href="http://yoursite.com/2016/11/22/c-%E4%B8%ADexplicit%E4%BF%AE%E9%A5%B0%E8%AF%8D/"/>
+    <id>http://yoursite.com/2016/11/22/c-中explicit修饰词/</id>
+    <published>2016-11-22T03:29:13.000Z</published>
+    <updated>2016-11-22T08:38:05.000Z</updated>
+    
+    <content type="html">&lt;p&gt;explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。&lt;/p&gt;
+&lt;p&gt;备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct A&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A(int) &amp;#123; &amp;#125;      // 可转换构造函数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A(int, int) &amp;#123; &amp;#125; // 可转换构造函数 (C++11)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    operator bool() const &amp;#123; return true; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct B&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    explicit B(int) &amp;#123; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    explicit B(int, int) &amp;#123; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    explicit operator bool() const &amp;#123; return true; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a1 = 1;      // 正确: 拷贝初始化调用 A::A(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a2(2);       // 正确: 直接初始化调用 A::A(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a3 &amp;#123;4, 5&amp;#125;;   // 正确: 直接列表初始化调用 A::A(int, int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a4 = &amp;#123;4, 5&amp;#125;; // 正确: 拷贝列表初始化调用 A::A(int, int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a5 = (A)1;   // 正确: 显式转换执行 static_cast&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (a1) ;      // 正确: A::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool na1 = a1; // 正确: 拷贝初始化调用 A::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool na2 = static_cast&amp;lt;bool&amp;gt;(a1); // 正确: static_cast 执行直接初始化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//  B b1 = 1;      // 错误：拷贝初始化不会调用 B::B(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    B b2(2);       // 正确: 直接初始化调用 B::B(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    B b3 &amp;#123;4, 5&amp;#125;;   // 正确: 直接列表初始化调用 B::B(int, int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//  B b4 = &amp;#123;4, 5&amp;#125;; // 错误: 拷贝列表初始化不会调用 B::B(int,int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    B b5 = (B)1;   // 正确: 显式转换执行 static_cast&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (b2) ;      // 正确: B::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//  bool nb1 = b2; // 错误: 拷贝初始化不会调用 B::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool nb2 = static_cast&amp;lt;bool&amp;gt;(b2); // 正确: static_cast 执行直接初始化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;参考：&lt;br&gt;en.cppreference.com/w/cpp/language/explicit&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。&lt;/p&gt;
+&lt;p&gt;备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>threeSum</title>
     <link href="http://yoursite.com/2016/11/21/threeSum/"/>
     <id>http://yoursite.com/2016/11/21/threeSum/</id>
     <published>2016-11-21T09:37:35.000Z</published>
-    <updated>2016-11-21T09:45:34.000Z</updated>
+    <updated>2016-11-22T12:29:19.000Z</updated>
     
     <content type="html">&lt;p&gt;难度：medium&lt;br&gt;本题可以看作是2sum的一种延伸，固定一个元素，对其余进行2sum。需要注意的是去除掉重复项和越界问题。代码如下。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; threeSum(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (nums.size() &amp;lt; 3) return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        sort(nums.begin(), nums.end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto it = nums.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto last_it = it + nums.size() - 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int target = INT_MIN;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(; it+2 != nums.end(); it++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(target == -*it)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                continue;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            target = -*it;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            auto twoSum_it_begin = it+1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            auto twoSum_it_end = last_it;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            while(twoSum_it_begin != twoSum_it_end)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                int first = *twoSum_it_begin;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                int second = *twoSum_it_end;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                int twoSum = first + second;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(twoSum &amp;lt; target)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    twoSum_it_begin++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                else if(twoSum &amp;gt; target)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    twoSum_it_end--;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    vector&amp;lt;int&amp;gt; cur_vec&amp;#123;*it,first,second&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    ret.push_back(cur_vec);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    while(*(twoSum_it_begin+1) == *twoSum_it_begin &amp;amp;&amp;amp; twoSum_it_begin+1  != twoSum_it_end)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        twoSum_it_begin++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    twoSum_it_begin++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -37,6 +202,8 @@
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
   </entry>
   
   <entry>
@@ -44,7 +211,7 @@
     <link href="http://yoursite.com/2016/11/21/twoSum/"/>
     <id>http://yoursite.com/2016/11/21/twoSum/</id>
     <published>2016-11-21T06:04:53.000Z</published>
-    <updated>2016-11-21T07:03:54.000Z</updated>
+    <updated>2016-11-22T12:29:28.000Z</updated>
     
     <content type="html">&lt;p&gt;leetcode上easy的一道题。&lt;/p&gt;
 &lt;p&gt;用cpp跑了两种算法。&lt;/p&gt;
@@ -65,6 +232,8 @@
     
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
   </entry>
   
