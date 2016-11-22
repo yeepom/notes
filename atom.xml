@@ -162,7 +162,7 @@ unique_ptr则“独占”所指
     <link href="http://yoursite.com/2016/11/22/c-%E4%B8%ADexplicit%E4%BF%AE%E9%A5%B0%E8%AF%8D/"/>
     <id>http://yoursite.com/2016/11/22/c-中explicit修饰词/</id>
     <published>2016-11-22T03:29:13.000Z</published>
-    <updated>2016-11-22T08:38:05.000Z</updated>
+    <updated>2016-11-22T12:38:23.000Z</updated>
     
     <content type="html">&lt;p&gt;explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。&lt;/p&gt;
 &lt;p&gt;备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。&lt;/p&gt;
@@ -177,6 +177,8 @@ unique_ptr则“独占”所指
     
     </summary>
     
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
     
   </entry>
   
