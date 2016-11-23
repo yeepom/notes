@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/23/leetcode-rotate-image/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
-<meta property="og:updated_time" content="2016-11-23T13:47:27.000Z">
+<meta property="og:updated_time" content="2016-11-23T13:52:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_rotate_image">
 <meta name="twitter:description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
@@ -280,98 +280,25 @@
       
         <p>难度：Medium<br>解题思路：先对数组进行调换，找规律。<br><a id="more"></a><br>难度：Medium<br>解题思路：先对数组进行调换，找规律。如：</p>
 <p>矩阵A</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 2 3</span><br><span class="line">4 5 6</span><br><span class="line">7 8 9</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> 4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td> 7</td>
-<td>8</td>
-<td>9 </td>
-</tr>
-</tbody>
-</table>
-<p>我们想要得到的结果是。</p>
+<pre><code>1 2 3
+4 5 6
+7 8 9
+</code></pre><p>我们想要得到的结果是。</p>
 <p>矩阵B</p>
-<table>
-<thead>
-<tr>
-<th>7</th>
-<th>4</th>
-<th>1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> 8</td>
-<td>5</td>
-<td>2</td>
-</tr>
-<tr>
-<td> 9</td>
-<td>6</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-<p> 下面对初始矩阵进行转换。<br> 先对每一行，进行前后翻转。</p>
+<pre><code>7 4 1
+8 5 2
+9 6 3
+</code></pre><p>下面对初始矩阵进行转换。<br>先对每一行，进行前后翻转。</p>
 <p> 矩阵C</p>
-<table>
-<thead>
-<tr>
-<th>3</th>
-<th>2</th>
-<th>1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> 6</td>
-<td>5</td>
-<td>4</td>
-</tr>
-<tr>
-<td> 9</td>
-<td>8</td>
-<td>7</td>
-</tr>
-</tbody>
-</table>
-<p> 发现没什么规律。。<br> 再对行与行之间，进行翻转。</p>
+<pre><code>3 2 1
+6 5 4
+9 8 7
+</code></pre><p> 发现没什么规律。。<br> 再对行与行之间，进行翻转。</p>
 <p> 矩阵D</p>
-<table>
-<thead>
-<tr>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> 4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td> 1</td>
-<td>2</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-<p> 这时可以发现，矩阵D与B关于一条对角线对称，对角线元素为7，5，3。这样我们就找到了解题思路。先行与行之间翻转，再对对角线翻转。<br> 代码如下：</p>
+<pre><code>7 8 9
+4 5 6
+1 2 3
+</code></pre><p>  这时可以发现，矩阵D与B关于一条对角线对称，对角线元素为7，5，3。这样我们就找到了解题思路。先行与行之间翻转，再对对角线翻转。<br> 代码如下：</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        auto first_level_first_it = matrix.begin();</span><br><span class="line">        auto first_level_second_it = matrix.end()-1;</span><br><span class="line">        while(first_level_first_it &lt; first_level_second_it)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(*first_level_first_it, *first_level_second_it);</span><br><span class="line">            first_level_first_it++;</span><br><span class="line">            first_level_second_it--;</span><br><span class="line">        &#125;</span><br><span class="line">        size_t sz = matrix.size();</span><br><span class="line">        for(int i = 0; i&lt; sz; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j = i+1; j &lt; sz; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                swap(matrix[i][j], matrix[j][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>代码结果：运行时间3ms，超过28.61%。</p>
 
