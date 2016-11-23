@@ -104,7 +104,7 @@ unique_ptr则“独占”所指向的对象
 智能指针是模板，要在尖括号内给出类型。
 shared_ptr&amp;lt;string&amp;gt; p1;
 shared_ptr&amp;lt;list&amp;lt;int&amp;g">
-<meta property="og:updated_time" content="2016-11-22T14:16:13.000Z">
+<meta property="og:updated_time" content="2016-11-23T08:00:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++智能指针用法">
 <meta name="twitter:description" content="一、shared_ptr定义
@@ -348,7 +348,7 @@ shared_ptr&lt;list&lt;int&gt;&gt; p2;
 </tr>
 </tbody>
 </table>
-<p>shared_ptr独享的操作</p>
+<p>shared_ptr独有的操作</p>
 <table>
 <thead>
 <tr>
@@ -382,6 +382,7 @@ shared_ptr&lt;list&lt;int&gt;&gt; p2;
 <p>make_shared函数<br>此函数在动态内存分配一个对象并初始化它，返回指向此对象的shared_ptr。头文件memory。<br>使用时要保持类型一致。<br>p<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//指向一个值为42的int的shared_ptr</span><br><span class="line">shared_ptr&lt;int&gt; p3 = make_shared&lt;int&gt;(42);</span><br><span class="line"></span><br><span class="line">//p4指向一个值为&quot;9999999999&quot;的string</span><br><span class="line">shared_ptr&lt;string&gt; p4 = make_shared&lt;string&gt;(10,&apos;9&apos;);</span><br><span class="line"></span><br><span class="line">//p5指向一个值初始化的int，即，值为0</span><br><span class="line">shared_ptr&lt;int&gt; p5 = make_shared&lt;int&gt;();</span><br><span class="line"></span><br><span class="line">//使用auto，p6指向一个动态分配的空vector&lt;string&gt;</span><br><span class="line">auto p6 = make_shared&lt;vector&lt;string&gt;&gt;();</span><br></pre></td></tr></table></figure></p>
 <p>shared_ptr的拷贝和赋值<br>当进行拷贝或赋值操作时，每个shared_ptr都会记录有多少个其他shared_ptr指向相同的对象。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto p = make_shared&lt;int&gt; (42);	//p指向的对象只有p一个引用者</span><br><span class="line">auto q(p);	//p和q指向相同对象，此对象有两个引用者</span><br><span class="line"></span><br><span class="line">auto r = make_shared&lt;int&gt; (42);	//r指向的int只有一个引用者</span><br><span class="line">r = q;	//给r赋值，令它指向另一个地址</span><br><span class="line">		//递增q指向的对象的引用计数</span><br><span class="line">		//递减r原来指向的对象的引用计数</span><br><span class="line">		//r原来指向的对象已没有引用者，会自动释放</span><br></pre></td></tr></table></figure>
+<p>空悬指针(dangling pointer):指向一块曾经保存数据对象但现在已经无效(被delete掉)的内存的指针。</p>
 <p>二、shared_ptr和new结合<br>可以用new返回的指针来初始化智能指针。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr&lt;double&gt; p1;		</span><br><span class="line">shared_ptr&lt;int&gt; p2(new int(42));</span><br></pre></td></tr></table></figure>
 <p>接受指针参数的智能指针构造函数是explicit的，不能将一个内置指针隐式转换为一个智能指针。</p>
@@ -429,6 +430,96 @@ shared_ptr&lt;list&lt;int&gt;&gt; p2;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(!p.unique())</span><br><span class="line">	p.reset(new string(*p));</span><br><span class="line">*p += newVal;</span><br></pre></td></tr></table></figure>
 <p>使用d代替delete的例子。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct destination;		//表示我们正在连接什么</span><br><span class="line">struct connection;		//使用连接所需的信息</span><br><span class="line">connection connect(destination*);		//打开连接</span><br><span class="line">void disconnect(connection);		//关闭给定的连接</span><br><span class="line">void end_connection(connection *p) &#123;disconnect(*p);&#125;  //代替delete</span><br><span class="line">void f(destination &amp;d)</span><br><span class="line">&#123;</span><br><span class="line">	connection c = connect(&amp;d);</span><br><span class="line">	shared_ptr&lt;connection&gt; p(&amp;c, end_connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>unique_ptr<br>某个时刻只能有一个unique_ptr指向一个给定对象。当unique_ptr被销毁时，它所指向的对象也被销毁。定义一个unique_ptr时，需要将其绑定到一个new返回的指针上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unique_ptr&lt;double&gt; p1;</span><br><span class="line">unique_ptr&lt;double&gt; p2(new int(42));</span><br></pre></td></tr></table></figure></p>
+<p>unique_ptr不支持普通的拷贝或赋值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unique_ptr&lt;string&gt; p1(new string(&quot;Stegosaurus&quot;));</span><br><span class="line">unique_ptr&lt;string&gt; p2(p1);		//错误</span><br><span class="line">unique_ptr&lt;string&gt; p3;</span><br><span class="line">p3 = p2		//错误</span><br></pre></td></tr></table></figure></p>
+<p>unique_ptr操作</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unique_ptr&lt; T &gt; u1</td>
+<td>空unique_ptr，可以指向类型为T的对象。u1会使用delete来释放它的指针；u2会使用一个类型为D的可调用对象来释放它的指针</td>
+</tr>
+<tr>
+<td>unique_ptr &lt; T , D &gt; u2</td>
+<td></td>
+</tr>
+<tr>
+<td>unique_ptr &lt; T , D &gt; u(d)</td>
+<td>空unique_ptr，可以指向类型为T的对象，用类型为D的对象d代替delete</td>
+</tr>
+<tr>
+<td>u = nullptr</td>
+<td>释放u指向的对象，将u置为空</td>
+</tr>
+<tr>
+<td>u.release()</td>
+<td>u放弃对指针的控制权，返回指针，并将u置为空</td>
+</tr>
+<tr>
+<td>u.reset()</td>
+<td>释放u指向的对象</td>
+</tr>
+<tr>
+<td>u.reset(q)</td>
+<td>如果提供了内置指针q，令u指向这个对象；否则将u置为空</td>
+</tr>
+<tr>
+<td>u.reset(nullptr)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unique_ptr&lt;string&gt; p2(p1.release());	//将所有权从p1(指向String Stegosaurus)转移给p2，release将p1置为空</span><br><span class="line">unique_ptr&lt;string&gt; p3(new string(&quot;Trex&quot;)); </span><br><span class="line">p2.reset(p3.release());将所有权从p3转移给p2，reset释放了p2原来指向的内存</span><br></pre></td></tr></table></figure>
+<p>可以拷贝或赋值一个将要被销毁的unique_ptr。如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unique_ptr&lt;int&gt; clone(int p)</span><br><span class="line">&#123;</span><br><span class="line">	return unique_ptr&lt;int&gt;(new int(p));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>向unique_ptr传递删除器，以shared_ptr中connection为例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void f(destination &amp;d)</span><br><span class="line">&#123;</span><br><span class="line">	connection c = connect(&amp;d);</span><br><span class="line">	unique_ptr&lt;connection, decltype(end_connection)*&gt; p(&amp;c, end_connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三、weak_ptr<br>weak_ptr是一个 不控制所指对象生存期的智能指针，它指向由一个shared_ptr管理的对象。不会改变计数。一旦最后一个指向对象的shared_ptr被销毁，即使有weak_ptr指向对象，对象也会被释放。、</p>
+<p>weak_ptr用法</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>weak_ptr&lt; T &gt; w</td>
+<td>空weak_ptr可以指向类型为T的对象</td>
+</tr>
+<tr>
+<td>weak_ptr&lt; T &gt; w(sp)</td>
+<td>与shared_ptr sp指向相同对象的weak_ptr。T必须能转换为sp指向的类型 </td>
+</tr>
+<tr>
+<td>w = p</td>
+<td>p可以是一个shared_ptr或一个weak_ptr。赋值后w与p共享对象</td>
+</tr>
+<tr>
+<td>w.reset()</td>
+<td>将w置为空</td>
+</tr>
+<tr>
+<td>w.use_count()</td>
+<td>与w共享对象的shared_ptr的数量</td>
+</tr>
+<tr>
+<td>w.expired()</td>
+<td>若w.use_count()为0，返回true，否则返回false</td>
+</tr>
+<tr>
+<td>w.lock()</td>
+<td>如果expired为true，返回一个空shared_ptr；否则返回一个指向w的对象的shared_ptr</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">auto p = make_shared&lt;int&gt;(42);</span><br><span class="line">weak_ptr&lt;int&gt; wp(p);	//wp弱共享p；p的引用计数未改变</span><br><span class="line"></span><br><span class="line">if(shared_ptr&lt;int&gt; np = wp.lock())	//调用lock检查weak_ptr所指向的对象是否存在</span><br><span class="line">&#123;</span><br><span class="line">	//在if中，np与p共享对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
