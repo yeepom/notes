@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode," />
+  <meta name="keywords" content="c++,new,allocator," />
 
 
 
@@ -86,27 +86,25 @@
 
 
 
-<meta name="description" content="题目链接
-这是一道dp题目，需要拆解子问题，分析如下:
-a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包含；不包含a点，则为其左右节点可抢劫最大值之和。
-123best_with(a) = a.val + best_without(b) + best_without(c)best_without(a) = max(best_with(b),best_withou">
+<meta name="description" content="一、new和数组用new分配一个对象数组。
+12//get_size确定分配多少个intint *pia = new int[get_size()];	//	pia指向第一个int
+用表示数组类型的类型别名来分配一个数组。
+1234typedef int arrT[42];	//arrT表示42个int的数组类型int *p = new arrT;	//分配一个42个int的数组；p指向第一个in">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-HouseRobberIII">
-<meta property="og:url" content="http://yoursite.com/2016/07/12/leetcode_house_robber_iii/index.html">
+<meta property="og:title" content="c++动态数组">
+<meta property="og:url" content="http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="题目链接
-这是一道dp题目，需要拆解子问题，分析如下:
-a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包含；不包含a点，则为其左右节点可抢劫最大值之和。
-123best_with(a) = a.val + best_without(b) + best_without(c)best_without(a) = max(best_with(b),best_withou">
-<meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160712_57.png">
-<meta property="og:updated_time" content="2016-07-12T14:01:17.000Z">
+<meta property="og:description" content="一、new和数组用new分配一个对象数组。
+12//get_size确定分配多少个intint *pia = new int[get_size()];	//	pia指向第一个int
+用表示数组类型的类型别名来分配一个数组。
+1234typedef int arrT[42];	//arrT表示42个int的数组类型int *p = new arrT;	//分配一个42个int的数组；p指向第一个in">
+<meta property="og:updated_time" content="2016-11-23T09:49:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode-HouseRobberIII">
-<meta name="twitter:description" content="题目链接
-这是一道dp题目，需要拆解子问题，分析如下:
-a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包含；不包含a点，则为其左右节点可抢劫最大值之和。
-123best_with(a) = a.val + best_without(b) + best_without(c)best_without(a) = max(best_with(b),best_withou">
-<meta name="twitter:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20160712_57.png">
+<meta name="twitter:title" content="c++动态数组">
+<meta name="twitter:description" content="一、new和数组用new分配一个对象数组。
+12//get_size确定分配多少个intint *pia = new int[get_size()];	//	pia指向第一个int
+用表示数组类型的类型别名来分配一个数组。
+1234typedef int arrT[42];	//arrT表示42个int的数组类型int *p = new arrT;	//分配一个42个int的数组；p指向第一个in">
 
 
 
@@ -127,9 +125,9 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/12/leetcode_house_robber_iii/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/"/>
 
-  <title> LeetCode-HouseRobberIII | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> c++动态数组 | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +247,7 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
             
             
               
-                LeetCode-HouseRobberIII
+                c++动态数组
               
             
           </h1>
@@ -261,8 +259,8 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-12T19:55:41+08:00" content="2016-07-12">
-              2016-07-12
+            <time itemprop="dateCreated" datetime="2016-11-23T16:46:32+08:00" content="2016-11-23">
+              2016-11-23
             </time>
           </span>
 
@@ -289,18 +287,21 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
       
 
       
-        <p><a href="https://leetcode.com/problems/house-robber-iii/" target="_blank" rel="external">题目链接</a></p>
-<p>这是一道dp题目，需要拆解子问题，分析如下:<br><img src="http://o9kchgjar.bkt.clouddn.com/Snip20160712_57.png" alt="dp photo"></p>
-<p>a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。<br>包含a点，其左右节点就不能包含；<br>不包含a点，则为其左右节点可抢劫最大值之和。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">best_with(a) = a.val + best_without(b) + best_without(c)</span><br><span class="line"></span><br><span class="line">best_without(a) = max(best_with(b),best_without(b)) + max(best_with(c),best_without(c))</span><br></pre></td></tr></table></figure>
-<p>按照上面的解法，写出代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int rob(TreeNode root) &#123;</span><br><span class="line">        if (root == null ) return 0;</span><br><span class="line">        int selectCur = root.val;</span><br><span class="line">        if (root.left != null) selectCur += (rob(root.left.left)+rob(root.left.right));</span><br><span class="line">        if (root.right != null) selectCur += (rob(root.right.left)+rob(root.right.right));</span><br><span class="line">        int unselectCur = rob(root.left)+rob(root.right);</span><br><span class="line">        return Math.max(selectCur,unselectCur);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可是提交时，会有TLE。我们在计算子节点可抢劫的最大值时进行了重复计算。从下面的代码里，可以看出有重复计算。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rob(root.left.left)</span><br><span class="line">rob(root.left)</span><br></pre></td></tr></table></figure>
-<p>使用的方法：在计算节点可抢劫的最大值时，存储包含当前节点的最大值best_with和不包含当前节点的最大值best_without,返回一个数组。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int rob(TreeNode root)</span><br><span class="line">    &#123;</span><br><span class="line">    	 int[] rst = &#123;0,0&#125;;</span><br><span class="line">    	 rst = dfs(root);</span><br><span class="line">        return Math.max(rst[0],rst[1]);</span><br><span class="line">    &#125;</span><br><span class="line">    public int[] dfs(TreeNode root) &#123;</span><br><span class="line">        int [] robber = &#123;0,0&#125;;</span><br><span class="line">        if (root != null)</span><br><span class="line">        &#123;</span><br><span class="line">            int[] robLeft = dfs(root.left);  </span><br><span class="line">            int[] robRight = dfs(root.right);</span><br><span class="line">            robber[0] = Math.max(robLeft[0],robLeft[1])+Math.max(robRight[0],robRight[1]);</span><br><span class="line">            robber[1] = root.val+robLeft[0]+robRight[0];</span><br><span class="line">        &#125;</span><br><span class="line">        return robber;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>robber[1]存储的是在包含当前节点的情况下，当前节点可抢劫的最大值。<br>robber[0]存储的是在不包含当前节点情况下，当前节点可抢劫的最大值。</p>
-<p>参考：<br>    <a href="http://blog.csdn.net/happyaaaaaaaaaaa/article/details/50880121" target="_blank" rel="external">http://blog.csdn.net/happyaaaaaaaaaaa/article/details/50880121</a><br>    <a href="https://docs.google.com/document/d/1NPojCYmFOSg-GvYfOKKS6dkp6VBNbjVmYho5nl8YI3M/edit#heading=h.8xfeu8ymemfz" target="_blank" rel="external">https://docs.google.com/document/d/1NPojCYmFOSg-GvYfOKKS6dkp6VBNbjVmYho5nl8YI3M/edit#heading=h.8xfeu8ymemfz</a></p>
+        <p>一、new和数组<br>用new分配一个对象数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//get_size确定分配多少个int</span><br><span class="line">int *pia = new int[get_size()];	//	pia指向第一个int</span><br></pre></td></tr></table></figure>
+<p>用表示数组类型的类型别名来分配一个数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef int arrT[42];	//arrT表示42个int的数组类型</span><br><span class="line">int *p = new arrT;	//分配一个42个int的数组；p指向第一个int</span><br><span class="line">//编译器实际会执行：</span><br><span class="line">int *p = new int[42];</span><br></pre></td></tr></table></figure>
+<p>分配一个数组会得到一个元素类型的指针</p>
+<p>初始化动态分配对象的数组，在大小之后跟一对空括号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int *pia = new int[10];		//10个未初始化的int</span><br><span class="line">int *pia2 = new int[10]();	//10个初始化为0的int</span><br><span class="line">string *psa = new string[10];	//10个空string</span><br><span class="line">string *psa2 = new string[10]();	//10个空string</span><br></pre></td></tr></table></figure>
+<p>新标准中，可用花括号列表初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int *pia3 = new int[10]&#123;0,1,2,3,4,5,6,7,8,9&#125;;</span><br><span class="line">string *psa3 = new string[10]&#123;&quot;a&quot;,&quot;an&quot;,&quot;the&quot;,string(3,&apos;x&apos;)&#125;;//其余为空</span><br></pre></td></tr></table></figure>
+<p>动态分配一个空数组时合法的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//遍历数组</span><br><span class="line">size_t n = get_size();</span><br><span class="line">int* p = new int[n];</span><br><span class="line">for(int* q = p;q != p+n; ++q)</span><br><span class="line">&#123;</span><br><span class="line">	//</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">char arr[0];	//错误：不能定义长度为0的数组</span><br><span class="line">char *cp = new char[0];	//正确：但cp不能解引用，此指针像尾后迭代器</span><br></pre></td></tr></table></figure>
+<p>释放动态数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">delete p;	//p必须指向一个动态分配的对象或为空</span><br><span class="line">delete []pa;	//pa必须指向一个动态分配的数组或为空</span><br><span class="line"></span><br><span class="line">typedef int arrT[42];</span><br><span class="line">int *p = new arrT;</span><br><span class="line">delete[] p;</span><br></pre></td></tr></table></figure>
+<p>unique_ptr和动态数组<br>为了用一个unique_ptr管理动态数组，必须在对象类型后面跟一对空括号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unique_ptr&lt;int[]&gt; up(new int[10]);</span><br><span class="line">up.release();		//自动用delete[]销毁其指针</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -322,7 +323,11 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
       
         <div class="post-tags">
           
-            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+            <a href="/tags/c/" rel="tag">#c++</a>
+          
+            <a href="/tags/new/" rel="tag">#new</a>
+          
+            <a href="/tags/allocator/" rel="tag">#allocator</a>
           
         </div>
       
@@ -331,16 +336,16 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/05/coursera_machine_learning_lesson_1/" rel="next" title="Coursera机器学习-linearRegression公式总结">
-                <i class="fa fa-chevron-left"></i> Coursera机器学习-linearRegression公式总结
+              <a href="/2016/11/23/fourSum/" rel="next" title="leetcode_four_sum">
+                <i class="fa fa-chevron-left"></i> leetcode_four_sum
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/18/reservoir_sampling/" rel="prev" title="蓄水池抽样问题（Reservoir Sampling）">
-                蓄水池抽样问题（Reservoir Sampling） <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/23/remove-duplicates-from-sorted-array/" rel="prev" title="leetcode_remove_duplicates_from_sorted_array">
+                leetcode_remove_duplicates_from_sorted_array <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
