@@ -139,7 +139,7 @@
     <link href="http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/"/>
     <id>http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/</id>
     <published>2016-11-23T08:46:32.000Z</published>
-    <updated>2016-11-23T13:57:12.000Z</updated>
+    <updated>2016-11-23T14:03:39.000Z</updated>
     
     <content type="html">&lt;p&gt;一、new和数组&lt;br&gt;用new分配一个对象数组。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//get_size确定分配多少个int&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int *pia = new int[get_size()];	//	pia指向第一个int&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
