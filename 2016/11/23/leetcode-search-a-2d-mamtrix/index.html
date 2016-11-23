@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/23/leetcode-search-a-2d-mamtrix/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Medium解题思路：对于一个二维数组，从最后一排，从左到右的搜索，如遇到比targe大的元素，则停止该排搜索，跳到上一排，以此类推。">
-<meta property="og:updated_time" content="2016-11-23T12:22:39.000Z">
+<meta property="og:updated_time" content="2016-11-23T13:56:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_search_a_2d_mamtrix">
 <meta name="twitter:description" content="难度：Medium解题思路：对于一个二维数组，从最后一排，从左到右的搜索，如遇到比targe大的元素，则停止该排搜索，跳到上一排，以此类推。">
@@ -278,7 +278,7 @@
       
 
       
-        <p>难度：Medium<br>解题思路：对于一个二维数组，从最后一排，从左到右的搜索，如遇到比targe大的元素，则停止该排搜索，跳到上一排，以此类推。<br><a id="more"></a><br>难度：Medium<br>解题思路：对于一个二维数组，从最后一排，从左到右的搜索，如遇到比targe大的元素，则停止该排搜索，跳到上一排，以此类推。<br>代码如下。</p>
+        <p>难度：Medium<br>解题思路：对于一个二维数组，从最后一排，从左到右的搜索，如遇到比targe大的元素，则停止该排搜索，跳到上一排，以此类推。<br><a id="more"></a><br>代码如下。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123;</span><br><span class="line">        auto first_level_reverse_it = matrix.rbegin();</span><br><span class="line">        auto first_level_reverse_begin_it = matrix.rbegin();</span><br><span class="line">        auto first_level_reverse_end_it = matrix.rend();</span><br><span class="line">        for(;first_level_reverse_it != first_level_reverse_end_it;first_level_reverse_it++)</span><br><span class="line">        &#123;</span><br><span class="line">            auto second_level_it = (*first_level_reverse_it).begin();</span><br><span class="line">            auto second_level_begin_it = (*first_level_reverse_it).begin();</span><br><span class="line">            auto second_level_end_it = (*first_level_reverse_it).end();</span><br><span class="line">            for(;second_level_it != second_level_end_it;second_level_it++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(*second_level_it == target)</span><br><span class="line">                    return true;</span><br><span class="line">                else if(*second_level_it &gt; target)</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>代码结果：运行时间8ms，超过43.19%。</p>
 
