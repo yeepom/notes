@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/23/leetcode-rotate-image/</loc>
+    
+    <lastmod>2016-11-23T13:43:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/23/fourSum/</loc>
     
     <lastmod>2016-11-23T12:24:23.000Z</lastmod>
