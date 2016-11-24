@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/</loc>
+    
+    <lastmod>2016-11-24T01:07:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/</loc>
     
-    <lastmod>2016-11-23T14:03:39.000Z</lastmod>
+    <lastmod>2016-11-24T01:01:58.000Z</lastmod>
     
   </url>
   
@@ -61,13 +68,6 @@
     <loc>http://yoursite.com/2016/11/23/remove-duplicates-from-sorted-array/</loc>
     
     <lastmod>2016-11-23T11:42:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/</loc>
-    
-    <lastmod>2016-11-23T08:00:43.000Z</lastmod>
     
   </url>
   

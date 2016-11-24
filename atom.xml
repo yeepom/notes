@@ -139,7 +139,7 @@
     <link href="http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/"/>
     <id>http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/</id>
     <published>2016-11-23T08:46:32.000Z</published>
-    <updated>2016-11-23T14:03:39.000Z</updated>
+    <updated>2016-11-24T01:01:58.000Z</updated>
     
     <content type="html">&lt;p&gt;一、new和数组&lt;br&gt;用new分配一个对象数组。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//get_size确定分配多少个int&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int *pia = new int[get_size()];	//	pia指向第一个int&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -154,8 +154,41 @@
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//遍历数组&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;size_t n = get_size();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int* p = new int[n];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(int* q = p;q != p+n; ++q)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	//&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;char arr[0];	//错误：不能定义长度为0的数组&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;char *cp = new char[0];	//正确：但cp不能解引用，此指针像尾后迭代器&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;释放动态数组&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;delete p;	//p必须指向一个动态分配的对象或为空&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;delete []pa;	//pa必须指向一个动态分配的数组或为空&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;typedef int arrT[42];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int *p = new arrT;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;delete[] p;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;unique_ptr和动态数组&lt;br&gt;为了用一个unique_ptr管理动态数组，必须在对象类型后面跟一对空括号。&lt;/p&gt;
+&lt;p&gt;unique_ptr和动态数组&lt;/p&gt;
+&lt;p&gt;为了用一个unique_ptr管理动态数组，必须在对象类型后面跟一对空括号,用来标识up指向一个int数组而不是一个int。销毁up指向的一个数组，会自动使用delete[]。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;int[]&amp;gt; up(new int[10]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;up.release();		//自动用delete[]销毁其指针&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当一个unique_ptr指向一个数组时，我们不能使用点和箭头成员运算符。毕竟指向的是一个数组而不是单个对象。&lt;br&gt;可以使用下标运算符来访问数组中的元素。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for (size_t i = 0; i != 10; ++i)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	up[i] = i;	//为每个元素赋予一个新值&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;指向数组的unique_ptr&lt;/p&gt;
+&lt;p&gt;指向数组的unique_ptr不支持成员访问运算符(点和箭头)。&lt;br&gt;其他unique_ptr操作不变。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;unique_ptr&amp;lt; T[] &amp;gt; u&lt;/td&gt;
+&lt;td&gt;u可以指向一个动态分配的数组，数组元素类型为T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;unique_ptr&amp;lt; T[] &amp;gt; u(p)&lt;/td&gt;
+&lt;td&gt;u指向内置指针p所指向的动态分配的数组。p必须能转换为类型T*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;u[i]&lt;/td&gt;
+&lt;td&gt;返回u拥有的数组中位置i处的对象。u必须指向一个数组。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;shared_ptr和动态数组&lt;/p&gt;
+&lt;p&gt;shared_ptr不支持管理动态数组。如果希望支持，必须提供自己定义的删除器。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; sp(new int[10], [](int *p)&amp;#123;delete []p;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sp.reset();	//使用自定义的lambda释放数组，使用delete[]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果未提供删除器，这段代码将是未定义的。默认情况下shared_ptr使用delete摧毁它指向的对象。&lt;/p&gt;
+&lt;p&gt;shared_ptr未定义下标运算符，而且智能指针类型不支持指针算术运算。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for(size_t i = 0; i != 10; ++i)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	*(sp.get() + i) = i;	//使用get获取一个内置指针&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
     
     <summary type="html">
@@ -228,7 +261,7 @@
     <link href="http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/"/>
     <id>http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/</id>
     <published>2016-11-22T08:34:17.000Z</published>
-    <updated>2016-11-23T08:00:43.000Z</updated>
+    <updated>2016-11-24T01:07:39.000Z</updated>
     
     <content type="html">&lt;p&gt;一、shared_ptr定义&lt;/p&gt;
 &lt;p&gt;c++新标准库提供了两种智能指针类型来管理动态对象。shared_ptr和unique_ptr。头文件memory。&lt;/p&gt;
@@ -313,7 +346,8 @@ shared_ptr&amp;lt;list&amp;lt;int&amp;gt;&amp;gt; p2;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;make_shared函数&lt;br&gt;此函数在动态内存分配一个对象并初始化它，返回指向此对象的shared_ptr。头文件memory。&lt;br&gt;使用时要保持类型一致。&lt;br&gt;p&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//指向一个值为42的int的shared_ptr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p3 = make_shared&amp;lt;int&amp;gt;(42);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p4指向一个值为&amp;quot;9999999999&amp;quot;的string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;string&amp;gt; p4 = make_shared&amp;lt;string&amp;gt;(10,&amp;apos;9&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p5指向一个值初始化的int，即，值为0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p5 = make_shared&amp;lt;int&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//使用auto，p6指向一个动态分配的空vector&amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto p6 = make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;make_shared函数&lt;br&gt;此函数在动态内存分配一个对象并初始化它，返回指向此对象的shared_ptr。头文件memory。&lt;br&gt;使用时要保持类型一致。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//指向一个值为42的int的shared_ptr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p3 = make_shared&amp;lt;int&amp;gt;(42);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p4指向一个值为&amp;quot;9999999999&amp;quot;的string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;string&amp;gt; p4 = make_shared&amp;lt;string&amp;gt;(10,&amp;apos;9&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p5指向一个值初始化的int，即，值为0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p5 = make_shared&amp;lt;int&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//使用auto，p6指向一个动态分配的空vector&amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto p6 = make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;shared_ptr的拷贝和赋值&lt;br&gt;当进行拷贝或赋值操作时，每个shared_ptr都会记录有多少个其他shared_ptr指向相同的对象。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;auto p = make_shared&amp;lt;int&amp;gt; (42);	//p指向的对象只有p一个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto q(p);	//p和q指向相同对象，此对象有两个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto r = make_shared&amp;lt;int&amp;gt; (42);	//r指向的int只有一个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r = q;	//给r赋值，令它指向另一个地址&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//递增q指向的对象的引用计数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//递减r原来指向的对象的引用计数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//r原来指向的对象已没有引用者，会自动释放&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;空悬指针(dangling pointer):指向一块曾经保存数据对象但现在已经无效(被delete掉)的内存的指针。&lt;/p&gt;
