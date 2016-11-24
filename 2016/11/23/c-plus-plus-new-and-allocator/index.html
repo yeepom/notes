@@ -98,7 +98,7 @@
 12//get_size确定分配多少个intint *pia = new int[get_size()];	//	pia指向第一个int
 用表示数组类型的类型别名来分配一个数组。
 1234typedef int arrT[42];	//arrT表示42个int的数组类型int *p = new arrT;	//分配一个42个int的数组；p指向第一个in">
-<meta property="og:updated_time" content="2016-11-24T01:01:58.000Z">
+<meta property="og:updated_time" content="2016-11-24T03:29:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++动态数组">
 <meta name="twitter:description" content="一、new和数组用new分配一个对象数组。
@@ -335,6 +335,80 @@
 <p>如果未提供删除器，这段代码将是未定义的。默认情况下shared_ptr使用delete摧毁它指向的对象。</p>
 <p>shared_ptr未定义下标运算符，而且智能指针类型不支持指针算术运算。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(size_t i = 0; i != 10; ++i)</span><br><span class="line">	*(sp.get() + i) = i;	//使用get获取一个内置指针</span><br></pre></td></tr></table></figure>
+<p>二、allocator类</p>
+<p>new讲内存分配和对象构造组合在了一起，delete讲对象析构和内存释放组合在了一起。</p>
+<p>当分配一大块内存时，计划在这块内存上按需构造对象。在此情况下，希望将内存分配和对象构造分离。这意味着我们可以分配大块内存，但真正需要时才真正执行对象创建操作。</p>
+<p>定义在memory中。</p>
+<p>用法如下。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allocator&lt; T[] &gt; a</td>
+<td>定义了一个名为a的allocator对象，它可以为类型为T的对象分配内存</td>
+</tr>
+<tr>
+<td>a.allocate(n)</td>
+<td>分配一段原始的、未构造的内存，保存n个类型为T的对象</td>
+</tr>
+<tr>
+<td>a.deallocate(p,n)</td>
+<td>释放从T*指针p中地址开始的内存，这块内存保存了n个类型为T的对象；p必须是一个先前由allocate返回的指针，且n必须是p创建时所要求的大小。在调用deallocate之前，用户必须对每个在这块内存中创建的对象调用destroy</td>
+</tr>
+<tr>
+<td>a.construct(p, args)</td>
+<td>p必须是一个类型为T*的指针，指向一块原始内存：arg被传递给类型为T的构造函数，用来在p指向的内存中构造一个对象</td>
+</tr>
+<tr>
+<td>a.destroy(p)</td>
+<td>p为T*类型的指针，此算法对p指向的对象执行析构函数</td>
+</tr>
+</tbody>
+</table>
+<p>allocator分配的内存是未构造的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">allocator&lt;string&gt; alloc;		//可以分配string的allocator对象</span><br><span class="line">auto const p = alloc.allocate(n);		//分配n个未初始化的string，p是const指针。</span><br></pre></td></tr></table></figure>
+<p>allocator分配未构造的内存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">auto q = p;	//q指向最后构造的元素之后的位置</span><br><span class="line">alloc.construct(q++);	//*q为空字符串</span><br><span class="line">alloc.construct(q++,10,&apos;c&apos;);	//*q为cccccccccc</span><br><span class="line">alloc.construct(q++,&quot;hi&quot;);	//*q为hi</span><br></pre></td></tr></table></figure>
+<p>还未构造对象情况下，就使用原始内存是错误的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;*p&lt;&lt;endl;	//正确：使用string的输出运算符</span><br><span class="line">cout&lt;&lt;*q&lt;&lt;endl;	//灾难：q指向未构造的内存！</span><br></pre></td></tr></table></figure>
+<p>注意：allocator分配内存后，必须用construct构造对象。</p>
+<p>用完对象后，必须对每个构造的元素调用destroy来销毁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">while(q != p)</span><br><span class="line">	alloc.destroy(--q);	//释放我们真正构造的string</span><br></pre></td></tr></table></figure>
+<p>释放内存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alloc.deallocate(p, n);	//p指向内存初始位置，n与allocate大小一致。</span><br></pre></td></tr></table></figure>
+<p>拷贝和填充未初始化内存的算法</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uninitialized_copy(b,e,b2)</td>
+<td>从迭代器b和e指出的输入范围中拷贝元素到迭代器b2指定的未构造的原始内存中。b2指向的内存必须足够大，能够容纳输入序列中元素的拷贝</td>
+</tr>
+<tr>
+<td>uninitialized_copy_n(b,n,b2)</td>
+<td>从迭代器b指向的元素开始，拷贝n个元素到b2开始的内存中</td>
+</tr>
+<tr>
+<td>uninitialized_fill(b,e,t)</td>
+<td>从迭代器b和e指出的输入范围中拷贝元素到迭代器b2指定的未构造的原始内存中。b2指向的内存必须足够大，能够容纳输入序列中元素的拷贝</td>
+</tr>
+<tr>
+<td>uninitialized_fill_n(b,n,t)</td>
+<td>从迭代器b指向的内存地址开始创建n个对象。b必须指向足够大的未构造的原始内存，能够容纳给定数量的对象</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; vi&#123;1,2,3,4,5,6,7,8,9&#125;;</span><br><span class="line"></span><br><span class="line">auto p = alloc.allocate(vi.begin(), vi.end(), vi.size()*2);</span><br><span class="line"></span><br><span class="line">auto q = uninitilized_copy(vi.begin(), vi.end(), p);//返回一个指针，指向最后一个构造的元素之后的位置。</span><br><span class="line"></span><br><span class="line">unitialized_fill_n(q, vi.size(),42);	//返回void</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -447,7 +521,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
+<meta name="description" content="难度：Easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_rotate_image">
-<meta property="og:url" content="http://yoursite.com/2016/11/23/leetcode-rotate-image/index.html">
+<meta property="og:title" content="leetcode_rotate_array">
+<meta property="og:url" content="http://yoursite.com/2016/11/24/leetcode-rotate-array/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
-<meta property="og:updated_time" content="2016-11-23T13:59:53.000Z">
+<meta property="og:description" content="难度：Easy">
+<meta property="og:updated_time" content="2016-11-24T05:09:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_rotate_image">
-<meta name="twitter:description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
+<meta name="twitter:title" content="leetcode_rotate_array">
+<meta name="twitter:description" content="难度：Easy">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/23/leetcode-rotate-image/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/24/leetcode-rotate-array/"/>
 
-  <title> leetcode_rotate_image | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_rotate_array | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_rotate_image
+                leetcode_rotate_array
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-23T21:26:55+08:00" content="2016-11-23">
-              2016-11-23
+            <time itemprop="dateCreated" datetime="2016-11-24T13:06:04+08:00" content="2016-11-24">
+              2016-11-24
             </time>
           </span>
 
@@ -278,28 +278,14 @@
       
 
       
-        <p>难度：Medium<br>解题思路：先对数组进行调换，找规律。<br><a id="more"></a><br>矩阵A</p>
-<pre><code>1 2 3
-4 5 6
-7 8 9
-</code></pre><p>我们想要得到的结果是。</p>
-<p>矩阵B</p>
-<pre><code>7 4 1
-8 5 2
-9 6 3
-</code></pre><p>下面对初始矩阵进行转换。<br>先对每一行，进行前后翻转。</p>
-<p> 矩阵C</p>
-<pre><code>3 2 1
-6 5 4
-9 8 7
-</code></pre><p> 发现没什么规律。。<br> 再对行与行之间，进行翻转。</p>
-<p> 矩阵D</p>
-<pre><code>7 8 9
-4 5 6
-1 2 3
-</code></pre><p>  这时可以发现，矩阵D与B关于一条对角线对称，对角线元素为7，5，3。这样我们就找到了解题思路。先行与行之间翻转，再对对角线翻转。<br> 代码如下：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        auto first_level_first_it = matrix.begin();</span><br><span class="line">        auto first_level_second_it = matrix.end()-1;</span><br><span class="line">        while(first_level_first_it &lt; first_level_second_it)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(*first_level_first_it, *first_level_second_it);</span><br><span class="line">            first_level_first_it++;</span><br><span class="line">            first_level_second_it--;</span><br><span class="line">        &#125;</span><br><span class="line">        size_t sz = matrix.size();</span><br><span class="line">        for(int i = 0; i&lt; sz; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j = i+1; j &lt; sz; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                swap(matrix[i][j], matrix[j][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>代码结果：运行时间3ms，超过28.61%。</p>
+        <p>难度：Easy<br><a id="more"></a><br>解题思路：</p>
+<pre><code>先观察数组[1,2,3,4,5,6,7],k=3。结果[5,6,7,1,2,3,4]
+把数组分为两段[1,2,3,4],[5,6,7]
+再对这两段翻转[4,3,2,1],[7,6,5]
+再对整体翻转[5,6,7,1,2,3,4]。
+</code></pre><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        k = k % nums.size();</span><br><span class="line">        auto first_segment_begin_it = nums.begin();</span><br><span class="line">        auto first_segment_last_it = first_segment_begin_it + nums.size()-k -1;</span><br><span class="line">        auto second_segment_begin_it = first_segment_begin_it+nums.size()-k;</span><br><span class="line">        auto second_segment_last_it = first_segment_begin_it + nums.size()-1;</span><br><span class="line">        reverse_vec(first_segment_begin_it,first_segment_last_it);</span><br><span class="line">        reverse_vec(second_segment_begin_it,second_segment_last_it);</span><br><span class="line">        reverse_vec(first_segment_begin_it,second_segment_last_it);</span><br><span class="line">    &#125;</span><br><span class="line">    void reverse_vec(vector&lt;int&gt;::iterator first_it, vector&lt;int&gt;::iterator last_it)</span><br><span class="line">    &#123;</span><br><span class="line">        while(first_it &lt; last_it)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(*first_it,*last_it);</span><br><span class="line">            first_it++;</span><br><span class="line">            last_it--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>结果：运行时间26ms，超过24.92%。</p>
 
       
     </div>
@@ -332,17 +318,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/23/leetcode-search-a-2d-mamtrix/" rel="next" title="leetcode_search_a_2d_mamtrix">
-                <i class="fa fa-chevron-left"></i> leetcode_search_a_2d_mamtrix
+              <a href="/2016/11/23/leetcode-rotate-image/" rel="next" title="leetcode_rotate_image">
+                <i class="fa fa-chevron-left"></i> leetcode_rotate_image
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/24/leetcode-rotate-array/" rel="prev" title="leetcode_rotate_array">
-                leetcode_rotate_array <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

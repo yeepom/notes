@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-23T13:59:53.000Z</updated>
+  <updated>2016-11-24T05:09:46.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode_rotate_array</title>
+    <link href="http://yoursite.com/2016/11/24/leetcode-rotate-array/"/>
+    <id>http://yoursite.com/2016/11/24/leetcode-rotate-array/</id>
+    <published>2016-11-24T05:06:04.000Z</published>
+    <updated>2016-11-24T05:09:46.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：Easy&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;解题思路：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;先观察数组[1,2,3,4,5,6,7],k=3。结果[5,6,7,1,2,3,4]
+把数组分为两段[1,2,3,4],[5,6,7]
+再对这两段翻转[4,3,2,1],[7,6,5]
+再对整体翻转[5,6,7,1,2,3,4]。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void rotate(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        k = k % nums.size();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto first_segment_begin_it = nums.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto first_segment_last_it = first_segment_begin_it + nums.size()-k -1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto second_segment_begin_it = first_segment_begin_it+nums.size()-k;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto second_segment_last_it = first_segment_begin_it + nums.size()-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        reverse_vec(first_segment_begin_it,first_segment_last_it);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        reverse_vec(second_segment_begin_it,second_segment_last_it);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        reverse_vec(first_segment_begin_it,second_segment_last_it);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void reverse_vec(vector&amp;lt;int&amp;gt;::iterator first_it, vector&amp;lt;int&amp;gt;::iterator last_it)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        while(first_it &amp;lt; last_it)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            swap(*first_it,*last_it);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            first_it++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            last_it--;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;结果：运行时间26ms，超过24.92%。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：Easy&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode_rotate_image</title>
@@ -139,7 +169,7 @@
     <link href="http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/"/>
     <id>http://yoursite.com/2016/11/23/c-plus-plus-new-and-allocator/</id>
     <published>2016-11-23T08:46:32.000Z</published>
-    <updated>2016-11-24T01:01:58.000Z</updated>
+    <updated>2016-11-24T03:29:41.000Z</updated>
     
     <content type="html">&lt;p&gt;一、new和数组&lt;br&gt;用new分配一个对象数组。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//get_size确定分配多少个int&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int *pia = new int[get_size()];	//	pia指向第一个int&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -189,6 +219,80 @@
 &lt;p&gt;如果未提供删除器，这段代码将是未定义的。默认情况下shared_ptr使用delete摧毁它指向的对象。&lt;/p&gt;
 &lt;p&gt;shared_ptr未定义下标运算符，而且智能指针类型不支持指针算术运算。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for(size_t i = 0; i != 10; ++i)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	*(sp.get() + i) = i;	//使用get获取一个内置指针&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;二、allocator类&lt;/p&gt;
+&lt;p&gt;new讲内存分配和对象构造组合在了一起，delete讲对象析构和内存释放组合在了一起。&lt;/p&gt;
+&lt;p&gt;当分配一大块内存时，计划在这块内存上按需构造对象。在此情况下，希望将内存分配和对象构造分离。这意味着我们可以分配大块内存，但真正需要时才真正执行对象创建操作。&lt;/p&gt;
+&lt;p&gt;定义在memory中。&lt;/p&gt;
+&lt;p&gt;用法如下。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;allocator&amp;lt; T[] &amp;gt; a&lt;/td&gt;
+&lt;td&gt;定义了一个名为a的allocator对象，它可以为类型为T的对象分配内存&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;a.allocate(n)&lt;/td&gt;
+&lt;td&gt;分配一段原始的、未构造的内存，保存n个类型为T的对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;a.deallocate(p,n)&lt;/td&gt;
+&lt;td&gt;释放从T*指针p中地址开始的内存，这块内存保存了n个类型为T的对象；p必须是一个先前由allocate返回的指针，且n必须是p创建时所要求的大小。在调用deallocate之前，用户必须对每个在这块内存中创建的对象调用destroy&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;a.construct(p, args)&lt;/td&gt;
+&lt;td&gt;p必须是一个类型为T*的指针，指向一块原始内存：arg被传递给类型为T的构造函数，用来在p指向的内存中构造一个对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;a.destroy(p)&lt;/td&gt;
+&lt;td&gt;p为T*类型的指针，此算法对p指向的对象执行析构函数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;allocator分配的内存是未构造的。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;allocator&amp;lt;string&amp;gt; alloc;		//可以分配string的allocator对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto const p = alloc.allocate(n);		//分配n个未初始化的string，p是const指针。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;allocator分配未构造的内存&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;auto q = p;	//q指向最后构造的元素之后的位置&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;alloc.construct(q++);	//*q为空字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;alloc.construct(q++,10,&amp;apos;c&amp;apos;);	//*q为cccccccccc&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;alloc.construct(q++,&amp;quot;hi&amp;quot;);	//*q为hi&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;还未构造对象情况下，就使用原始内存是错误的。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;*p&amp;lt;&amp;lt;endl;	//正确：使用string的输出运算符&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;*q&amp;lt;&amp;lt;endl;	//灾难：q指向未构造的内存！&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意：allocator分配内存后，必须用construct构造对象。&lt;/p&gt;
+&lt;p&gt;用完对象后，必须对每个构造的元素调用destroy来销毁。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;while(q != p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	alloc.destroy(--q);	//释放我们真正构造的string&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;释放内存。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;alloc.deallocate(p, n);	//p指向内存初始位置，n与allocate大小一致。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;拷贝和填充未初始化内存的算法&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;uninitialized_copy(b,e,b2)&lt;/td&gt;
+&lt;td&gt;从迭代器b和e指出的输入范围中拷贝元素到迭代器b2指定的未构造的原始内存中。b2指向的内存必须足够大，能够容纳输入序列中元素的拷贝&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uninitialized_copy_n(b,n,b2)&lt;/td&gt;
+&lt;td&gt;从迭代器b指向的元素开始，拷贝n个元素到b2开始的内存中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uninitialized_fill(b,e,t)&lt;/td&gt;
+&lt;td&gt;从迭代器b和e指出的输入范围中拷贝元素到迭代器b2指定的未构造的原始内存中。b2指向的内存必须足够大，能够容纳输入序列中元素的拷贝&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uninitialized_fill_n(b,n,t)&lt;/td&gt;
+&lt;td&gt;从迭代器b指向的内存地址开始创建n个对象。b必须指向足够大的未构造的原始内存，能够容纳给定数量的对象&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; vi&amp;#123;1,2,3,4,5,6,7,8,9&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto p = alloc.allocate(vi.begin(), vi.end(), vi.size()*2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto q = uninitilized_copy(vi.begin(), vi.end(), p);//返回一个指针，指向最后一个构造的元素之后的位置。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;unitialized_fill_n(q, vi.size(),42);	//返回void&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
     
     <summary type="html">
