@@ -1,0 +1,656 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++,copy constructor,assignment constructor,destructor," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="yan" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。
+123456class Foo&amp;#123;public:	Foo();	Foo(const Foo&amp;amp;);	//copy constructor&amp;#125;;
+通常不应该是explicit。
+合成拷贝构造函数如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。123456789">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++拷贝、赋值与销毁">
+<meta property="og:url" content="http://yoursite.com/2016/11/25/c-plus-plus-copy-assignment-destructor/index.html">
+<meta property="og:site_name" content="yan">
+<meta property="og:description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。
+123456class Foo&amp;#123;public:	Foo();	Foo(const Foo&amp;amp;);	//copy constructor&amp;#125;;
+通常不应该是explicit。
+合成拷贝构造函数如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。123456789">
+<meta property="og:updated_time" content="2016-11-25T14:04:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++拷贝、赋值与销毁">
+<meta name="twitter:description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。
+123456class Foo&amp;#123;public:	Foo();	Foo(const Foo&amp;amp;);	//copy constructor&amp;#125;;
+通常不应该是explicit。
+合成拷贝构造函数如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。123456789">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/25/c-plus-plus-copy-assignment-destructor/"/>
+
+  <title> c++拷贝、赋值与销毁 | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">yan</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">aim higher</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                c++拷贝、赋值与销毁
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-25T10:17:30+08:00" content="2016-11-25">
+              2016-11-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、拷贝构造函数<br>拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。<br>否则会一直陷入死循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Foo</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo();</span><br><span class="line">	Foo(const Foo&amp;);	//copy constructor</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通常不应该是explicit。</p>
+<p>合成拷贝构造函数<br>如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Sales_data</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Sales_data(const Sales_data&amp;);</span><br><span class="line">private:</span><br><span class="line">	std::string bookNO;</span><br><span class="line">	int units_sold = 0;</span><br><span class="line">	double revenue = 0.0;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Sales_data::Sales_data(const Sales_data &amp;orig):bookNo(orig.bookNo),//使用string的拷贝构造函数</span><br><span class="line">units_sold(orig.units_sold),//拷贝orig.units_sold</span><br><span class="line">revenue(orig.revenue)//拷贝orig.revenue</span><br><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>拷贝初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string dots(10, &apos;.&apos;);	//直接初始化</span><br><span class="line">string s(dots);	//直接初始化。书上是这么写，实际上也调用了拷贝构造函数</span><br><span class="line">string s2 = dots;	//拷贝初始化</span><br><span class="line">string null_book = &quot;9-9999-9999&quot;;	//拷贝初始化</span><br><span class="line">string nines = string(100,&apos;9&apos;);	//拷贝初始化</span><br></pre></td></tr></table></figure>
+<p>拷贝构造函数依靠拷贝构造函数或移动构造函数来完成的。</p>
+<p>拷贝构造函数不仅在=定义变量时发生。在以下情况也会发生。</p>
+<pre><code>将一个对象作为实参传递给一个非引用类型的形参
+从一个返回类型为非引用类型的函数返回一个对象
+用花括号列表初始化一个数组中的元素或一个聚合类中的成员
+</code></pre><p>拷贝初始化的限制</p>
+<p>使用explicit构造函数时，必须显式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v1(10);	//正确：直接初始化</span><br><span class="line">vector&lt;int&gt; v2 = 10;	//错误：接受大小参数的构造函数是explicit的</span><br><span class="line">void f(vector&lt;int&gt;);	//f的参数进行拷贝初始化</span><br><span class="line">f(10);	//错误：不能用一个explicit的构造函数拷贝一个实参</span><br><span class="line">f(vector&lt;int&gt;(10));	//正确：从一个int直接构造一个临时vector</span><br></pre></td></tr></table></figure>
+<p>编译器可以绕过拷贝构造函数,直接创建对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string null_book = &quot;9-999-99999-9&quot;;	//拷贝初始化</span><br></pre></td></tr></table></figure>
+<p>编译器被允许改写为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string null_book(&quot;9-999-99999-9&quot;);//略过了拷贝构造函数，调用string (const char* s);</span><br></pre></td></tr></table></figure>
+<p>二、拷贝赋值运算符</p>
+<p>如果类为定义，编译器也会为它合成一个。</p>
+<p>重载运算符</p>
+<p>重载运算符本质上是函数，其名字由operator关键字后接表示要定义的运算符的符号组成。因此，赋值运算符就是一个名为operator=的函数，也有一个返回类型和一个参数列表。</p>
+<p>重载运算符的参数表示运算符的运算对象。某些运算符，包括赋值运算符，必须定义为成员函数。如果一个运算符是一个成员函数，其左侧运算对象就绑定到隐式的this参数。对于一个二元运算符，例如赋值运算符，其右侧运算对象作为显式参数传递。</p>
+<p>拷贝赋值运算符接受一个与其所在类相同类型的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Foo</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo&amp; operator=(const Foo&amp;);	//赋值运算符</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong><em>重要</em></strong><br>拷贝赋值运算符，通常返回一个指向其左侧运算对象的引用，与内置类型一致。看下面代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class NewInt</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    NewInt(int value = 0):value_(value)&#123;&#125;</span><br><span class="line">    NewInt operator=(const NewInt&amp; ni)</span><br><span class="line">    &#123;</span><br><span class="line">        value_ = ni.value_;</span><br><span class="line">        return *this;</span><br><span class="line">    &#125;</span><br><span class="line">    void print()&#123;std::cout&lt;&lt;value_&lt;&lt;std::endl;&#125;</span><br><span class="line">private:</span><br><span class="line">    int value_;</span><br><span class="line">&#125;;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    NewInt ni_1(1);</span><br><span class="line">    NewInt ni_2(2);</span><br><span class="line">    NewInt ni_3(3);</span><br><span class="line">    (ni_3 = ni_2) = ni_1;	//因为NewInt的copy-assignment operator返回的不是引用，所以将返回临时值，ni_1对临时值进行赋值，并不会改变ni_3。</span><br><span class="line">    ni_1.print();</span><br><span class="line">    ni_2.print();</span><br><span class="line">    ni_3.print();</span><br><span class="line">    int a= 1, b=2,c=3;</span><br><span class="line">    (c = b) = a;		//因为内置类型int的copy-assignment operator返回的是引用，b和a将对其进行两次赋值操作。</span><br><span class="line">    std::cout&lt;&lt;a&lt;&lt;std::endl;</span><br><span class="line">    std::cout&lt;&lt;b&lt;&lt;std::endl;</span><br><span class="line">    std::cout&lt;&lt;c&lt;&lt;std::endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<pre><code>1
+2
+2    ni_3的值
+1
+2
+1    c的值
+</code></pre><p>合成拷贝赋值函数<br>将右侧运算对象的非static成员赋予左侧运算对象的对应成员。调用成员类型的拷贝赋值运算符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Sales_data&amp; Sales_data::operator=(const Sales_data &amp;rhs)</span><br><span class="line">&#123;</span><br><span class="line">	bookNo = rhs.bookNo;	//调用string::operator=</span><br><span class="line">	units_sold = rhs.units_sold;	//内置int赋值</span><br><span class="line">	revenue = rhs.revenue;		//内置double赋值</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三、析构函数</p>
+<p>析构函数释放对象使用的资源，并销毁对象的非static数据成员。<br>析构函数是类的一个成员函数，名字由波浪号接类名构成。它没有返回值，也不接受参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Foo</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	~Foo();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>由于析构函数不接受参数，所以不能被重载。对于给定类，只会有唯一一个析构函数。<br>在一个析构函数中，首先执行函数体，然后销毁成员。成员按初始化顺序的逆序销毁。</p>
+<p>通常，析构函数释放对象在生存期分配的所有资源。</p>
+<p>在一个析构函数中，不存在类似构造函数中初始化列表的东西来控制成员如何销毁，析构部分是隐式的。成员销毁时发生什么完全依赖于成员的类型。销毁类类型的成员需要执行成员自己的析构函数。内置类型没有析构函数，因此销毁内置类型成员什么也不需要。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	Sales_data *p = new Sales_data;</span><br><span class="line">	auto p2 = make_shared&lt;Sales_data&gt;();</span><br><span class="line">	Sales_data item(*p);</span><br><span class="line">	vector&lt;Sales_data&gt; vec;</span><br><span class="line">	vec.push_back(*p2);</span><br><span class="line">	delete p;	//对p指向的对象执行析构函数</span><br><span class="line">&#125;//退出局部作用于；对item、p2和vec调用析构函数</span><br><span class="line">//销毁p2会递减其引用计数；如果引用计数变为0，对象被释放</span><br><span class="line">//销毁vec会销毁它的元素</span><br></pre></td></tr></table></figure>
+<p>当指向一个对象的引用或指针离开作用域时，析构函数不会执行。<br>当一个类未定义自己的析构函数时，编译器会为它定义一个合成析构函数。</p>
+<p>四、三五法则</p>
+<p>有三个基本操作可以控制类的拷贝操作：拷贝构造函数、拷贝赋值运算符和析构函数。这些操作通常应该被看作一个整体。新标准下，还可以定义移动构造函数和移动赋值运算符。</p>
+<p>如果一个类需要析构函数，几乎可以肯定它也需要一个拷贝构造函数和一个拷贝赋值运算符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class HasPtr</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	HasPtr(const std::string &amp;s = std::string()):ps(new std::string(s)),i(0)&#123;&#125;</span><br><span class="line">	~HasPtr()&#123;delete ps;&#125;	//错误：还需要拷贝构造函数和拷贝赋值运算符</span><br><span class="line">private:</span><br><span class="line">	std::string *ps;</span><br><span class="line">	int i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HasPtr f(HasPtr hp)</span><br><span class="line">&#123;</span><br><span class="line">	HasPtr ret = hp;</span><br><span class="line">	return ret;	ret和hp被销毁,会导致指针被delete两次。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	HasPtr p(&quot;some values&quot;);</span><br><span class="line">	f(p);	//当f结束，p.ps指向的内存被释放</span><br><span class="line">	HasPtr q(p);	//现在p和q都指向无效内存</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要拷贝操作的类也需要赋值操作，反之亦然。</p>
+<p>五、使用=default</p>
+<p>将拷贝控制成员定义为=default来显式地要求编译器声称合成的版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Sales_data</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Sales_data() = default;</span><br><span class="line">	Sales_data(const Sales_data&amp;) = default;//类内用=default声明，隐式地声明为内联的。</span><br><span class="line">	Sales_data&amp; operator=(const Sales_data&amp;);</span><br><span class="line">	~Sales_data() = default;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Sales_data&amp; Sales_data::operator=(const Sales_data&amp;) = default;//类外声明，不是内联的。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag">#c++</a>
+          
+            <a href="/tags/copy-constructor/" rel="tag">#copy constructor</a>
+          
+            <a href="/tags/assignment-constructor/" rel="tag">#assignment constructor</a>
+          
+            <a href="/tags/destructor/" rel="tag">#destructor</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/leetcode-spiral-matrix-ii/" rel="next" title="leetcode_spiral_matrix_ii">
+                <i class="fa fa-chevron-left"></i> leetcode_spiral_matrix_ii
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/leetcode-sort-colors/" rel="prev" title="leetcode_sort_colors">
+                leetcode_sort_colors <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o9kchgjar.bkt.clouddn.com/11949811256_99cd5cbd55_b.jpg"
+               alt="燕鹏" />
+          <p class="site-author-name" itemprop="name">燕鹏</p>
+          <p class="site-description motion-element" itemprop="description">this is my blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">燕鹏</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
