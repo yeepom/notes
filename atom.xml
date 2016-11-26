@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-26T11:11:17.000Z</updated>
+  <updated>2016-11-26T11:12:18.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>next_permutation</title>
+    <title>leetcode_next_permutation</title>
     <link href="http://yoursite.com/2016/11/26/next-permutation/"/>
     <id>http://yoursite.com/2016/11/26/next-permutation/</id>
     <published>2016-11-26T10:59:55.000Z</published>
-    <updated>2016-11-26T11:11:17.000Z</updated>
+    <updated>2016-11-26T11:12:18.000Z</updated>
     
     <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;解题思路：&lt;br&gt;尝试了很多方法之后，终于找到一个正确的。从后往前看，你问我为什么这么看？因为越低位转换，改变值越小啊。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;数组：[1,2,3,4,6,5,0]
