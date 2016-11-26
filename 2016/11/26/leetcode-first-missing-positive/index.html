@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LeetCode,Array,Hash," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="this is my blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yan">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta name="description" content="难度：HardHard又如何？只要不是动态规划。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode_first_missing_positive">
+<meta property="og:url" content="http://yoursite.com/2016/11/26/leetcode-first-missing-positive/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="this is my blog">
+<meta property="og:description" content="难度：HardHard又如何？只要不是动态规划。。">
+<meta property="og:updated_time" content="2016-11-26T13:38:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yan">
-<meta name="twitter:description" content="this is my blog">
+<meta name="twitter:title" content="leetcode_first_missing_positive">
+<meta name="twitter:description" content="难度：HardHard又如何？只要不是动态规划。。">
 
 
 
@@ -115,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/26/leetcode-first-missing-positive/"/>
 
-  <title> yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_first_missing_positive | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,9 +139,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,9 +216,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -239,10 +238,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/21/twoSum/" itemprop="url">
-                  leetcode_two_sum
-                </a>
+                leetcode_first_missing_positive
               
             
           </h1>
@@ -254,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-21T14:04:53+08:00" content="2016-11-21">
-              2016-11-21
+            <time itemprop="dateCreated" datetime="2016-11-26T21:30:14+08:00" content="2016-11-26">
+              2016-11-26
             </time>
           </span>
 
@@ -282,457 +278,66 @@
       
 
       
-        
-          
-          leetcode上easy的一道题。
-用cpp跑了两种算法。
-1.先将拷贝一份vector。对新的数组排序，并找出相加等于target的对应
-          ...
+        <p>难度：Hard<br>Hard又如何？只要不是动态规划。。<br><a id="more"></a><br>题目要求：<br>O(n)时间，可以用常量空间。<br>解题思路：<br>先找出最大值max，然后申请大小max+1的hash数组，将原始数组映射过来。遍历一遍hash数组，第一个没有映射过来的就是解。<br>为什么要申请max+1的大小，因为[1,2,3,4]这种情况，第一个需要补的正数是5，所以需要多一位来检查。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int firstMissingPositive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int max = INT_MIN;</span><br><span class="line">        for(auto it = nums.begin();it != nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*it&gt;max &amp;&amp; *it &gt; 0)</span><br><span class="line">                max = *it;</span><br><span class="line">        &#125;</span><br><span class="line">        if(max &lt; 1)</span><br><span class="line">            return 1;</span><br><span class="line">        int min = 1;</span><br><span class="line">        vector&lt;int&gt; match_nums(max-min+2);</span><br><span class="line">        for(auto it = nums.begin();it != nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*it &gt; 0)</span><br><span class="line">                match_nums[*it-min] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        int ret = 1;</span><br><span class="line">        for(auto match_nums_it = match_nums.begin(); match_nums_it != match_nums.end(); match_nums_it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*match_nums_it == 0)</span><br><span class="line">            &#123;</span><br><span class="line">                ret =  match_nums_it - match_nums.begin() + min;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：3ms，超过21.74%</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/21/twoSum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/18/reservoir_sampling/" itemprop="url">
-                  蓄水池抽样问题（Reservoir Sampling）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-18T12:59:09+08:00" content="2016-07-18">
-              2016-07-18
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
-
-          
-
-          
-          
-
+            <a href="/tags/Hash/" rel="tag">#Hash</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          问题描述：
-123从个元素中随机抽取个元素，但的个数无法事先确定。在实际应用中，往往会遇到很大数据流的情况。因此，我们无法先保存整个数据流然
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/18/reservoir_sampling/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/26/next-permutation/" rel="next" title="leetcode_next_permutation">
+                <i class="fa fa-chevron-left"></i> leetcode_next_permutation
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/12/leetcode_house_robber_iii/" itemprop="url">
-                  LeetCode-HouseRobberIII
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-12T19:55:41+08:00" content="2016-07-12">
-              2016-07-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          题目链接
-这是一道dp题目，需要拆解子问题，分析如下:
-a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/12/leetcode_house_robber_iii/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/coursera_machine_learning_lesson_1/" itemprop="url">
-                  Coursera机器学习-linearRegression公式总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T20:18:25+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          假设函数：
-
-损失函数:
-
-梯度下降:
-
-
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/05/coursera_machine_learning_lesson_1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/sparkSQL_vs_rdd/" itemprop="url">
-                  SparkSQL(dataFrame)为什么比rdd更高效
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T18:00:55+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            Spark官方在介绍SparkSQL的概念时，如下：
-  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDD
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/05/sparkSQL_vs_rdd/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -740,6 +345,10 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -759,8 +368,17 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o9kchgjar.bkt.clouddn.com/11949811256_99cd5cbd55_b.jpg"
@@ -810,6 +428,17 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -914,6 +543,10 @@ MathJax.Hub.Config({
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
