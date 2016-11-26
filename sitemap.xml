@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/26/next-permutation/</loc>
+    
+    <lastmod>2016-11-26T11:11:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/26/leetcode-merge-sorted-array/</loc>
     
-    <lastmod>2016-11-26T08:57:46.000Z</lastmod>
+    <lastmod>2016-11-26T11:00:02.000Z</lastmod>
     
   </url>
   

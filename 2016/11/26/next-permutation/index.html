@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LeetCode,Array,Reverse," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="this is my blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yan">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta name="description" content="难度：Medium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="next_permutation">
+<meta property="og:url" content="http://yoursite.com/2016/11/26/next-permutation/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="this is my blog">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-11-26T11:11:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yan">
-<meta name="twitter:description" content="this is my blog">
+<meta name="twitter:title" content="next_permutation">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -115,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/26/next-permutation/"/>
 
-  <title> yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> next_permutation | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,9 +139,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,9 +216,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -239,10 +238,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/07/18/reservoir_sampling/" itemprop="url">
-                  蓄水池抽样问题（Reservoir Sampling）
-                </a>
+                next_permutation
               
             
           </h1>
@@ -254,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-18T12:59:09+08:00" content="2016-07-18">
-              2016-07-18
+            <time itemprop="dateCreated" datetime="2016-11-26T18:59:55+08:00" content="2016-11-26">
+              2016-11-26
             </time>
           </span>
 
@@ -282,356 +278,72 @@
       
 
       
-        
-          
-          问题描述：
-123从个元素中随机抽取个元素，但的个数无法事先确定。在实际应用中，往往会遇到很大数据流的情况。因此，我们无法先保存整个数据流然
-          ...
+        <p>难度：Medium<br><a id="more"></a><br>解题思路：<br>尝试了很多方法之后，终于找到一个正确的。从后往前看，你问我为什么这么看？因为越低位转换，改变值越小啊。</p>
+<pre><code>数组：[1,2,3,4,6,5,0]
+要想找到比整数1234650大，且最邻近的数。从后往前看，最后三位650，怎么转换？没办法啊。
+再往前看一位，4650，转换一下，有没有比它大数的可能产生，有啊6***、5***啊。
+肯定是要替换掉4这个数字了，因为后面有比它大的数字。
+至于用哪个替换，遍历一下后面数组，找到比它大、且最小的数字，跟它替换。
+</code></pre><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void nextPermutation(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        auto reverse_it = nums.rbegin();</span><br><span class="line">        for(;reverse_it != nums.rend() &amp;&amp; reverse_it+1 != nums.rend(); reverse_it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*reverse_it &gt; *(reverse_it+1))</span><br><span class="line">            &#123;</span><br><span class="line">                auto switch_it = nums.rbegin();</span><br><span class="line">                int switch_value = INT_MAX;</span><br><span class="line">                for(auto it = nums.rbegin(); it != (reverse_it+1); it++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if(*it &lt; switch_value &amp;&amp; *it &gt; *(reverse_it+1))</span><br><span class="line">                    &#123;</span><br><span class="line">                        switch_it = it;</span><br><span class="line">                        switch_value = *it;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                swap(*switch_it, *(reverse_it+1));</span><br><span class="line">                sort(nums.begin()+(nums.rend()-reverse_it)-1,nums.end());</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(reverse_it == nums.rend() || reverse_it+1 == nums.rend())</span><br><span class="line">        &#123;</span><br><span class="line">            sort(nums.begin(), nums.end());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码如下:13ms,超过17.17%</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/18/reservoir_sampling/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/12/leetcode_house_robber_iii/" itemprop="url">
-                  LeetCode-HouseRobberIII
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-12T19:55:41+08:00" content="2016-07-12">
-              2016-07-12
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
-
-          
-
-          
-          
-
+            <a href="/tags/Reverse/" rel="tag">#Reverse</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          题目链接
-这是一道dp题目，需要拆解子问题，分析如下:
-a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。包含a点，其左右节点就不能包
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/12/leetcode_house_robber_iii/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/26/leetcode-merge-sorted-array/" rel="next" title="leetcode_merge_sorted_array">
+                <i class="fa fa-chevron-left"></i> leetcode_merge_sorted_array
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/coursera_machine_learning_lesson_1/" itemprop="url">
-                  Coursera机器学习-linearRegression公式总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T20:18:25+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          假设函数：
-
-损失函数:
-
-梯度下降:
-
-
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/05/coursera_machine_learning_lesson_1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/05/sparkSQL_vs_rdd/" itemprop="url">
-                  SparkSQL(dataFrame)为什么比rdd更高效
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T18:00:55+08:00" content="2016-07-05">
-              2016-07-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            Spark官方在介绍SparkSQL的概念时，如下：
-  SparkSQL是Spark中结构化数据处理的模型。不像Spark基础的RDD
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/05/sparkSQL_vs_rdd/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -639,6 +351,10 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -658,8 +374,17 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o9kchgjar.bkt.clouddn.com/11949811256_99cd5cbd55_b.jpg"
@@ -709,6 +434,17 @@ a点可抢劫的最大值，包括两种情况，包含a点、不包含a点。�
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -813,6 +549,10 @@ MathJax.Hub.Config({
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
