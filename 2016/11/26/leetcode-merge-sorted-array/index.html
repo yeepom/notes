@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array," />
+  <meta name="keywords" content="LeetCode,Array,Reverse," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Easy">
+<meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_rotate_array">
-<meta property="og:url" content="http://yoursite.com/2016/11/24/leetcode-rotate-array/index.html">
+<meta property="og:title" content="leetcode_merge_sorted_array">
+<meta property="og:url" content="http://yoursite.com/2016/11/26/leetcode-merge-sorted-array/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Easy">
-<meta property="og:updated_time" content="2016-11-24T05:09:46.000Z">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-11-26T08:57:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_rotate_array">
-<meta name="twitter:description" content="难度：Easy">
+<meta name="twitter:title" content="leetcode_merge_sorted_array">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/24/leetcode-rotate-array/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/26/leetcode-merge-sorted-array/"/>
 
-  <title> leetcode_rotate_array | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_merge_sorted_array | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_rotate_array
+                leetcode_merge_sorted_array
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-24T13:06:04+08:00" content="2016-11-24">
-              2016-11-24
+            <time itemprop="dateCreated" datetime="2016-11-26T16:46:54+08:00" content="2016-11-26">
+              2016-11-26
             </time>
           </span>
 
@@ -278,14 +278,17 @@
       
 
       
-        <p>难度：Easy<br><a id="more"></a><br>解题思路：</p>
-<pre><code>先观察数组[1,2,3,4,5,6,7],k=3。结果[5,6,7,1,2,3,4]
-把数组分为两段[1,2,3,4],[5,6,7]
-再对这两段翻转[4,3,2,1],[7,6,5]
-再对整体翻转[5,6,7,1,2,3,4]。
-</code></pre><p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        k = k % nums.size();</span><br><span class="line">        auto first_segment_begin_it = nums.begin();</span><br><span class="line">        auto first_segment_last_it = first_segment_begin_it + nums.size()-k -1;</span><br><span class="line">        auto second_segment_begin_it = first_segment_begin_it+nums.size()-k;</span><br><span class="line">        auto second_segment_last_it = first_segment_begin_it + nums.size()-1;</span><br><span class="line">        reverse_vec(first_segment_begin_it,first_segment_last_it);</span><br><span class="line">        reverse_vec(second_segment_begin_it,second_segment_last_it);</span><br><span class="line">        reverse_vec(first_segment_begin_it,second_segment_last_it);</span><br><span class="line">    &#125;</span><br><span class="line">    void reverse_vec(vector&lt;int&gt;::iterator first_it, vector&lt;int&gt;::iterator last_it)</span><br><span class="line">    &#123;</span><br><span class="line">        while(first_it &lt; last_it)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(*first_it,*last_it);</span><br><span class="line">            first_it++;</span><br><span class="line">            last_it--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>结果：运行时间26ms，超过24.92%。</p>
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>解题思路：从前往后进行重新排序会有问题。</p>
+<pre><code>5 7        i指向5
+1 4 6    j指向1
+
+第一次调换后
+1 7        i指向7
+5 4 6    但此时这个数组已经无序
+</code></pre><p> 考虑别的思路，从后往前排序，先找最大的。<br> 代码如下。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void merge(vector&lt;int&gt;&amp; nums1, int m, vector&lt;int&gt;&amp; nums2, int n) &#123;</span><br><span class="line">        int reverse_nums1_index = m-1, reverse_nums2_index = n-1,reverse_final_index=m+n-1;</span><br><span class="line">        while(reverse_nums1_index &gt;=0 &amp;&amp; reverse_nums2_index &gt;= 0 &amp;&amp; reverse_final_index &gt;= 0)</span><br><span class="line">        &#123;</span><br><span class="line">            if(nums1[reverse_nums1_index] &lt;= nums2[reverse_nums2_index])</span><br><span class="line">            &#123;</span><br><span class="line">                nums1[reverse_final_index--]=nums2[reverse_nums2_index--];</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                nums1[reverse_final_index--]=nums1[reverse_nums1_index--];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(reverse_nums1_index &gt;=0)</span><br><span class="line">        &#123;</span><br><span class="line">            nums1[reverse_final_index--]=nums1[reverse_nums1_index--];</span><br><span class="line">        &#125;</span><br><span class="line">        while(reverse_nums2_index &gt;=0)</span><br><span class="line">        &#123;</span><br><span class="line">            nums1[reverse_final_index--]=nums2[reverse_nums2_index--];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：3ms，超过33.85%。</p>
 
       
     </div>
@@ -311,6 +314,8 @@
           
             <a href="/tags/Array/" rel="tag">#Array</a>
           
+            <a href="/tags/Reverse/" rel="tag">#Reverse</a>
+          
         </div>
       
 
@@ -318,17 +323,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/23/leetcode-rotate-image/" rel="next" title="leetcode_rotate_image">
-                <i class="fa fa-chevron-left"></i> leetcode_rotate_image
+              <a href="/2016/11/26/leetcode-remove-duplicates-from-sorted-array-ii/" rel="next" title="leetcode_remove_duplicates_from_sorted_array_ii">
+                <i class="fa fa-chevron-left"></i> leetcode_remove_duplicates_from_sorted_array_ii
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/24/leetcode-spiral-order/" rel="prev" title="leetcode_spiral_order">
-                leetcode_spiral_order <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
