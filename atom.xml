@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-27T08:20:32.000Z</updated>
+  <updated>2016-11-27T12:57:53.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/"/>
     <id>http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/</id>
     <published>2016-11-27T04:55:03.000Z</published>
-    <updated>2016-11-27T08:20:32.000Z</updated>
+    <updated>2016-11-27T12:57:53.000Z</updated>
     
     <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
 &lt;/script&gt;
@@ -33,7 +33,7 @@
 &lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_5.png&quot; alt=&quot;why_learn_algorithm_5&quot;&gt;&lt;/p&gt;
 &lt;p&gt;进入正题，先讲了一下插入排序(Insertion Sorts)。&lt;/p&gt;
 &lt;p&gt;Problem:sorting&lt;/p&gt;
-&lt;p&gt;Input: sequence &amp;lt; a1, a2 ,…, an &amp;gt; of numbers&lt;br&gt;Output: permutation &amp;lt;a’1, a’2 ,…, a’n&amp;gt;,&lt;/p&gt;
+&lt;p&gt;Input: sequence &amp;lt; a1, a2 ,…, an &amp;gt; of numbers&lt;br&gt;Output: permutation &amp;lt;a’1, a’2 ,…, a’n&amp;gt;,  such that a’1 &amp;lt;= a’2 &amp;lt;= a’3 … &amp;lt;= a’n&lt;/p&gt;
 &lt;p&gt;Insertion Sort.&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//Pseudocode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Insertion Sort(A, n)	//Sorts A[1,...n]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for j &amp;lt;- 2 to n:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	do key &amp;lt;- A[j]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		i &amp;lt;- j-1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		while i &amp;gt; 0 and A[i] &amp;gt; key:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			do A[i+1] &amp;lt;- A[i]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				i &amp;lt;- i-1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		A[i+1] &amp;lt;- key&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;算法分析，见下图。&lt;/p&gt;

@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20161127_9.png">
 <meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20161127_11.png">
 <meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20161127_12.png">
-<meta property="og:updated_time" content="2016-11-27T08:20:32.000Z">
+<meta property="og:updated_time" content="2016-11-27T12:57:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="introduction_to_algorithms_lecture_1">
 <meta name="twitter:description" content="网易公开课《算法导论》的学习笔记，第一节课">
@@ -299,7 +299,7 @@
 <p><img src="http://o9kchgjar.bkt.clouddn.com/Snip20161127_5.png" alt="why_learn_algorithm_5"></p>
 <p>进入正题，先讲了一下插入排序(Insertion Sorts)。</p>
 <p>Problem:sorting</p>
-<p>Input: sequence &lt; a1, a2 ,…, an &gt; of numbers<br>Output: permutation &lt;a’1, a’2 ,…, a’n&gt;,</p>
+<p>Input: sequence &lt; a1, a2 ,…, an &gt; of numbers<br>Output: permutation &lt;a’1, a’2 ,…, a’n&gt;,  such that a’1 &lt;= a’2 &lt;= a’3 … &lt;= a’n</p>
 <p>Insertion Sort.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//Pseudocode</span><br><span class="line"></span><br><span class="line">Insertion Sort(A, n)	//Sorts A[1,...n]</span><br><span class="line"></span><br><span class="line">for j &lt;- 2 to n:</span><br><span class="line">	do key &lt;- A[j]</span><br><span class="line">		i &lt;- j-1</span><br><span class="line">		while i &gt; 0 and A[i] &gt; key:</span><br><span class="line">			do A[i+1] &lt;- A[i]</span><br><span class="line">				i &lt;- i-1</span><br><span class="line">		A[i+1] &lt;- key</span><br></pre></td></tr></table></figure>
 <p>算法分析，见下图。</p>
