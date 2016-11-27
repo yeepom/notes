@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-27T03:28:07.000Z</updated>
+  <updated>2016-11-27T03:42:25.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode_remove_element</title>
+    <link href="http://yoursite.com/2016/11/27/leetcode-remove-element/"/>
+    <id>http://yoursite.com/2016/11/27/leetcode-remove-element/</id>
+    <published>2016-11-27T03:39:56.000Z</published>
+    <updated>2016-11-27T03:42:25.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：Easy&lt;br&gt;解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int removeElement(vector&amp;lt;int&amp;gt;&amp;amp; nums, int val) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto solved_it = nums.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto unsolved_it = nums.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(;unsolved_it != nums.end(); unsolved_it++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(*unsolved_it != val)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                swap(*(solved_it++), *unsolved_it);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return solved_it-nums.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;代码结果：3ms，超过23.02%。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：Easy&lt;br&gt;解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="Remove" scheme="http://yoursite.com/tags/Remove/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode_container_with_most_water</title>
@@ -942,31 +969,6 @@ unique_ptr则“独占”所指
       <category term="c++" scheme="http://yoursite.com/tags/c/"/>
     
       <category term="智能指针" scheme="http://yoursite.com/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++中explicit修饰词</title>
-    <link href="http://yoursite.com/2016/11/22/c-plus-plus-explicit-specifier/"/>
-    <id>http://yoursite.com/2016/11/22/c-plus-plus-explicit-specifier/</id>
-    <published>2016-11-22T03:29:13.000Z</published>
-    <updated>2016-11-22T12:43:01.000Z</updated>
-    
-    <content type="html">&lt;p&gt;explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。&lt;/p&gt;
-&lt;p&gt;备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct A&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A(int) &amp;#123; &amp;#125;      // 可转换构造函数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A(int, int) &amp;#123; &amp;#125; // 可转换构造函数 (C++11)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    operator bool() const &amp;#123; return true; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct B&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    explicit B(int) &amp;#123; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    explicit B(int, int) &amp;#123; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    explicit operator bool() const &amp;#123; return true; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a1 = 1;      // 正确: 拷贝初始化调用 A::A(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a2(2);       // 正确: 直接初始化调用 A::A(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a3 &amp;#123;4, 5&amp;#125;;   // 正确: 直接列表初始化调用 A::A(int, int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a4 = &amp;#123;4, 5&amp;#125;; // 正确: 拷贝列表初始化调用 A::A(int, int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    A a5 = (A)1;   // 正确: 显式转换执行 static_cast&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (a1) ;      // 正确: A::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool na1 = a1; // 正确: 拷贝初始化调用 A::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool na2 = static_cast&amp;lt;bool&amp;gt;(a1); // 正确: static_cast 执行直接初始化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//  B b1 = 1;      // 错误：拷贝初始化不会调用 B::B(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    B b2(2);       // 正确: 直接初始化调用 B::B(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    B b3 &amp;#123;4, 5&amp;#125;;   // 正确: 直接列表初始化调用 B::B(int, int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//  B b4 = &amp;#123;4, 5&amp;#125;; // 错误: 拷贝列表初始化不会调用 B::B(int,int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    B b5 = (B)1;   // 正确: 显式转换执行 static_cast&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (b2) ;      // 正确: B::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//  bool nb1 = b2; // 错误: 拷贝初始化不会调用 B::operator bool()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool nb2 = static_cast&amp;lt;bool&amp;gt;(b2); // 正确: static_cast 执行直接初始化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;参考：&lt;br&gt;en.cppreference.com/w/cpp/language/explicit&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。&lt;/p&gt;
-&lt;p&gt;备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
     
   </entry>
   

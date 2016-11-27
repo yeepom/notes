@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="c++," />
+  <meta name="keywords" content="LeetCode,Array,Remove," />
 
 
 
@@ -86,22 +86,16 @@
 
 
 
-<meta name="description" content="explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。
-备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。
-1234567891011121314151617181920212223242526272829">
+<meta name="description" content="难度：Easy解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c++中explicit修饰词">
-<meta property="og:url" content="http://yoursite.com/2016/11/22/c-plus-plus-explicit-specifier/index.html">
+<meta property="og:title" content="leetcode_remove_element">
+<meta property="og:url" content="http://yoursite.com/2016/11/27/leetcode-remove-element/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。
-备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。
-1234567891011121314151617181920212223242526272829">
-<meta property="og:updated_time" content="2016-11-22T12:43:01.000Z">
+<meta property="og:description" content="难度：Easy解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。">
+<meta property="og:updated_time" content="2016-11-27T03:42:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c++中explicit修饰词">
-<meta name="twitter:description" content="explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。
-备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。
-1234567891011121314151617181920212223242526272829">
+<meta name="twitter:title" content="leetcode_remove_element">
+<meta name="twitter:description" content="难度：Easy解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。">
 
 
 
@@ -122,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/22/c-plus-plus-explicit-specifier/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/27/leetcode-remove-element/"/>
 
-  <title> c++中explicit修饰词 | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_remove_element | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +238,7 @@
             
             
               
-                c++中explicit修饰词
+                leetcode_remove_element
               
             
           </h1>
@@ -256,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-22T11:29:13+08:00" content="2016-11-22">
-              2016-11-22
+            <time itemprop="dateCreated" datetime="2016-11-27T11:39:56+08:00" content="2016-11-27">
+              2016-11-27
             </time>
           </span>
 
@@ -284,10 +278,9 @@
       
 
       
-        <p>explicit修饰构造函数时，不允许隐式转换和隐式拷贝初始化。它只能出现在修饰构造函数时。</p>
-<p>备注：含有一个参数的构造函数，如果其参数没有默认值，函数没有explicit修饰，则该构造函数可以叫做转换构造函数。拷贝、移动构造函数和用户定义的转换函数可能是函数模版；explicit的含义是不发生转换。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">struct A</span><br><span class="line">&#123;</span><br><span class="line">    A(int) &#123; &#125;      // 可转换构造函数</span><br><span class="line">    A(int, int) &#123; &#125; // 可转换构造函数 (C++11)</span><br><span class="line">    operator bool() const &#123; return true; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">struct B</span><br><span class="line">&#123;</span><br><span class="line">    explicit B(int) &#123; &#125;</span><br><span class="line">    explicit B(int, int) &#123; &#125;</span><br><span class="line">    explicit operator bool() const &#123; return true; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    A a1 = 1;      // 正确: 拷贝初始化调用 A::A(int)</span><br><span class="line">    A a2(2);       // 正确: 直接初始化调用 A::A(int)</span><br><span class="line">    A a3 &#123;4, 5&#125;;   // 正确: 直接列表初始化调用 A::A(int, int)</span><br><span class="line">    A a4 = &#123;4, 5&#125;; // 正确: 拷贝列表初始化调用 A::A(int, int)</span><br><span class="line">    A a5 = (A)1;   // 正确: 显式转换执行 static_cast</span><br><span class="line">    if (a1) ;      // 正确: A::operator bool()</span><br><span class="line">    bool na1 = a1; // 正确: 拷贝初始化调用 A::operator bool()</span><br><span class="line">    bool na2 = static_cast&lt;bool&gt;(a1); // 正确: static_cast 执行直接初始化</span><br><span class="line"> </span><br><span class="line">//  B b1 = 1;      // 错误：拷贝初始化不会调用 B::B(int)</span><br><span class="line">    B b2(2);       // 正确: 直接初始化调用 B::B(int)</span><br><span class="line">    B b3 &#123;4, 5&#125;;   // 正确: 直接列表初始化调用 B::B(int, int)</span><br><span class="line">//  B b4 = &#123;4, 5&#125;; // 错误: 拷贝列表初始化不会调用 B::B(int,int)</span><br><span class="line">    B b5 = (B)1;   // 正确: 显式转换执行 static_cast</span><br><span class="line">    if (b2) ;      // 正确: B::operator bool()</span><br><span class="line">//  bool nb1 = b2; // 错误: 拷贝初始化不会调用 B::operator bool()</span><br><span class="line">    bool nb2 = static_cast&lt;bool&gt;(b2); // 正确: static_cast 执行直接初始化</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参考：<br>en.cppreference.com/w/cpp/language/explicit</p>
+        <p>难度：Easy<br>解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。<br><a id="more"></a><br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;</span><br><span class="line">        auto solved_it = nums.begin();</span><br><span class="line">        auto unsolved_it = nums.begin();</span><br><span class="line">        for(;unsolved_it != nums.end(); unsolved_it++)&#123;</span><br><span class="line">            if(*unsolved_it != val)&#123;</span><br><span class="line">                swap(*(solved_it++), *unsolved_it);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return solved_it-nums.begin();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码结果：3ms，超过23.02%。</p>
 
       
     </div>
@@ -309,7 +302,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/c/" rel="tag">#c++</a>
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+            <a href="/tags/Array/" rel="tag">#Array</a>
+          
+            <a href="/tags/Remove/" rel="tag">#Remove</a>
           
         </div>
       
@@ -318,17 +315,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/21/threeSum/" rel="next" title="leetcode_three_sum">
-                <i class="fa fa-chevron-left"></i> leetcode_three_sum
+              <a href="/2016/11/27/leetcode-container-with-most-water/" rel="next" title="leetcode_container_with_most_water">
+                <i class="fa fa-chevron-left"></i> leetcode_container_with_most_water
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/22/c-plus-plus-smart-pointer/" rel="prev" title="c++智能指针用法">
-                c++智能指针用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
