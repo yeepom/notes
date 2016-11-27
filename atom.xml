@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-27T03:42:25.000Z</updated>
+  <updated>2016-11-27T08:15:22.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>introduction_to_algorithms_lecture_1</title>
+    <link href="http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/"/>
+    <id>http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/</id>
+    <published>2016-11-27T04:55:03.000Z</published>
+    <updated>2016-11-27T08:15:22.000Z</updated>
+    
+    <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;网易公开课《算法导论》的学习笔记，第一节课&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;先贴上一段Charles Leiserson教授的话。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_1.png&quot; alt=&quot;why_learn_algorithm_1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_2.png&quot; alt=&quot;why_learn_algorithm_2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_3.png&quot; alt=&quot;why_learn_algorithm_3&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_4.png&quot; alt=&quot;why_learn_algorithm_4&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_5.png&quot; alt=&quot;why_learn_algorithm_5&quot;&gt;&lt;/p&gt;
+&lt;p&gt;进入正题，先讲了一下插入排序(Insertion Sorts)。&lt;/p&gt;
+&lt;p&gt;Problem:sorting&lt;/p&gt;
+&lt;p&gt;Input: sequence &amp;lt; a1, a2 ,…, an &amp;gt; of numbers&lt;br&gt;Output: permutation &amp;lt;a’1, a’2 ,…, a’n&amp;gt;,&lt;/p&gt;
+&lt;p&gt;Insertion Sort.&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//Pseudocode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Insertion Sort(A, n)	//Sorts A[1,...n]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for j &amp;lt;- 2 to n:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	do key &amp;lt;- A[j]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		i &amp;lt;- j-1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		while i &amp;gt; 0 and A[i] &amp;gt; key:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			do A[i+1] &amp;lt;- A[i]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				i &amp;lt;- i-1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		A[i+1] &amp;lt;- key&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;算法分析，见下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_8.png&quot; alt=&quot;insertion sort&quot;&gt;&lt;/p&gt;
+&lt;p&gt;数组A，1～j-1是已经排好序的，现将j插入到已经排好序的数组中。令j的值为key，分别与j-1,j-2,j-3,…比较，直到找到合适的位置，插入。&lt;br&gt;后面的Example演示了这一过程。&lt;/p&gt;
+&lt;p&gt;Running time:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Depends on input(eg. already sorted)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Depends on input size(6 elements vs 6*10^9)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	-parameterize in input size&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;want upper bound&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	-guarantee to user&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Kinds of analysis&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Worst-case(usually)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;T(n) = max time in any input of size n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Average-case(sometimes)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;T(n) = expected time over all inputs of size n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(Need assumption of Statistics Distribution)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Best-case(bogus)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Cheat&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;What is insertion sort’s worst-case time?&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Depends on computer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	-relative speed(on same machine)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	-absolute speed(on diff machine)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;BIG IDEA! Asymptotic analysis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1.Ignore machine dependent constants&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2.Look at growth of T(n) as n -&amp;gt; infinite&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Asympototic notation&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;theta-notation: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Drop low-order terms&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Ignore leading constants&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Ex. 3n^3+90n^2-5n+6046=theta(n^3)			&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;As n -&amp;gt; infinite, theta(n^2) alg always beats a theta(n^3) alg.even theta(n^2) runs on a slow machine.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;ps:theta equals to $$\theta$$&lt;/p&gt;
+&lt;p&gt;一张图来对比。&lt;br&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_9.png&quot; alt=&quot;photo_vs_theta&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Insertion sort analysis&lt;/p&gt;
+&lt;p&gt;Worst-case:input reverse sorted&lt;/p&gt;
+&lt;p&gt;$$T\left( n\right) =\sum _{j=2}^{n}\Theta \left( j\right) = \Theta\left( n^{2}\right)$$&lt;/p&gt;
+&lt;p&gt;(Arithmetic series)&lt;/p&gt;
+&lt;p&gt;Is insertion sort fast?&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;-moderately for small n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-Not at all for large n&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Merge sort&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Merge sort A[1,...n]	--------T(n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1.If n = 1, done			--------theta(1),abuse&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2.Recursively sort		--------2*T(n),sloppy&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	A[1,...ceil[n/2]] and A[ceil[n/2]+1,...n]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.Merge 2 sorted arrays&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Key subroutine: Merge&lt;br&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_11.png&quot; alt=&quot;Key subroutine: Merge&quot;&gt;&lt;/p&gt;
+&lt;p&gt;两个已经排好序的数组。分别有两个指针指向首元素，比较大小，小的就提取出来，然后指针指向后一位。时间与两个数组之和成正比。&lt;/p&gt;
+&lt;p&gt;Recursive&lt;/p&gt;
+&lt;p&gt;T(n) = theta(1), if n = 1 (use omit)&lt;br&gt;        2T(n/2) + theta(n), if n &amp;gt; 1&lt;/p&gt;
+&lt;p&gt;Recursive tree. T(n) = 2T(n/2) + cn, const c &amp;gt; 0&lt;/p&gt;
+&lt;p&gt;Performance&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_12.png&quot; alt=&quot;merge sort performance&quot;&gt;&lt;br&gt;树的长度lg(n)，叶子个数n。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot;
+   src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;网易公开课《算法导论》的学习笔记，第一节课&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="MOOC" scheme="http://yoursite.com/tags/MOOC/"/>
+    
+      <category term="Algorithm" scheme="http://yoursite.com/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode_remove_element</title>
@@ -199,7 +267,7 @@
     <link href="http://yoursite.com/2016/11/25/leetcode-sort-colors/"/>
     <id>http://yoursite.com/2016/11/25/leetcode-sort-colors/</id>
     <published>2016-11-25T14:04:47.000Z</published>
-    <updated>2016-11-26T03:04:10.000Z</updated>
+    <updated>2016-11-27T06:49:06.000Z</updated>
     
     <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;解题思路：有两种解法。第一种：使用两个迭代器，第一个用来标识已经排好顺序的最后一位，第二个用来遍历，由于有0、1、2，需要遍历两次。第二种，计算0、1、2第一次出现的位置，出现的次数，然后遍历赋值。&lt;br&gt;代码如下。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void sortColors(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        auto flag_it = nums.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int flag_value = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int two_loop = 2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        while(two_loop-- &amp;amp;&amp;amp; flag_it != nums.end())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            auto start_it = flag_it;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            for(; start_it != nums.end(); start_it++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(*start_it == flag_value)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    swap(*(flag_it++),*start_it);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;                &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(flag_it == nums.end())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            flag_value++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -720,255 +788,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++智能指针用法</title>
-    <link href="http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/"/>
-    <id>http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/</id>
-    <published>2016-11-22T08:34:17.000Z</published>
-    <updated>2016-11-24T06:48:40.000Z</updated>
-    
-    <content type="html">&lt;p&gt;一、shared_ptr定义&lt;/p&gt;
-&lt;p&gt;c++新标准库提供了两种智能指针类型来管理动态对象。shared_ptr和unique_ptr。头文件memory。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;shared_ptr允许多个指针指向同一个对象
-unique_ptr则“独占”所指向的对象    
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;智能指针是模板，要在尖括号内给出类型。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;shared_ptr&amp;lt;string&amp;gt; p1;
-shared_ptr&amp;lt;list&amp;lt;int&amp;gt;&amp;gt; p2;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解引用一个智能指针返回它指向的对象。如果在一个条件判断中使用智能指针，效果就是检测它是否为空。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//如果p1不为空，检查它是否指向一个空string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if(p1 &amp;amp;&amp;amp; p1-&amp;gt;empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	*p1 = &amp;quot;hi&amp;quot;;//	如果p1指向一个空string，解引用p1，将一个新值赋予string&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;shared_ptr unique_ptr都支持的操作    &lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;语法&lt;/th&gt;
-&lt;th&gt;解释&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; sp&lt;/td&gt;
-&lt;td&gt;空智能指针，可以指向类型为T的对象&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;unique_ptr&amp;lt; T &amp;gt; up&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p&lt;/td&gt;
-&lt;td&gt;将p用作一个条件判断，若p指向一个对象，则为true&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;*p&lt;/td&gt;
-&lt;td&gt;解引用p，获得它指向的对象&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p-&amp;gt;mem&lt;/td&gt;
-&lt;td&gt;等价于(*p).mem&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.get()&lt;/td&gt;
-&lt;td&gt;返回p中保存的指针。要小心使用，若智能指针释放其对象，返回的指针指向的对象也消失了&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;swap(p, q)&lt;/td&gt;
-&lt;td&gt;交换p和q的指针&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.swap(q)&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;shared_ptr独有的操作&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;语法&lt;/th&gt;
-&lt;th&gt;解释&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;make_shared&amp;lt; T &amp;gt; (args)&lt;/td&gt;
-&lt;td&gt;返回一个shared_ptr，指向一个动态分配的类型为T的对象。使用args初始化次对象&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(q)&lt;/td&gt;
-&lt;td&gt;p是shared_ptr q的拷贝：此操作会递增q中的计数器。q中的指针必须能转换为T*&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p = q&lt;/td&gt;
-&lt;td&gt;p和q都是shared_ptr,所保存的指针必须能相互转换。此操作会递减p的引用计数，递增q的引用计数；若p的引用计数变为0，则将其管理的原内存释放。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.unique&lt;/td&gt;
-&lt;td&gt;若p.use_count() 为1，返回true；否则返回false&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.use_count()&lt;/td&gt;
-&lt;td&gt;返回与p共享对象的智能指针数量；可能很慢，主要用于调试    &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;make_shared函数&lt;br&gt;此函数在动态内存分配一个对象并初始化它，返回指向此对象的shared_ptr。头文件memory。&lt;br&gt;使用时要保持类型一致。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//指向一个值为42的int的shared_ptr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p3 = make_shared&amp;lt;int&amp;gt;(42);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p4指向一个值为&amp;quot;9999999999&amp;quot;的string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;string&amp;gt; p4 = make_shared&amp;lt;string&amp;gt;(10,&amp;apos;9&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//p5指向一个值初始化的int，即，值为0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p5 = make_shared&amp;lt;int&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//使用auto，p6指向一个动态分配的空vector&amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto p6 = make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;shared_ptr的拷贝和赋值&lt;br&gt;当进行拷贝或赋值操作时，每个shared_ptr都会记录有多少个其他shared_ptr指向相同的对象。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;auto p = make_shared&amp;lt;int&amp;gt; (42);	//p指向的对象只有p一个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto q(p);	//p和q指向相同对象，此对象有两个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto r = make_shared&amp;lt;int&amp;gt; (42);	//r指向的int只有一个引用者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r = q;	//给r赋值，令它指向另一个地址&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//递增q指向的对象的引用计数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//递减r原来指向的对象的引用计数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//r原来指向的对象已没有引用者，会自动释放&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;空悬指针(dangling pointer):指向一块曾经保存数据对象但现在已经无效(被delete掉)的内存的指针。&lt;/p&gt;
-&lt;p&gt;二、shared_ptr和new结合&lt;br&gt;可以用new返回的指针来初始化智能指针。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;double&amp;gt; p1;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p2(new int(42));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;接受指针参数的智能指针构造函数是explicit的，不能将一个内置指针隐式转换为一个智能指针。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p1 = new int(1024);		//错误：必须使用直接初始化形式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; p2(new int(1024));		//正确：使用了直接初始化形式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; clone(int p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return new int(p);	//错误：隐式转换为shared_ptr&amp;lt;int&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;shared_ptr&amp;lt;int&amp;gt; clone(int p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	//正确：显示地用int*创建shared_ptr&amp;lt;int&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return shared_ptr&amp;lt;int&amp;gt; (new int(p));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;定义和改变shared_ptr的其他方法&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;语法&lt;/th&gt;
-&lt;th&gt;解释&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(q)&lt;/td&gt;
-&lt;td&gt;p管理内置指针q所指向的对象；q必须指向new分配的内存，且能够转换为T*类型&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(u)&lt;/td&gt;
-&lt;td&gt;p从unique_ptr u那里接管了对象的所有权；将u置为空&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(q, d)&lt;/td&gt;
-&lt;td&gt;p接管了内置指针q所指向的对象的所有权。q必须能转换为T*类型。p将使用可调用对象d来代替delete&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;shared_ptr&amp;lt; T &amp;gt; p(p2, d)&lt;/td&gt;
-&lt;td&gt;p是shared_ptr p2的拷贝，唯一的区别是p将用可调用对象d来代替delete&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.reset()&lt;/td&gt;
-&lt;td&gt;若p是唯一指向其对象的shared_ptr，reset会释放次对象。若传递了可选的参数内置指针q，会令p指向q，否则会将p置为空。若还传递了参数d，讲会调用d而不是delete来释放q。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.reset(q)&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.reset(p,d)&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;不要混合使用普通指针和智能指针。&lt;br&gt;不要使用get初始化另一个智能指针或为智能指针赋值。&lt;br&gt;其他操作。reset成员经常与unique一起使用，来控制多个shared_ptr共享的对象，在改变底层对象之前，我们检查自己是否是当前对象仅有的用户。如果不是，在改变之前要制作一份新的拷贝。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;if(!p.unique())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	p.reset(new string(*p));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*p += newVal;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;使用d代替delete的例子。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct destination;		//表示我们正在连接什么&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct connection;		//使用连接所需的信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;connection connect(destination*);		//打开连接&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void disconnect(connection);		//关闭给定的连接&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void end_connection(connection *p) &amp;#123;disconnect(*p);&amp;#125;  //代替delete&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void f(destination &amp;amp;d)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	connection c = connect(&amp;amp;d);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	shared_ptr&amp;lt;connection&amp;gt; p(&amp;amp;c, end_connection);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;unique_ptr&lt;br&gt;某个时刻只能有一个unique_ptr指向一个给定对象。当unique_ptr被销毁时，它所指向的对象也被销毁。定义一个unique_ptr时，需要将其绑定到一个new返回的指针上。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;double&amp;gt; p1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;double&amp;gt; p2(new int(42));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;unique_ptr不支持普通的拷贝或赋值。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;string&amp;gt; p1(new string(&amp;quot;Stegosaurus&amp;quot;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;string&amp;gt; p2(p1);		//错误&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;string&amp;gt; p3;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p3 = p2		//错误&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;unique_ptr操作&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;语法&lt;/th&gt;
-&lt;th&gt;解释&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;unique_ptr&amp;lt; T &amp;gt; u1&lt;/td&gt;
-&lt;td&gt;空unique_ptr，可以指向类型为T的对象。u1会使用delete来释放它的指针；u2会使用一个类型为D的可调用对象来释放它的指针&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;unique_ptr &amp;lt; T , D &amp;gt; u2&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;unique_ptr &amp;lt; T , D &amp;gt; u(d)&lt;/td&gt;
-&lt;td&gt;空unique_ptr，可以指向类型为T的对象，用类型为D的对象d代替delete&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;u = nullptr&lt;/td&gt;
-&lt;td&gt;释放u指向的对象，将u置为空&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;u.release()&lt;/td&gt;
-&lt;td&gt;u放弃对指针的控制权，返回指针，并将u置为空&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;u.reset()&lt;/td&gt;
-&lt;td&gt;释放u指向的对象&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;u.reset(q)&lt;/td&gt;
-&lt;td&gt;如果提供了内置指针q，令u指向这个对象；否则将u置为空&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;u.reset(nullptr)&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;string&amp;gt; p2(p1.release());	//将所有权从p1(指向String Stegosaurus)转移给p2，release将p1置为空&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;string&amp;gt; p3(new string(&amp;quot;Trex&amp;quot;)); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p2.reset(p3.release());将所有权从p3转移给p2，reset释放了p2原来指向的内存&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;可以拷贝或赋值一个将要被销毁的unique_ptr。如下。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;unique_ptr&amp;lt;int&amp;gt; clone(int p)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return unique_ptr&amp;lt;int&amp;gt;(new int(p));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;向unique_ptr传递删除器，以shared_ptr中connection为例。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void f(destination &amp;amp;d)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	connection c = connect(&amp;amp;d);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	unique_ptr&amp;lt;connection, decltype(end_connection)*&amp;gt; p(&amp;amp;c, end_connection);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;三、weak_ptr&lt;br&gt;weak_ptr是一个 不控制所指对象生存期的智能指针，它指向由一个shared_ptr管理的对象。不会改变计数。一旦最后一个指向对象的shared_ptr被销毁，即使有weak_ptr指向对象，对象也会被释放。、&lt;/p&gt;
-&lt;p&gt;weak_ptr用法&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;语法&lt;/th&gt;
-&lt;th&gt;解释&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;weak_ptr&amp;lt; T &amp;gt; w&lt;/td&gt;
-&lt;td&gt;空weak_ptr可以指向类型为T的对象&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;weak_ptr&amp;lt; T &amp;gt; w(sp)&lt;/td&gt;
-&lt;td&gt;与shared_ptr sp指向相同对象的weak_ptr。T必须能转换为sp指向的类型 &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;w = p&lt;/td&gt;
-&lt;td&gt;p可以是一个shared_ptr或一个weak_ptr。赋值后w与p共享对象&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;w.reset()&lt;/td&gt;
-&lt;td&gt;将w置为空&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;w.use_count()&lt;/td&gt;
-&lt;td&gt;与w共享对象的shared_ptr的数量&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;w.expired()&lt;/td&gt;
-&lt;td&gt;若w.use_count()为0，返回true，否则返回false&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;w.lock()&lt;/td&gt;
-&lt;td&gt;如果expired为true，返回一个空shared_ptr；否则返回一个指向w的对象的shared_ptr&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;auto p = make_shared&amp;lt;int&amp;gt;(42);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;weak_ptr&amp;lt;int&amp;gt; wp(p);	//wp弱共享p；p的引用计数未改变&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if(shared_ptr&amp;lt;int&amp;gt; np = wp.lock())	//调用lock检查weak_ptr所指向的对象是否存在&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	//在if中，np与p共享对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一、shared_ptr定义&lt;/p&gt;
-&lt;p&gt;c++新标准库提供了两种智能指针类型来管理动态对象。shared_ptr和unique_ptr。头文件memory。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;shared_ptr允许多个指针指向同一个对象
-unique_ptr则“独占”所指
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
-    
-      <category term="智能指针" scheme="http://yoursite.com/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"/>
     
   </entry>
   

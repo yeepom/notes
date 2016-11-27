@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/</loc>
+    
+    <lastmod>2016-11-27T08:15:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/11/25/leetcode-sort-colors/</loc>
+    
+    <lastmod>2016-11-27T06:49:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/27/leetcode-remove-element/</loc>
     
     <lastmod>2016-11-27T03:42:25.000Z</lastmod>
@@ -33,13 +47,6 @@
     <loc>http://yoursite.com/2016/11/26/leetcode-merge-sorted-array/</loc>
     
     <lastmod>2016-11-26T11:00:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/11/25/leetcode-sort-colors/</loc>
-    
-    <lastmod>2016-11-26T03:04:10.000Z</lastmod>
     
   </url>
   
