@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-27T08:15:22.000Z</updated>
+  <updated>2016-11-27T08:16:02.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/"/>
     <id>http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/</id>
     <published>2016-11-27T04:55:03.000Z</published>
-    <updated>2016-11-27T08:15:22.000Z</updated>
+    <updated>2016-11-27T08:16:02.000Z</updated>
     
     <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
 &lt;/script&gt;
@@ -63,7 +63,7 @@
 &lt;p&gt;T(n) = theta(1), if n = 1 (use omit)&lt;br&gt;        2T(n/2) + theta(n), if n &amp;gt; 1&lt;/p&gt;
 &lt;p&gt;Recursive tree. T(n) = 2T(n/2) + cn, const c &amp;gt; 0&lt;/p&gt;
 &lt;p&gt;Performance&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_12.png&quot; alt=&quot;merge sort performance&quot;&gt;&lt;br&gt;树的长度lg(n)，叶子个数n。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_12.png&quot; alt=&quot;merge sort performance&quot;&gt;&lt;br&gt;树的长度lg(n)，叶子个数n。&lt;br&gt;最后得出mergesort的时间 theta(nlgn)。&lt;/p&gt;
 </content>
     
     <summary type="html">
