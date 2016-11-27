@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array,Remove," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Easy解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。">
+<meta name="description" content="难度：Hard">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_remove_element">
-<meta property="og:url" content="http://yoursite.com/2016/11/27/leetcode-remove-element/index.html">
+<meta property="og:title" content="leetcode_longest_consecutive_sequence">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/leetcode-longest-consecutive-sequence/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Easy解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。">
-<meta property="og:updated_time" content="2016-11-27T03:42:25.000Z">
+<meta property="og:description" content="难度：Hard">
+<meta property="og:updated_time" content="2016-11-27T16:10:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_remove_element">
-<meta name="twitter:description" content="难度：Easy解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。">
+<meta name="twitter:title" content="leetcode_longest_consecutive_sequence">
+<meta name="twitter:description" content="难度：Hard">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/27/leetcode-remove-element/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/28/leetcode-longest-consecutive-sequence/"/>
 
-  <title> leetcode_remove_element | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_longest_consecutive_sequence | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_remove_element
+                leetcode_longest_consecutive_sequence
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-27T11:39:56+08:00" content="2016-11-27">
-              2016-11-27
+            <time itemprop="dateCreated" datetime="2016-11-28T00:04:59+08:00" content="2016-11-28">
+              2016-11-28
             </time>
           </span>
 
@@ -278,9 +278,8 @@
       
 
       
-        <p>难度：Easy<br>解题思路：使用两个迭代器一个指向已经处理过的末尾，另一个指向未处理过的首部。<br><a id="more"></a><br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;</span><br><span class="line">        auto solved_it = nums.begin();</span><br><span class="line">        auto unsolved_it = nums.begin();</span><br><span class="line">        for(;unsolved_it != nums.end(); unsolved_it++)&#123;</span><br><span class="line">            if(*unsolved_it != val)&#123;</span><br><span class="line">                swap(*(solved_it++), *unsolved_it);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return solved_it-nums.begin();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>代码结果：3ms，超过23.02%。</p>
+        <p>难度：Hard<br><a id="more"></a><br>题目要求：<br>O(n)时间。<br>解题思路：<br>第一种思路，先找出最大值max、最小值min，然后申请大小max-min+1的hash数组，将原始数组映射过来。遍历一遍hash数组，找最长的。这种方法遇到[-88888888,0,88888888]会tle。<br>第二种思路，用set，将数组存到set里面。然后遍历数组，以每个元素为初始值，找最长的。这种方法遇到[0,1,2…….,10000]的时候会RunTimeError。<br>怎么办？直接sort了一下数组，然后找最长的连续值。竟然过了。。不过题目要求是O(n)的时间，sort这里会不会算是作弊。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        int longest = 0, length = 0;</span><br><span class="line">        for(auto it = nums.begin(); it != nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(it == nums.begin())</span><br><span class="line">            &#123;</span><br><span class="line">                length=1;</span><br><span class="line">                longest=1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(*it == *(it-1)+1)</span><br><span class="line">                &#123;</span><br><span class="line">                    length++;</span><br><span class="line">                    longest = longest &gt; length ? longest :length;</span><br><span class="line">                    // longest = max(length,longest);</span><br><span class="line">                &#125;</span><br><span class="line">                else if(*it == *(it-1))</span><br><span class="line">                &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    length=1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return longest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：16ms，超过92.63%</p>
 
       
     </div>
@@ -300,32 +299,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
-          
-            <a href="/tags/Array/" rel="tag">#Array</a>
-          
-            <a href="/tags/Remove/" rel="tag">#Remove</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/27/leetcode-container-with-most-water/" rel="next" title="leetcode_container_with_most_water">
-                <i class="fa fa-chevron-left"></i> leetcode_container_with_most_water
+              <a href="/2016/11/27/introduction-to-algorithms-lecture-1/" rel="next" title="introduction_to_algorithms_lecture_1">
+                <i class="fa fa-chevron-left"></i> introduction_to_algorithms_lecture_1
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/27/introduction-to-algorithms-lecture-1/" rel="prev" title="introduction_to_algorithms_lecture_1">
-                introduction_to_algorithms_lecture_1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
