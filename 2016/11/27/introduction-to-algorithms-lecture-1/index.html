@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20161127_9.png">
 <meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20161127_11.png">
 <meta property="og:image" content="http://o9kchgjar.bkt.clouddn.com/Snip20161127_12.png">
-<meta property="og:updated_time" content="2016-11-27T08:18:12.000Z">
+<meta property="og:updated_time" content="2016-11-27T08:20:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="introduction_to_algorithms_lecture_1">
 <meta name="twitter:description" content="网易公开课《算法导论》的学习笔记，第一节课">
@@ -321,7 +321,7 @@
 <p>(Arithmetic series)</p>
 <p>Is insertion sort fast?</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-moderately for small n</span><br><span class="line">-Not at all for large n</span><br></pre></td></tr></table></figure>
-<p>Merge sort</p>
+<p>Merge  sort</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Merge sort A[1,...n]	--------T(n)</span><br><span class="line">1.If n = 1, done			--------theta(1),abuse</span><br><span class="line">2.Recursively sort		--------2*T(n),sloppy</span><br><span class="line">	A[1,...ceil[n/2]] and A[ceil[n/2]+1,...n]</span><br><span class="line">3.Merge 2 sorted arrays</span><br></pre></td></tr></table></figure>
 <p>Key subroutine: Merge<br><img src="http://o9kchgjar.bkt.clouddn.com/Snip20161127_11.png" alt="Key subroutine: Merge"></p>
 <p>两个已经排好序的数组。分别有两个指针指向首元素，比较大小，小的就提取出来，然后指针指向后一位。时间与两个数组之和成正比。</p>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-27T08:18:12.000Z</updated>
+  <updated>2016-11-27T08:20:32.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/"/>
     <id>http://yoursite.com/2016/11/27/introduction-to-algorithms-lecture-1/</id>
     <published>2016-11-27T04:55:03.000Z</published>
-    <updated>2016-11-27T08:18:12.000Z</updated>
+    <updated>2016-11-27T08:20:32.000Z</updated>
     
     <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
 &lt;/script&gt;
@@ -55,7 +55,7 @@
 &lt;p&gt;(Arithmetic series)&lt;/p&gt;
 &lt;p&gt;Is insertion sort fast?&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;-moderately for small n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-Not at all for large n&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Merge sort&lt;/p&gt;
+&lt;p&gt;Merge  sort&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Merge sort A[1,...n]	--------T(n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1.If n = 1, done			--------theta(1),abuse&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2.Recursively sort		--------2*T(n),sloppy&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	A[1,...ceil[n/2]] and A[ceil[n/2]+1,...n]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.Merge 2 sorted arrays&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;Key subroutine: Merge&lt;br&gt;&lt;img src=&quot;http://o9kchgjar.bkt.clouddn.com/Snip20161127_11.png&quot; alt=&quot;Key subroutine: Merge&quot;&gt;&lt;/p&gt;
 &lt;p&gt;两个已经排好序的数组。分别有两个指针指向首元素，比较大小，小的就提取出来，然后指针指向后一位。时间与两个数组之和成正比。&lt;/p&gt;
