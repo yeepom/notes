@@ -58,11 +58,11 @@ X X X X
   </entry>
   
   <entry>
-    <title>C++拷贝控制和资源管理</title>
+    <title>c++拷贝控制和资源管理</title>
     <link href="http://yoursite.com/2016/11/28/c-plus-plus-copy-control-and-resource-management/"/>
     <id>http://yoursite.com/2016/11/28/c-plus-plus-copy-control-and-resource-management/</id>
     <published>2016-11-28T02:51:34.000Z</published>
-    <updated>2016-11-28T06:37:31.000Z</updated>
+    <updated>2016-11-28T11:51:29.000Z</updated>
     
     <content type="html">&lt;p&gt;一旦一个类需要析构函数，那么它几乎肯定也需要一个拷贝构造函数和一个拷贝赋值运算符。&lt;br&gt;为了定义这些成员，首先必须确定此类型对象的拷贝语义。一般来说，有两种选择：可以定义拷贝操作，使类的行为看起来像一个值或者像一个指针。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;类的行为像一个值，意味着它应该也有自己的状态。当我们拷贝一个像值的对象时，副本和对象是完全独立的。改变副本不会对原对象有任何影响。
