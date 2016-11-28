@@ -86,22 +86,16 @@
 
 
 
-<meta name="description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
+<meta name="description" content="难度：Hard">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_three_sum_closest">
-<meta property="og:url" content="http://yoursite.com/2016/11/22/3SumClosest/index.html">
+<meta property="og:title" content="leetcode_best_time_to_buy_and_sell_stock_iii">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/leetcode-best-time-to-buy-and-sell-stock-iii/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
-<meta property="og:updated_time" content="2016-11-23T11:44:04.000Z">
+<meta property="og:description" content="难度：Hard">
+<meta property="og:updated_time" content="2016-11-28T14:29:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_three_sum_closest">
-<meta name="twitter:description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
+<meta name="twitter:title" content="leetcode_best_time_to_buy_and_sell_stock_iii">
+<meta name="twitter:description" content="难度：Hard">
 
 
 
@@ -122,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/22/3SumClosest/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/28/leetcode-best-time-to-buy-and-sell-stock-iii/"/>
 
-  <title> leetcode_three_sum_closest | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_best_time_to_buy_and_sell_stock_iii | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +238,7 @@
             
             
               
-                leetcode_three_sum_closest
+                leetcode_best_time_to_buy_and_sell_stock_iii
               
             
           </h1>
@@ -256,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-22T20:27:52+08:00" content="2016-11-22">
-              2016-11-22
+            <time itemprop="dateCreated" datetime="2016-11-28T22:23:03+08:00" content="2016-11-28">
+              2016-11-28
             </time>
           </span>
 
@@ -284,9 +278,13 @@
       
 
       
-        <p>难度：medium</p>
-<p>解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。<br>代码如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        if(nums.size() &lt; 3) return 0;</span><br><span class="line">        auto it = nums.begin();</span><br><span class="line">        auto end_it = nums.end();</span><br><span class="line">        sort(it, end_it);</span><br><span class="line">        int threeSumClosest = *it+*(it+1)+*(it+2);</span><br><span class="line">        for(;it+2 != end_it; it++)</span><br><span class="line">        &#123;</span><br><span class="line">            auto first_it = it+1;</span><br><span class="line">            auto second_it = end_it-1;</span><br><span class="line">            while(first_it != second_it)</span><br><span class="line">            &#123;</span><br><span class="line">                int threeSum = *it + *first_it + *second_it;</span><br><span class="line">                if(abs(threeSum-target) &lt; abs(threeSumClosest-target))</span><br><span class="line">                &#123;</span><br><span class="line">                    threeSumClosest = threeSum;</span><br><span class="line">                    if(threeSum &lt; target)</span><br><span class="line">                    &#123;</span><br><span class="line">                        first_it++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        second_it--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    if(threeSum &lt; target)</span><br><span class="line">                    &#123;</span><br><span class="line">                        first_it++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        second_it--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return threeSumClosest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>难度：Hard<br><a id="more"></a><br>解题思路：最多两次交易，求最大收益。可以从这一系列的一次交易，求最大收益开始。先求出最大收益区间，然后在区间的前面，内部，后面，寻找第二个交易，使其最大。<br>求内部时。</p>
+<pre><code>1 2 3 5 2 8，假设求得最大收益是1～8的区间，在此区间寻找第二个交易，则为8-2+5-1。
+又可以表达为8-1+5-2。5-2，这不就是[2 3 5 2]逆向的最大交易嘛？！
+</code></pre><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        if(prices.size()&lt;2) return 0;</span><br><span class="line">        int max_profit = 0;</span><br><span class="line">        int min_price = prices.front(), max_price = prices.front();</span><br><span class="line">        auto min_it = prices.begin(), max_it = prices.begin();</span><br><span class="line">        auto final_min_it = min_it, final_max_it = max_it;</span><br><span class="line">        for(auto it = prices.begin(); it != prices.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*it &gt; max_price)</span><br><span class="line">            &#123;</span><br><span class="line">                max_price = *it;</span><br><span class="line">                max_it = it;</span><br><span class="line">                if(max_price - min_price &gt; max_profit)</span><br><span class="line">                &#123;</span><br><span class="line">                    max_profit = max_price - min_price;</span><br><span class="line">                    final_max_it = max_it;</span><br><span class="line">                    final_min_it = min_it;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(*it &lt; min_price)</span><br><span class="line">            &#123;</span><br><span class="line">                min_price = *it;</span><br><span class="line">                max_price = *it;</span><br><span class="line">                min_it = it;</span><br><span class="line">                max_it = it;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(max_profit == 0) </span><br><span class="line">            return 0;</span><br><span class="line">        std::cout&lt;&lt;*final_max_it&lt;&lt;&quot; &quot;&lt;&lt;*final_min_it&lt;&lt;std::endl;</span><br><span class="line">        int left_max_profit = cal_max_profit_with_iter(prices.begin(), final_min_it);</span><br><span class="line">        int mid_max_profit = cal_max_profit_with_reverse_iter(final_max_it-1, final_min_it);</span><br><span class="line">        int right_max_profit = cal_max_profit_with_iter(final_max_it+1, prices.end());</span><br><span class="line">        </span><br><span class="line">        int second_max_profit = max(left_max_profit, mid_max_profit);</span><br><span class="line">        std::cout&lt;&lt;&quot;left_max_profit&quot;&lt;&lt;left_max_profit&lt;&lt;std::endl;</span><br><span class="line">        std::cout&lt;&lt;&quot;mid_max_profit&quot;&lt;&lt;mid_max_profit&lt;&lt;std::endl;</span><br><span class="line">        std::cout&lt;&lt;&quot;right_max_profit&quot;&lt;&lt;right_max_profit&lt;&lt;std::endl;</span><br><span class="line">        second_max_profit = max(second_max_profit, right_max_profit);</span><br><span class="line">        max_profit += second_max_profit;</span><br><span class="line">        return max_profit;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int cal_max_profit_with_iter(const vector&lt;int&gt;::iterator&amp; begin_it,const vector&lt;int&gt;::iterator &amp;end_it) &#123;</span><br><span class="line">        if(begin_it == end_it) return 0;</span><br><span class="line">        int max_profit = 0;</span><br><span class="line">        int min_price = *begin_it, max_price = *begin_it;</span><br><span class="line">        for(auto it = begin_it; it != end_it; it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*it &gt; max_price)</span><br><span class="line">            &#123;</span><br><span class="line">                max_price = *it;</span><br><span class="line">                max_profit = max(max_price-min_price, max_profit);</span><br><span class="line">            &#125;</span><br><span class="line">            if(*it &lt; min_price)</span><br><span class="line">            &#123;</span><br><span class="line">                min_price = *it;</span><br><span class="line">                max_price = *it;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max_profit;</span><br><span class="line">    &#125;</span><br><span class="line">    int cal_max_profit_with_reverse_iter(const vector&lt;int&gt;::iterator&amp; begin_reverse_it,const vector&lt;int&gt;::iterator &amp;end_reverse_it) &#123;</span><br><span class="line">        if(begin_reverse_it == end_reverse_it) return 0;</span><br><span class="line">        int max_profit = 0;</span><br><span class="line">        int min_price = *begin_reverse_it, max_price = *begin_reverse_it;</span><br><span class="line">        for(auto it = begin_reverse_it; it != end_reverse_it; it--)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*it &gt; max_price)</span><br><span class="line">            &#123;</span><br><span class="line">                max_price = *it;</span><br><span class="line">                max_profit = max(max_price-min_price, max_profit);</span><br><span class="line">            &#125;</span><br><span class="line">            if(*it &lt; min_price)</span><br><span class="line">            &#123;</span><br><span class="line">                min_price = *it;</span><br><span class="line">                max_price = *it;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max_profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>代码结果：9ms，超过23.79%</p>
+
       
     </div>
 
@@ -318,17 +316,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/22/c-plus-plus-smart-pointer/" rel="next" title="c++智能指针用法">
-                <i class="fa fa-chevron-left"></i> c++智能指针用法
+              <a href="/2016/11/28/leetcode-best-time-to-buy-and-sell-stock-ii/" rel="next" title="leetcode_best_time_to_buy_and_sell_stock_ii">
+                <i class="fa fa-chevron-left"></i> leetcode_best_time_to_buy_and_sell_stock_ii
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/23/fourSum/" rel="prev" title="leetcode_four_sum">
-                leetcode_four_sum <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

@@ -86,22 +86,16 @@
 
 
 
-<meta name="description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
+<meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_three_sum_closest">
-<meta property="og:url" content="http://yoursite.com/2016/11/22/3SumClosest/index.html">
+<meta property="og:title" content="leetcode_best_time_to_buy_and_sell_stock_ii">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/leetcode-best-time-to-buy-and-sell-stock-ii/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
-<meta property="og:updated_time" content="2016-11-23T11:44:04.000Z">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-11-28T13:36:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_three_sum_closest">
-<meta name="twitter:description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
+<meta name="twitter:title" content="leetcode_best_time_to_buy_and_sell_stock_ii">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -122,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/22/3SumClosest/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/28/leetcode-best-time-to-buy-and-sell-stock-ii/"/>
 
-  <title> leetcode_three_sum_closest | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_best_time_to_buy_and_sell_stock_ii | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +238,7 @@
             
             
               
-                leetcode_three_sum_closest
+                leetcode_best_time_to_buy_and_sell_stock_ii
               
             
           </h1>
@@ -256,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-22T20:27:52+08:00" content="2016-11-22">
-              2016-11-22
+            <time itemprop="dateCreated" datetime="2016-11-28T21:34:20+08:00" content="2016-11-28">
+              2016-11-28
             </time>
           </span>
 
@@ -284,9 +278,10 @@
       
 
       
-        <p>难度：medium</p>
-<p>解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。<br>代码如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        if(nums.size() &lt; 3) return 0;</span><br><span class="line">        auto it = nums.begin();</span><br><span class="line">        auto end_it = nums.end();</span><br><span class="line">        sort(it, end_it);</span><br><span class="line">        int threeSumClosest = *it+*(it+1)+*(it+2);</span><br><span class="line">        for(;it+2 != end_it; it++)</span><br><span class="line">        &#123;</span><br><span class="line">            auto first_it = it+1;</span><br><span class="line">            auto second_it = end_it-1;</span><br><span class="line">            while(first_it != second_it)</span><br><span class="line">            &#123;</span><br><span class="line">                int threeSum = *it + *first_it + *second_it;</span><br><span class="line">                if(abs(threeSum-target) &lt; abs(threeSumClosest-target))</span><br><span class="line">                &#123;</span><br><span class="line">                    threeSumClosest = threeSum;</span><br><span class="line">                    if(threeSum &lt; target)</span><br><span class="line">                    &#123;</span><br><span class="line">                        first_it++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        second_it--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    if(threeSum &lt; target)</span><br><span class="line">                    &#123;</span><br><span class="line">                        first_it++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        second_it--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return threeSumClosest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>难度：Medium<br><a id="more"></a><br>解题思路：可以无数次交易。巴菲特告诉我们，每一次涨的时候，都有要获益。<br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        if(prices.size()==0) return 0;</span><br><span class="line">        int max_profit = 0;</span><br><span class="line">        int min_price = prices.front(), max_price = prices.front();</span><br><span class="line">        for(auto it = prices.begin(); it != prices.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(*it &gt; max_price)</span><br><span class="line">            &#123;</span><br><span class="line">                max_price = *it;</span><br><span class="line">                max_profit = max(max_price-min_price, max_profit);</span><br><span class="line">            &#125;</span><br><span class="line">            if(*it &lt; min_price)</span><br><span class="line">            &#123;</span><br><span class="line">                min_price = *it;</span><br><span class="line">                max_price = *it;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return max_profit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：6ms，超过48.52%</p>
+
       
     </div>
 
@@ -318,16 +313,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/22/c-plus-plus-smart-pointer/" rel="next" title="c++智能指针用法">
-                <i class="fa fa-chevron-left"></i> c++智能指针用法
+              <a href="/2016/11/28/leetcode-best-time-to-buy-and-sell-stock/" rel="next" title="leetcode_best_time_to_buy_and_sell_stock">
+                <i class="fa fa-chevron-left"></i> leetcode_best_time_to_buy_and_sell_stock
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/23/fourSum/" rel="prev" title="leetcode_four_sum">
-                leetcode_four_sum <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/28/leetcode-best-time-to-buy-and-sell-stock-iii/" rel="prev" title="leetcode_best_time_to_buy_and_sell_stock_iii">
+                leetcode_best_time_to_buy_and_sell_stock_iii <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
