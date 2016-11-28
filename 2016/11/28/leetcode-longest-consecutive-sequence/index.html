@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/28/leetcode-longest-consecutive-sequence/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Hard">
-<meta property="og:updated_time" content="2016-11-28T00:15:04.000Z">
+<meta property="og:updated_time" content="2016-11-28T02:36:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_longest_consecutive_sequence">
 <meta name="twitter:description" content="难度：Hard">
@@ -281,6 +281,10 @@
         <p>难度：Hard<br><a id="more"></a><br>题目要求：<br>O(n)时间。<br>解题思路：<br>第一种思路，先找出最大值max、最小值min，然后申请大小max-min+1的hash数组，将原始数组映射过来。遍历一遍hash数组，找最长的。这种方法遇到[-88888888,0,88888888]会tle。<br>第二种思路，用set，将数组存到set里面。然后遍历数组，以每个元素为初始值，找最长的。这种方法遇到[0,1,2…….,10000]的时候会RunTimeError。<br>怎么办？直接sort了一下数组，然后找最长的连续值。竟然过了。。不过题目要求是O(n)的时间，sort这里会不会算是作弊。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        int longest = 0, length = 0;</span><br><span class="line">        for(auto it = nums.begin(); it != nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(it == nums.begin())</span><br><span class="line">            &#123;</span><br><span class="line">                length=1;</span><br><span class="line">                longest=1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(*it == *(it-1)+1)</span><br><span class="line">                &#123;</span><br><span class="line">                    length++;</span><br><span class="line">                    longest = longest &gt; length ? longest :length;</span><br><span class="line">                    // longest = max(length,longest);</span><br><span class="line">                &#125;</span><br><span class="line">                else if(*it == *(it-1))</span><br><span class="line">                &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    length=1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return longest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>运行结果：16ms，超过92.63%</p>
+<hr>
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>看了答案，调用sort是作弊行为。<br>按照上面set的思路继续分析。将数组存到set里面。然后遍历数组，寻找当前元素所在区间的最大最小值，同时删除掉该区间的值，找出最大的区间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; s(nums.begin(), nums.end());//使用unordered_set要比set的效率高</span><br><span class="line">        int longest = 0;</span><br><span class="line">        for(auto it = nums.begin(); it &lt; nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            int up = *it;</span><br><span class="line">            while(s.find(up) != s.end())</span><br><span class="line">            &#123;</span><br><span class="line">                s.erase(up);</span><br><span class="line">                up++;</span><br><span class="line">            &#125;</span><br><span class="line">            int down = *it - 1;</span><br><span class="line">            while(s.find(down) != s.end())</span><br><span class="line">            &#123;</span><br><span class="line">                s.erase(down);</span><br><span class="line">                down--;</span><br><span class="line">            &#125;</span><br><span class="line">            longest = max(longest, up-down-1);</span><br><span class="line">        &#125;</span><br><span class="line">        return longest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行时间：23ms，超过52.62%。(使用set的运行时间为39ms)</p>
 
       
     </div>
@@ -312,6 +316,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/28/c-plus-plus-copy-control-and-resource-management/" rel="prev" title="C++拷贝控制和资源管理">
+                C++拷贝控制和资源管理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -379,7 +387,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -389,7 +397,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -425,7 +433,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分割线"><span class="nav-number">1.</span> <span class="nav-text">分割线</span></a></li></ol></div>
             
           </div>
         </section>

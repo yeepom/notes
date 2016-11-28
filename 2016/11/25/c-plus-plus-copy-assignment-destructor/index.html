@@ -86,25 +86,16 @@
 
 
 
-<meta name="description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。
-123456class Foo&amp;#123;public:	Foo();	Foo(const Foo&amp;amp;);	//copy constructor&amp;#125;;
-通常不应该是explicit。
-合成拷贝构造函数如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。123456789">
+<meta name="description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++拷贝、赋值与销毁">
 <meta property="og:url" content="http://yoursite.com/2016/11/25/c-plus-plus-copy-assignment-destructor/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。
-123456class Foo&amp;#123;public:	Foo();	Foo(const Foo&amp;amp;);	//copy constructor&amp;#125;;
-通常不应该是explicit。
-合成拷贝构造函数如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。123456789">
-<meta property="og:updated_time" content="2016-11-28T01:14:55.000Z">
+<meta property="og:description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。">
+<meta property="og:updated_time" content="2016-11-28T02:10:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++拷贝、赋值与销毁">
-<meta name="twitter:description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。
-123456class Foo&amp;#123;public:	Foo();	Foo(const Foo&amp;amp;);	//copy constructor&amp;#125;;
-通常不应该是explicit。
-合成拷贝构造函数如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。123456789">
+<meta name="twitter:description" content="一、拷贝构造函数拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。否则会一直陷入死循环。">
 
 
 
@@ -287,7 +278,7 @@
       
 
       
-        <p>一、拷贝构造函数<br>拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。<br>否则会一直陷入死循环。</p>
+        <p>一、拷贝构造函数<br>拷贝构造函数的第一个参数必须是该类的引用类型，其它的参数有默认值。<br>否则会一直陷入死循环。<br><a id="more"></a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Foo</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo();</span><br><span class="line">	Foo(const Foo&amp;);	//copy constructor</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>通常不应该是explicit。</p>
 <p>合成拷贝构造函数<br>如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Sales_data</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Sales_data(const Sales_data&amp;);</span><br><span class="line">private:</span><br><span class="line">	std::string bookNO;</span><br><span class="line">	int units_sold = 0;</span><br><span class="line">	double revenue = 0.0;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Sales_data::Sales_data(const Sales_data &amp;orig):bookNo(orig.bookNo),//使用string的拷贝构造函数</span><br><span class="line">units_sold(orig.units_sold),//拷贝orig.units_sold</span><br><span class="line">revenue(orig.revenue)//拷贝orig.revenue</span><br><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure></p>
@@ -472,7 +463,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -482,7 +473,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
