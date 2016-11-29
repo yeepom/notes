@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array," />
+  <meta name="keywords" content="LeetCode,LinkedList,SwapNodes," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Medium">
+<meta name="description" content="难度：Easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_spiral_order">
-<meta property="og:url" content="http://yoursite.com/2016/11/24/leetcode-spiral-order/index.html">
+<meta property="og:title" content="leetcode_swap_nodes_in_pairs">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/leetcode-swap-nodes-in-pairs/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Medium">
-<meta property="og:updated_time" content="2016-11-24T07:54:58.000Z">
+<meta property="og:description" content="难度：Easy">
+<meta property="og:updated_time" content="2016-11-29T08:21:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_spiral_order">
-<meta name="twitter:description" content="难度：Medium">
+<meta name="twitter:title" content="leetcode_swap_nodes_in_pairs">
+<meta name="twitter:description" content="难度：Easy">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/24/leetcode-spiral-order/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/29/leetcode-swap-nodes-in-pairs/"/>
 
-  <title> leetcode_spiral_order | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_swap_nodes_in_pairs | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_spiral_order
+                leetcode_swap_nodes_in_pairs
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-24T14:49:20+08:00" content="2016-11-24">
-              2016-11-24
+            <time itemprop="dateCreated" datetime="2016-11-29T16:14:08+08:00" content="2016-11-29">
+              2016-11-29
             </time>
           </span>
 
@@ -278,11 +278,29 @@
       
 
       
-        <p>难度：Medium</p>
-<a id="more"></a>
-<p>解题思路：按照顺时针一圈一圈的取值，注意每一圈的边界。<br>代码如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        vector&lt;int&gt; ret;</span><br><span class="line">        if(matrix.empty()) return ret;</span><br><span class="line">        size_t current_row_num = matrix.size();</span><br><span class="line">        size_t current_col_num = matrix[0].size();</span><br><span class="line">        int left_top_bound = 0;</span><br><span class="line">        while(current_row_num != 0 &amp;&amp; current_col_num != 0)</span><br><span class="line">        &#123;</span><br><span class="line">            int i = left_top_bound ,j = left_top_bound;</span><br><span class="line">            for(; j &lt; current_col_num+left_top_bound ; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                ret.push_back(matrix[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            j--;</span><br><span class="line">            i++;</span><br><span class="line">            for(; i &lt; current_row_num+left_top_bound; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                ret.push_back(matrix[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            i--;</span><br><span class="line">            j--;</span><br><span class="line">            for(; j &gt;= left_top_bound &amp;&amp; current_row_num &gt; 1; j--)</span><br><span class="line">            &#123;</span><br><span class="line">                ret.push_back(matrix[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            j++;</span><br><span class="line">            i--;</span><br><span class="line">            for(; i &gt; left_top_bound &amp;&amp; current_col_num &gt; 1; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                ret.push_back(matrix[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            left_top_bound++;</span><br><span class="line">            current_row_num = (current_row_num &gt;= 2)?current_row_num-2:current_row_num-1;</span><br><span class="line">            current_col_num = (current_col_num &gt;= 2)?current_col_num-2:current_col_num-1;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：0ms(0~2.5ms区间)，超过26.22%</p>
+        <p>难度：Easy<br><a id="more"></a></p>
+<p>解题思路：先在纸上画图。</p>
+<pre><code>dummy -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4
+
+dummy    1 -&gt; 2 -&gt; 3 -&gt; 4
+  |           ^
+  |___________|
+
+
+         |---------|
+         |         ^
+dummy    1    2 -&gt; 3 -&gt; 4
+  |           ^
+  |___________|
+
+         |---------|
+         |         ^
+dummy    1 &lt;- 2    3 -&gt; 4
+  |           ^
+  |___________|
+</code></pre><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* swapPairs(ListNode* head) &#123;</span><br><span class="line">        ListNode* dummy = new ListNode(-1), *cur = dummy;</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        while(cur-&gt;next != NULL &amp;&amp; cur-&gt;next-&gt;next != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *first = cur-&gt;next;</span><br><span class="line">            ListNode *second = first-&gt;next;</span><br><span class="line">            cur-&gt;next = second;</span><br><span class="line">            first-&gt;next = second-&gt;next;</span><br><span class="line">            second-&gt;next = first;</span><br><span class="line">            cur = first;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：3ms，超过11.49％</p>
 
       
     </div>
@@ -306,7 +324,9 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/Array/" rel="tag">#Array</a>
+            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+          
+            <a href="/tags/SwapNodes/" rel="tag">#SwapNodes</a>
           
         </div>
       
@@ -315,17 +335,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/24/leetcode-rotate-array/" rel="next" title="leetcode_rotate_array">
-                <i class="fa fa-chevron-left"></i> leetcode_rotate_array
+              <a href="/2016/11/29/leetcode-merge-k-sorted-lists/" rel="next" title="leetcode_merge_k_sorted_lists">
+                <i class="fa fa-chevron-left"></i> leetcode_merge_k_sorted_lists
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/24/merge-intervals/" rel="prev" title="leetcode_merge_intervals">
-                leetcode_merge_intervals <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
