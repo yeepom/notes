@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/29/leetcode-rotate-list/</loc>
+    
+    <lastmod>2016-11-29T10:17:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/29/leetcode-reverse-nodes-in-k-group/</loc>
     
     <lastmod>2016-11-29T09:11:22.000Z</lastmod>
