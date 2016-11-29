@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array," />
+  <meta name="keywords" content="LeetCode,LinkedList,Merge," />
 
 
 
@@ -86,22 +86,22 @@
 
 
 
-<meta name="description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
+<meta name="description" content="难度：Easy
+注意：new一个ListNode，返回的是ListNode的指针；直接调用ListNode构造函数，返回的是ListNode。代码如下：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for singly-linked lis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_three_sum_closest">
-<meta property="og:url" content="http://yoursite.com/2016/11/22/3SumClosest/index.html">
+<meta property="og:title" content="leetcode_merge_two_sorted_lists">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/leetcode-merge-two-sorted-lists/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
-<meta property="og:updated_time" content="2016-11-23T11:44:04.000Z">
+<meta property="og:description" content="难度：Easy
+注意：new一个ListNode，返回的是ListNode的指针；直接调用ListNode构造函数，返回的是ListNode。代码如下：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for singly-linked lis">
+<meta property="og:updated_time" content="2016-11-29T06:50:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_three_sum_closest">
-<meta name="twitter:description" content="难度：medium
-解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。代码如下。
-12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int threeSumClo">
+<meta name="twitter:title" content="leetcode_merge_two_sorted_lists">
+<meta name="twitter:description" content="难度：Easy
+注意：new一个ListNode，返回的是ListNode的指针；直接调用ListNode构造函数，返回的是ListNode。代码如下：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for singly-linked lis">
 
 
 
@@ -122,9 +122,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/22/3SumClosest/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/29/leetcode-merge-two-sorted-lists/"/>
 
-  <title> leetcode_three_sum_closest | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_merge_two_sorted_lists | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +244,7 @@
             
             
               
-                leetcode_three_sum_closest
+                leetcode_merge_two_sorted_lists
               
             
           </h1>
@@ -256,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-22T20:27:52+08:00" content="2016-11-22">
-              2016-11-22
+            <time itemprop="dateCreated" datetime="2016-11-29T14:46:55+08:00" content="2016-11-29">
+              2016-11-29
             </time>
           </span>
 
@@ -284,9 +284,11 @@
       
 
       
-        <p>难度：medium</p>
-<p>解题思路可以参考3Sum。对数组进行排序，遍历第一个数，然后在比它大的数组中，从前往后、从后往前的遍历第二个数、第三个数，直到相遇。<br>代码如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        if(nums.size() &lt; 3) return 0;</span><br><span class="line">        auto it = nums.begin();</span><br><span class="line">        auto end_it = nums.end();</span><br><span class="line">        sort(it, end_it);</span><br><span class="line">        int threeSumClosest = *it+*(it+1)+*(it+2);</span><br><span class="line">        for(;it+2 != end_it; it++)</span><br><span class="line">        &#123;</span><br><span class="line">            auto first_it = it+1;</span><br><span class="line">            auto second_it = end_it-1;</span><br><span class="line">            while(first_it != second_it)</span><br><span class="line">            &#123;</span><br><span class="line">                int threeSum = *it + *first_it + *second_it;</span><br><span class="line">                if(abs(threeSum-target) &lt; abs(threeSumClosest-target))</span><br><span class="line">                &#123;</span><br><span class="line">                    threeSumClosest = threeSum;</span><br><span class="line">                    if(threeSum &lt; target)</span><br><span class="line">                    &#123;</span><br><span class="line">                        first_it++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        second_it--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    if(threeSum &lt; target)</span><br><span class="line">                    &#123;</span><br><span class="line">                        first_it++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        second_it--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return threeSumClosest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>难度：Easy<br><!----></p>
+<p>注意：new一个ListNode，返回的是ListNode的指针；直接调用ListNode构造函数，返回的是ListNode。<br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line">        ListNode* dummy = new ListNode(-1);</span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        while(l1 != NULL &amp;&amp; l2 != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            if(l1-&gt;val &lt; l2-&gt;val)</span><br><span class="line">            &#123;</span><br><span class="line">                ListNode* new_node = new ListNode(l1-&gt;val);</span><br><span class="line">                cur-&gt;next = new_node;</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                ListNode* new_node = new ListNode(l2-&gt;val);</span><br><span class="line">                cur-&gt;next = new_node;</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l1 != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode* new_node = new ListNode(l1-&gt;val);</span><br><span class="line">            cur-&gt;next = new_node;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">            l1 = l1-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l2 != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode* new_node = new ListNode(l2-&gt;val);</span><br><span class="line">            cur-&gt;next = new_node;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">            l2 = l2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：18ms，超过2.15%</p>
+
       
     </div>
 
@@ -309,7 +311,9 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/Array/" rel="tag">#Array</a>
+            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+          
+            <a href="/tags/Merge/" rel="tag">#Merge</a>
           
         </div>
       
@@ -318,17 +322,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/22/c-plus-plus-smart-pointer/" rel="next" title="c++智能指针用法">
-                <i class="fa fa-chevron-left"></i> c++智能指针用法
+              <a href="/2016/11/29/leetcode-remove-n-th-from-end-of-the-list/" rel="next" title="leetcode_remove_n_th_from_end_of_the_list">
+                <i class="fa fa-chevron-left"></i> leetcode_remove_n_th_from_end_of_the_list
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/23/fourSum/" rel="prev" title="leetcode_four_sum">
-                leetcode_four_sum <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
