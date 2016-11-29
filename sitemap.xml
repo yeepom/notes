@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2016/11/29/leetcode-add-two-numbers/</loc>
+    <loc>http://yoursite.com/2016/11/29/c-plus-plus-define-string-vector/</loc>
     
-    <lastmod>2016-11-29T06:14:29.000Z</lastmod>
+    <lastmod>2016-11-29T06:34:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/11/29/c-plus-plus-define-string-vector/</loc>
+    <loc>http://yoursite.com/2016/11/29/leetcode-add-two-numbers/</loc>
     
-    <lastmod>2016-11-29T06:04:56.000Z</lastmod>
+    <lastmod>2016-11-29T06:34:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/11/29/leetcode-remove-n-th-from-end-of-the-list/</loc>
+    
+    <lastmod>2016-11-29T06:34:02.000Z</lastmod>
     
   </url>
   
