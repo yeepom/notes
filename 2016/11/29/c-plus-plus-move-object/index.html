@@ -1,0 +1,640 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++,move constructor," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="yan" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="标准库类、string和shared_ptr类既支持移动也支持拷贝。IO类和unique_ptr类可以移动但不能拷贝。
+一、右值引用
+必须绑定到右值的引用，通过&amp;amp;&amp;amp;来获得右值引用。只能绑定到一个将要销毁的对象，因此我们可以自由地将一个右值引用的资源“移动”到另一个对象中。
+不能将左值引用绑定到要求转换的表达式、字面常量或是返回右值的表达式。右值引用则相反，可以绑定到这类表达式上，但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c_plus_plus_move_object">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/c-plus-plus-move-object/index.html">
+<meta property="og:site_name" content="yan">
+<meta property="og:description" content="标准库类、string和shared_ptr类既支持移动也支持拷贝。IO类和unique_ptr类可以移动但不能拷贝。
+一、右值引用
+必须绑定到右值的引用，通过&amp;amp;&amp;amp;来获得右值引用。只能绑定到一个将要销毁的对象，因此我们可以自由地将一个右值引用的资源“移动”到另一个对象中。
+不能将左值引用绑定到要求转换的表达式、字面常量或是返回右值的表达式。右值引用则相反，可以绑定到这类表达式上，但">
+<meta property="og:updated_time" content="2016-11-30T04:40:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c_plus_plus_move_object">
+<meta name="twitter:description" content="标准库类、string和shared_ptr类既支持移动也支持拷贝。IO类和unique_ptr类可以移动但不能拷贝。
+一、右值引用
+必须绑定到右值的引用，通过&amp;amp;&amp;amp;来获得右值引用。只能绑定到一个将要销毁的对象，因此我们可以自由地将一个右值引用的资源“移动”到另一个对象中。
+不能将左值引用绑定到要求转换的表达式、字面常量或是返回右值的表达式。右值引用则相反，可以绑定到这类表达式上，但">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/29/c-plus-plus-move-object/"/>
+
+  <title> c_plus_plus_move_object | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">yan</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">aim higher</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                c_plus_plus_move_object
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-29T21:33:01+08:00" content="2016-11-29">
+              2016-11-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>标准库类、string和shared_ptr类既支持移动也支持拷贝。IO类和unique_ptr类可以移动但不能拷贝。
+</code></pre><p>一、右值引用</p>
+<p>必须绑定到右值的引用，通过&amp;&amp;来获得右值引用。<br>只能绑定到一个将要销毁的对象，因此我们可以自由地将一个右值引用的资源“移动”到另一个对象中。</p>
+<p>不能将左值引用绑定到要求转换的表达式、字面常量或是返回右值的表达式。<br>右值引用则相反，可以绑定到这类表达式上，但不能讲一个右值引用直接绑定到一个左值上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i = 42;</span><br><span class="line">int &amp;r = i;</span><br><span class="line">int &amp;&amp;rr = i;		//错误：不能将一个右值引用绑定到一个左值上</span><br><span class="line">int &amp;r2 = i * 42;	//错误：i*42是一个右值	</span><br><span class="line">const int &amp;r3 = i * 42;</span><br><span class="line">int &amp;&amp;rr2 = i * 42;</span><br></pre></td></tr></table></figure>
+<p>返回左值引用的函数，连同赋值、下标、解引用和前置递增/递减运算符，都是返回左值。</p>
+<p>返回非引用类型的函数，连同算数、关系、位以及后置递增/递减运算符，都生成右值。可以讲一个const的左值引用或者一个右值引用绑定到这类表达式上。</p>
+<p>左值持久、右值短暂</p>
+<p>左值有持久的状态，右值要么是字面常量，要么是在表达式求值过程中创建的临时对象。</p>
+<p>由于右值引用只能绑定到临时对象，我们得知</p>
+<pre><code>所引用的对象将要被销毁
+该对象没有其他用户
+</code></pre><p>使用右值引用的代码可以自由地接管所引用的对象的资源。</p>
+<p>变量是左值</p>
+<p>把看成变量表达式，变量表达式都是左值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int &amp;&amp;rr1 = 42;</span><br><span class="line">int &amp;&amp;rr2 = rr1;	//错误：表达式rr1是左值</span><br></pre></td></tr></table></figure>
+<p>标准库move函数</p>
+<p>通过move获得绑定到左值上的右值引用。头文件utility。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int &amp;&amp;rr3 = std::move(rr1);	//正确</span><br></pre></td></tr></table></figure>
+<p>move告诉编译器：我们有一个左值，但希望像右值一样处理它。调用move就意味着承诺：除了对rr1赋值或销毁它外，将不再使用它。</p>
+<p>二、移动构造函数和移动赋值运算符</p>
+<p>从给定对象“窃取”资源。<br>移动构造函数第一个参数是该类型的一个右值引用。与拷贝函数一样，任何额外的参数都必须有默认实参。一旦资源完成移动，源对象必须不再指向被移动的资源，这些资源的所有权已经归属新创建的秀爱哪个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StrVec::StrVec(StrVec &amp;&amp;s)noexcept</span><br><span class="line">:elements(s.elements),first_free(s.first_free),cap(s.cap)</span><br><span class="line">&#123;</span><br><span class="line">	s.elements = s.first_free = s.cap = nullptr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>noexcept通知标准库构造函数不抛出任何异常。</p>
+<p>移动赋值运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">StrVec &amp;StrVec::operator=(StrVec &amp;&amp;rhs) noexcept</span><br><span class="line">&#123;</span><br><span class="line">	if(this != &amp;rhs)</span><br><span class="line">	&#123;</span><br><span class="line">		free();</span><br><span class="line">		elements = rhs.elements;</span><br><span class="line">		first_free = rhs.first_free;</span><br><span class="line">		cap = rhs.cap;</span><br><span class="line">		rhs.elements = rhs.first_free = rhs.cap = nullptr;</span><br><span class="line">	&#125;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>移动后源对象必须可析构，例如指针成员设置为nullptr。</p>
+<p>合成的移动操作</p>
+<p>只有当一个类没有定义任何自己版本的拷贝控制成员，且类的每个非static数据成员都可以移动时，编译器才会为它合成移动构造函数或移动赋值运算符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct X&#123;</span><br><span class="line">	int i;</span><br><span class="line">	std::string s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct hasX&#123;</span><br><span class="line">	X mem;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">X x,x2 = std::move(x);	//使用合成的移动构造函数</span><br><span class="line">hasX hx,hx2 = std::move(hx);	//使用合成的移动构造函数</span><br></pre></td></tr></table></figure>
+<p>移动操作永远不会隐式定义为删除的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct hasY</span><br><span class="line">&#123;</span><br><span class="line">	hasY() = default;</span><br><span class="line">	hasY(hasY &amp;&amp;) = default;</span><br><span class="line">	Y mem;		//hasY将有一个删除的移动构造函数</span><br><span class="line">&#125;;</span><br><span class="line">hasY hy, hy2 = std::move(hy);		//错误：移动的构造函数是删除的</span><br></pre></td></tr></table></figure>
+<p>如果类定义了一个移动构造函数和/或一个移动赋值运算符，则该类的合成拷贝构造函数和拷贝赋值运算符会被定义为删除的。反之亦然。</p>
+<p>移动右值，拷贝左值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StrVec v1, v2;		</span><br><span class="line"></span><br><span class="line">v1 = v2;		//v2是左值；使用拷贝赋值</span><br><span class="line"></span><br><span class="line">StrVec getVec(istream &amp;);</span><br><span class="line"></span><br><span class="line">v2 = getVec(cin);	//getVec(cin)是一个右值；使用移动赋值</span><br></pre></td></tr></table></figure>
+<p>赋予v2的是getVec调用的结果。此表达式是一个右值。此情况下，两种赋值运算符都是可行的。调用拷贝复制运算符需要进行一次到const的转换，而StrVec&amp;&amp;则精准匹配。因此使用移动赋值运算符。</p>
+<p>如果没有移动构造函数，右值也被拷贝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Foo&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo() = default;</span><br><span class="line">	Foo(const Foo&amp;);</span><br><span class="line">	//未定义移动构造函数，则默认为删除的</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Foo x;		</span><br><span class="line">Foo y(x);		//拷贝构造函数；x是一个左值</span><br><span class="line">Foo z(std::move(x));	//拷贝构造函数，因为未定义移动构造函数</span><br></pre></td></tr></table></figure>
+<p>将一个Foo&amp;&amp;转换为一个const Foo&amp;。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag">#c++</a>
+          
+            <a href="/tags/move-constructor/" rel="tag">#move constructor</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/29/c-plus-plus-implemant-string/" rel="next" title="实现c++中的string">
+                <i class="fa fa-chevron-left"></i> 实现c++中的string
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/leetcode-remove-duplicates-from-sorted-list/" rel="prev" title="leetcode_remove_duplicates_from_sorted_list">
+                leetcode_remove_duplicates_from_sorted_list <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o9kchgjar.bkt.clouddn.com/11949811256_99cd5cbd55_b.jpg"
+               alt="燕鹏" />
+          <p class="site-author-name" itemprop="name">燕鹏</p>
+          <p class="site-description motion-element" itemprop="description">this is my blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">燕鹏</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

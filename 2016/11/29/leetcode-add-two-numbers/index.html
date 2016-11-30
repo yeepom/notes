@@ -86,19 +86,22 @@
 
 
 
-<meta name="description" content="难度：Medium解题思路：一位一位加，记得处理最后的进位。代码如下：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for singly-linked list. * struct ListNode &amp;#">
+<meta name="description" content="难度：Medium
+解题思路：一位一位加，记得处理最后的进位。代码如下：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for singly-linked list. * struct ListNode &amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_add_two_numbers">
 <meta property="og:url" content="http://yoursite.com/2016/11/29/leetcode-add-two-numbers/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Medium解题思路：一位一位加，记得处理最后的进位。代码如下：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for singly-linked list. * struct ListNode &amp;#">
-<meta property="og:updated_time" content="2016-11-29T06:34:05.000Z">
+<meta property="og:description" content="难度：Medium
+解题思路：一位一位加，记得处理最后的进位。代码如下：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for singly-linked list. * struct ListNode &amp;">
+<meta property="og:updated_time" content="2016-11-30T01:58:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_add_two_numbers">
-<meta name="twitter:description" content="难度：Medium解题思路：一位一位加，记得处理最后的进位。代码如下：
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for singly-linked list. * struct ListNode &amp;#">
+<meta name="twitter:description" content="难度：Medium
+解题思路：一位一位加，记得处理最后的进位。代码如下：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for singly-linked list. * struct ListNode &amp;">
 
 
 
@@ -281,7 +284,8 @@
       
 
       
-        <p>难度：Medium<br><!----><br>解题思路：一位一位加，记得处理最后的进位。<br>代码如下：</p>
+        <p>难度：Medium<br><!----></p>
+<p>解题思路：一位一位加，记得处理最后的进位。<br>代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line">        int add = 0;</span><br><span class="line">        ListNode *l1_cur = l1, *l2_cur = l2, *dummy_node = new ListNode(-1), *final_cur = dummy_node;</span><br><span class="line">        while(l1_cur != NULL &amp;&amp; l2_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            int sum = add + l1_cur-&gt;val + l2_cur-&gt;val;</span><br><span class="line">            add = (sum &gt;= 10) ? 1 : 0;</span><br><span class="line">            sum = sum % 10;</span><br><span class="line">            ListNode* new_node = new ListNode(sum);</span><br><span class="line">            final_cur-&gt;next = new_node;</span><br><span class="line">            final_cur = new_node;</span><br><span class="line">            </span><br><span class="line">            l1_cur = l1_cur-&gt;next;</span><br><span class="line">            l2_cur = l2_cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l1_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            int sum = add + l1_cur-&gt;val;</span><br><span class="line">            add = (sum &gt;= 10) ? 1 : 0;</span><br><span class="line">            sum = sum % 10;</span><br><span class="line">            ListNode* new_node = new ListNode(sum);</span><br><span class="line">            final_cur-&gt;next = new_node;</span><br><span class="line">            final_cur = new_node;</span><br><span class="line">            </span><br><span class="line">            l1_cur = l1_cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l2_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            int sum = add + l2_cur-&gt;val;</span><br><span class="line">            add = (sum &gt;= 10) ? 1 : 0;</span><br><span class="line">            sum = sum % 10;</span><br><span class="line">            ListNode* new_node = new ListNode(sum);</span><br><span class="line">            final_cur-&gt;next = new_node;</span><br><span class="line">            final_cur = new_node;</span><br><span class="line">            </span><br><span class="line">            l2_cur = l2_cur-&gt;next;            </span><br><span class="line">        &#125;</span><br><span class="line">        if(add &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode* new_node = new ListNode(add);</span><br><span class="line">            final_cur-&gt;next = new_node;</span><br><span class="line">            final_cur = new_node;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy_node-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>代码结果：32ms，超过50.67%</p>
 
@@ -394,7 +398,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -404,7 +408,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
