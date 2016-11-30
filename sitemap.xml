@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/30/leetcode-linked-list-cycle-ii/</loc>
+    
+    <lastmod>2016-11-30T13:59:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/11/30/leetcode-linked-list-cycle/</loc>
+    
+    <lastmod>2016-11-30T13:13:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/30/leetcode-copy-with-random-pointer/</loc>
     
     <lastmod>2016-11-30T13:01:15.000Z</lastmod>
