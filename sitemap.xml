@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/30/leetcode-copy-with-random-pointer/</loc>
+    
+    <lastmod>2016-11-30T13:01:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/30/leetcode-convert-sorted-list-to-binary-search-tree/</loc>
     
-    <lastmod>2016-11-30T09:42:33.000Z</lastmod>
+    <lastmod>2016-11-30T09:45:24.000Z</lastmod>
     
   </url>
   
