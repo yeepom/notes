@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/01/leetcode-delete-node-in-a-linked-list/</loc>
+    
+    <lastmod>2016-12-01T09:17:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/01/leetcode-palindrome-linked-list/</loc>
+    
+    <lastmod>2016-12-01T09:11:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/01/leetcode-reverse-linked-list/</loc>
+    
+    <lastmod>2016-12-01T08:54:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/01/leetcode-remove-linked-list-elements/</loc>
+    
+    <lastmod>2016-12-01T08:54:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/01/leetcode-intersection-of-two-linked-lists/</loc>
     
     <lastmod>2016-12-01T08:45:13.000Z</lastmod>
