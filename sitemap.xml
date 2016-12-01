@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/01/leetcode-intersection-of-two-linked-lists/</loc>
+    
+    <lastmod>2016-12-01T08:45:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/01/leetcode-sort-list/</loc>
     
     <lastmod>2016-12-01T08:23:00.000Z</lastmod>
