@@ -91,16 +91,16 @@
 必须绑定到右值的引用，通过&amp;amp;&amp;amp;来获得右值引用。只能绑定到一个将要销毁的对象，因此我们可以自由地将一个右值引用的资源“移动”到另一个对象中。
 不能将左值引用绑定到要求转换的表达式、字面常量或是返回右值的表达式。右值引用则相反，可以绑定到这类表达式上，但">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c_plus_plus_move_object">
+<meta property="og:title" content="c++对象移动">
 <meta property="og:url" content="http://yoursite.com/2016/11/29/c-plus-plus-move-object/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="标准库类、string和shared_ptr类既支持移动也支持拷贝。IO类和unique_ptr类可以移动但不能拷贝。
 一、右值引用
 必须绑定到右值的引用，通过&amp;amp;&amp;amp;来获得右值引用。只能绑定到一个将要销毁的对象，因此我们可以自由地将一个右值引用的资源“移动”到另一个对象中。
 不能将左值引用绑定到要求转换的表达式、字面常量或是返回右值的表达式。右值引用则相反，可以绑定到这类表达式上，但">
-<meta property="og:updated_time" content="2016-11-30T04:40:21.000Z">
+<meta property="og:updated_time" content="2016-12-01T06:00:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c_plus_plus_move_object">
+<meta name="twitter:title" content="c++对象移动">
 <meta name="twitter:description" content="标准库类、string和shared_ptr类既支持移动也支持拷贝。IO类和unique_ptr类可以移动但不能拷贝。
 一、右值引用
 必须绑定到右值的引用，通过&amp;amp;&amp;amp;来获得右值引用。只能绑定到一个将要销毁的对象，因此我们可以自由地将一个右值引用的资源“移动”到另一个对象中。
@@ -127,7 +127,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/11/29/c-plus-plus-move-object/"/>
 
-  <title> c_plus_plus_move_object | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> c++对象移动 | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +247,7 @@
             
             
               
-                c_plus_plus_move_object
+                c++对象移动
               
             
           </h1>
@@ -325,7 +325,30 @@
 <p>赋予v2的是getVec调用的结果。此表达式是一个右值。此情况下，两种赋值运算符都是可行的。调用拷贝复制运算符需要进行一次到const的转换，而StrVec&amp;&amp;则精准匹配。因此使用移动赋值运算符。</p>
 <p>如果没有移动构造函数，右值也被拷贝</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Foo&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo() = default;</span><br><span class="line">	Foo(const Foo&amp;);</span><br><span class="line">	//未定义移动构造函数，则默认为删除的</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Foo x;		</span><br><span class="line">Foo y(x);		//拷贝构造函数；x是一个左值</span><br><span class="line">Foo z(std::move(x));	//拷贝构造函数，因为未定义移动构造函数</span><br></pre></td></tr></table></figure>
-<p>将一个Foo&amp;&amp;转换为一个const Foo&amp;。</p>
+<p>move(x)返回一个绑定到x的Foo&amp;&amp;。Foo的拷贝构造函数是可行的，将一个Foo&amp;&amp;转换为一个const Foo&amp;，因此z的初始化将使用Foo的拷贝构造函数。</p>
+<p>如果一个类有一个可用的拷贝构造函数而没有移动构造函数，则其对象是通过拷贝构造函数来“移动”<br>的。</p>
+<p>拷贝并交换赋值运算符和移动操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class HasPtr</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	HasPtr(HasPtr &amp;&amp;p) noexcept :ps(p.ps),i(p.i)&#123;p.ps=0;&#125;</span><br><span class="line">	//既是移动赋值运算符，又是拷贝赋值运算符</span><br><span class="line">	HasPtr&amp; operator=(HasPtr rhs)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(*this,rhs);</span><br><span class="line">		return *this;	//rhs是临时变量，函数结束后，会销毁</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hp = hp2;	//使用拷贝构造函数来初始化rhs</span><br><span class="line">hp = std::move(hp2);//使用移动构造函数，通过std::move(hp2)来初始化rhs</span><br></pre></td></tr></table></figure>
+<p>更新三／五法则</p>
+<pre><code>所有五个拷贝控制成员应该看作一个整体：一般来说，如果一个类定义了任何一个拷贝操作，它就应该定义所有五个操作。
+</code></pre><p>三、右值引用和成员函数</p>
+<p>定义了push_back的标准库容器提供两个版本：一个版本有一个右值引用参数，另一个版本有一个const左值引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void push_back(const X&amp;);	//拷贝：绑定到任意类型的X</span><br><span class="line">void push_back(X&amp;&amp;);	//移动：只能绑定到类型X的可修改的右值</span><br></pre></td></tr></table></figure>
+<p>第二个版本对于非const的右值是精确匹配的，因此当我们传递一个可修改的右值时，编译器会选择运行这个版本。</p>
+<pre><code>区分移动和拷贝的重载函数通常有一个版本接受const T&amp;，另一个版本接受T&amp;&amp;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class StrVec</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	void push_back(const std::string&amp;);</span><br><span class="line">	void push_back(std::string&amp;&amp;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void StrVec::push_back(const std::string&amp; s)</span><br><span class="line">&#123;</span><br><span class="line">	chk_n_alloc();</span><br><span class="line">	alloc.construct(first_free++,s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void StrVec::push_back(td::string &amp;&amp;s)</span><br><span class="line">&#123;</span><br><span class="line">	chk_n_alloc();</span><br><span class="line">	alloc.construct(first_free++,std::move(s));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们调用push_back时，实参类型决定了新元素是拷贝还是移动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StrVec vec;</span><br><span class="line"></span><br><span class="line">string s = &quot;some string&quot;;</span><br><span class="line"></span><br><span class="line">vec.push_back(s);	//调用push_back(const string&amp;)</span><br><span class="line"></span><br><span class="line">vec.push_back(&quot;done&quot;);	//调用push_back(string &amp;&amp;)</span><br></pre></td></tr></table></figure>
+<p>引用限定符(&amp;、&amp;&amp;)</p>
+<p>可以使&amp;或&amp;&amp;，分别指出this可以指向一个左值或右值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Foo&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo &amp;operator=(const Foo&amp;)&amp;;	//只能向可修改的左值赋值</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Foo &amp;Foo::operator=(const Foo&amp;rhs)&amp;</span><br><span class="line">&#123;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo &amp;retFoo();</span><br><span class="line">Foo retVal();</span><br><span class="line"></span><br><span class="line">Foo i,j;</span><br><span class="line">i = j;</span><br><span class="line">retFoo() = j;</span><br><span class="line">retVal() = j;		//错误：retVal()返回一个右值</span><br><span class="line">i = retVal();</span><br></pre></td></tr></table></figure>
+<p>class Foo<br>{<br>public:<br>    Foo someMem() &amp; const;    //错误：const限定符必须在前<br>    Foo someMem() const &amp;;    //正确：const限定符在前<br>};</p>
+<p>重载和引用函数</p>
+<p>引用限定符也可以区分重载版本。我们可以综合引用限定符合和const来区分一个成员函数的重载版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Foo</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo sorted() &amp;&amp;;</span><br><span class="line">	Foo sorted() const &amp;;</span><br><span class="line">private:</span><br><span class="line">	vector&lt;int&gt; data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//本对象是右值，可以原址排序</span><br><span class="line">Foo Foo::sorted() &amp;&amp;	</span><br><span class="line">&#123;</span><br><span class="line">	sort(data.begin(), data.end());</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//本对象是const或是一个左值，哪种情况都不能进行原址排序</span><br><span class="line">Foo Foo::sorted() const &amp;&amp;</span><br><span class="line">&#123;</span><br><span class="line">	Foo ret(*this);	//拷贝一个副本</span><br><span class="line">	sort(ret.data.begin(), ret.data.end());//排序副本</span><br><span class="line">	return ret;	//返回副本</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">retVal().sorted();	//retVal()是一个右值，调用Foo::sorted() &amp;&amp;</span><br><span class="line">retFoo().sorted();	//retFoo()是一个左值，调用Foo::sorted() const &amp;</span><br></pre></td></tr></table></figure>
+<p>当我们定义两个或两个以上具有相同名字和相同参数列表的成员函数，就必须对所有函数都加上引用限定符，或所有都不加。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Foo&#123;</span><br><span class="line">public:</span><br><span class="line">	Foo sorted() &amp;&amp;;</span><br><span class="line">	Foo sorted() const;	//错误，必须加上引用限定符</span><br><span class="line">	</span><br><span class="line">	using Comp = bool(const int&amp;, const int&amp;);</span><br><span class="line">	Foo sorted(Comp*);</span><br><span class="line">	Foo sorted(Comp*) const;	//正确：两个版本都没有引用限定符</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果一个成员函数有引用限定符，则具有相同参数列表的所有版本必须有引用限定符。</p>
 
       
     </div>
