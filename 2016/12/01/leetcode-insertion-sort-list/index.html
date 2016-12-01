@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array," />
+  <meta name="keywords" content="LeetCode,LinkedList,InsertionSort," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
+<meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_rotate_image">
-<meta property="og:url" content="http://yoursite.com/2016/11/23/leetcode-rotate-image/index.html">
+<meta property="og:title" content="leetcode_insertion_sort_list">
+<meta property="og:url" content="http://yoursite.com/2016/12/01/leetcode-insertion-sort-list/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
-<meta property="og:updated_time" content="2016-11-23T13:59:53.000Z">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-12-01T07:06:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_rotate_image">
-<meta name="twitter:description" content="难度：Medium解题思路：先对数组进行调换，找规律。">
+<meta name="twitter:title" content="leetcode_insertion_sort_list">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/23/leetcode-rotate-image/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/01/leetcode-insertion-sort-list/"/>
 
-  <title> leetcode_rotate_image | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_insertion_sort_list | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_rotate_image
+                leetcode_insertion_sort_list
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-23T21:26:55+08:00" content="2016-11-23">
-              2016-11-23
+            <time itemprop="dateCreated" datetime="2016-12-01T15:04:59+08:00" content="2016-12-01">
+              2016-12-01
             </time>
           </span>
 
@@ -278,28 +278,11 @@
       
 
       
-        <p>难度：Medium<br>解题思路：先对数组进行调换，找规律。<br><a id="more"></a><br>矩阵A</p>
-<pre><code>1 2 3
-4 5 6
-7 8 9
-</code></pre><p>我们想要得到的结果是。</p>
-<p>矩阵B</p>
-<pre><code>7 4 1
-8 5 2
-9 6 3
-</code></pre><p>下面对初始矩阵进行转换。<br>先对每一行，进行前后翻转。</p>
-<p> 矩阵C</p>
-<pre><code>3 2 1
-6 5 4
-9 8 7
-</code></pre><p> 发现没什么规律。。<br> 再对行与行之间，进行翻转。</p>
-<p> 矩阵D</p>
-<pre><code>7 8 9
-4 5 6
-1 2 3
-</code></pre><p>  这时可以发现，矩阵D与B关于一条对角线对称，对角线元素为7，5，3。这样我们就找到了解题思路。先行与行之间翻转，再对对角线翻转。<br> 代码如下：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        auto first_level_first_it = matrix.begin();</span><br><span class="line">        auto first_level_second_it = matrix.end()-1;</span><br><span class="line">        while(first_level_first_it &lt; first_level_second_it)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(*first_level_first_it, *first_level_second_it);</span><br><span class="line">            first_level_first_it++;</span><br><span class="line">            first_level_second_it--;</span><br><span class="line">        &#125;</span><br><span class="line">        size_t sz = matrix.size();</span><br><span class="line">        for(int i = 0; i&lt; sz; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j = i+1; j &lt; sz; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                swap(matrix[i][j], matrix[j][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>代码结果：运行时间3ms，超过28.61%。</p>
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>解题思路：按照插入排序的思路搞。</p>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* insertionSortList(ListNode* head) &#123;</span><br><span class="line">        ListNode* dummy = new ListNode(-1);</span><br><span class="line">        ListNode* new_cur = head;</span><br><span class="line">        while(new_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *search_node = dummy;</span><br><span class="line">            while(search_node-&gt;next != NULL)</span><br><span class="line">            &#123;</span><br><span class="line">                if(search_node-&gt;next-&gt;val &lt; new_cur-&gt;val)</span><br><span class="line">                &#123;</span><br><span class="line">                    search_node = search_node-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(search_node-&gt;next == NULL)</span><br><span class="line">            &#123;</span><br><span class="line">                search_node-&gt;next = new_cur;</span><br><span class="line">                new_cur = new_cur-&gt;next;</span><br><span class="line">                search_node-&gt;next-&gt;next = NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                ListNode *search_node_next = search_node-&gt;next;</span><br><span class="line">                ListNode *new_cur_next = new_cur-&gt;next;</span><br><span class="line">                search_node-&gt;next = new_cur;</span><br><span class="line">                new_cur-&gt;next = search_node_next;</span><br><span class="line">                new_cur = new_cur_next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：89ms，超过17.82%</p>
 
       
     </div>
@@ -323,7 +306,9 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/Array/" rel="tag">#Array</a>
+            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+          
+            <a href="/tags/InsertionSort/" rel="tag">#InsertionSort</a>
           
         </div>
       
@@ -332,17 +317,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/23/leetcode-search-a-2d-mamtrix/" rel="next" title="leetcode_search_a_2d_mamtrix">
-                <i class="fa fa-chevron-left"></i> leetcode_search_a_2d_mamtrix
+              <a href="/2016/12/01/leetcode-reorder-list/" rel="next" title="leetcode_reorder_list">
+                <i class="fa fa-chevron-left"></i> leetcode_reorder_list
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/24/leetcode-rotate-array/" rel="prev" title="leetcode_rotate_array">
-                leetcode_rotate_array <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
