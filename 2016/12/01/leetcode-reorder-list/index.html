@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LeetCode,LinkedList,CurList," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Hard">
+<meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_longest_consecutive_sequence">
-<meta property="og:url" content="http://yoursite.com/2016/11/28/leetcode-longest-consecutive-sequence/index.html">
+<meta property="og:title" content="leetcode_reorder_list">
+<meta property="og:url" content="http://yoursite.com/2016/12/01/leetcode-reorder-list/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Hard">
-<meta property="og:updated_time" content="2016-11-28T02:36:38.000Z">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-12-01T06:51:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_longest_consecutive_sequence">
-<meta name="twitter:description" content="难度：Hard">
+<meta name="twitter:title" content="leetcode_reorder_list">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/28/leetcode-longest-consecutive-sequence/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/01/leetcode-reorder-list/"/>
 
-  <title> leetcode_longest_consecutive_sequence | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_reorder_list | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_longest_consecutive_sequence
+                leetcode_reorder_list
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-28T00:04:59+08:00" content="2016-11-28">
-              2016-11-28
+            <time itemprop="dateCreated" datetime="2016-12-01T14:46:55+08:00" content="2016-12-01">
+              2016-12-01
             </time>
           </span>
 
@@ -278,13 +278,20 @@
       
 
       
-        <p>难度：Hard<br><a id="more"></a><br>题目要求：<br>O(n)时间。<br>解题思路：<br>第一种思路，先找出最大值max、最小值min，然后申请大小max-min+1的hash数组，将原始数组映射过来。遍历一遍hash数组，找最长的。这种方法遇到[-88888888,0,88888888]会tle。<br>第二种思路，用set，将数组存到set里面。然后遍历数组，以每个元素为初始值，找最长的。这种方法遇到[0,1,2…….,10000]的时候会RunTimeError。<br>怎么办？直接sort了一下数组，然后找最长的连续值。竟然过了。。不过题目要求是O(n)的时间，sort这里会不会算是作弊。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        int longest = 0, length = 0;</span><br><span class="line">        for(auto it = nums.begin(); it != nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(it == nums.begin())</span><br><span class="line">            &#123;</span><br><span class="line">                length=1;</span><br><span class="line">                longest=1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(*it == *(it-1)+1)</span><br><span class="line">                &#123;</span><br><span class="line">                    length++;</span><br><span class="line">                    longest = longest &gt; length ? longest :length;</span><br><span class="line">                    // longest = max(length,longest);</span><br><span class="line">                &#125;</span><br><span class="line">                else if(*it == *(it-1))</span><br><span class="line">                &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    length=1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return longest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：16ms，超过92.63%</p>
-<hr>
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>看了答案，调用sort是作弊行为。<br>按照上面set的思路继续分析。将数组存到set里面。然后遍历数组，寻找当前元素所在区间的最大最小值，同时删除掉该区间的值，找出最大的区间。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; s(nums.begin(), nums.end());//使用unordered_set要比set的效率高</span><br><span class="line">        int longest = 0;</span><br><span class="line">        for(auto it = nums.begin(); it &lt; nums.end(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            int up = *it;</span><br><span class="line">            while(s.find(up) != s.end())</span><br><span class="line">            &#123;</span><br><span class="line">                s.erase(up);</span><br><span class="line">                up++;</span><br><span class="line">            &#125;</span><br><span class="line">            int down = *it - 1;</span><br><span class="line">            while(s.find(down) != s.end())</span><br><span class="line">            &#123;</span><br><span class="line">                s.erase(down);</span><br><span class="line">                down--;</span><br><span class="line">            &#125;</span><br><span class="line">            longest = max(longest, up-down-1);</span><br><span class="line">        &#125;</span><br><span class="line">        return longest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行时间：23ms，超过52.62%。(使用set的运行时间为39ms)</p>
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>解题思路：</p>
+<p>先找到中间节点，将链表截断。</p>
+<pre><code>1-&gt;2-&gt;3-&gt;4-&gt;5        after cut:    1-&gt;2-&gt;3 4-&gt;5
+1-&gt;2-&gt;3-&gt;4        after cut:    1-&gt;2    4-&gt;5
+</code></pre><p>将后面的链表翻转。</p>
+<pre><code>1-&gt;2-&gt;3 5-&gt;4
+1-&gt;2    4-&gt;5
+</code></pre><p>将两个链表merge。</p>
+<pre><code>1-&gt;5-&gt;2-&gt;4-&gt;3
+1-&gt;4-&gt;2-&gt;5
+</code></pre><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void reorderList(ListNode* head) &#123;</span><br><span class="line">        if(head == NULL || head-&gt;next == NULL) return ;</span><br><span class="line">        ListNode *dummy = new ListNode(-1);</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        ListNode *slow = dummy;</span><br><span class="line">        ListNode *fast = dummy;</span><br><span class="line">        while(fast -&gt; next != NULL &amp;&amp; fast -&gt; next -&gt; next != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode *another_head = NULL;</span><br><span class="line">        if(fast -&gt;next != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            another_head = slow-&gt;next-&gt;next;</span><br><span class="line">            slow-&gt;next-&gt;next = NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            another_head = slow-&gt;next;</span><br><span class="line">            slow-&gt;next = NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode *another_pre = NULL;</span><br><span class="line">        ListNode *another_cur = another_head;</span><br><span class="line">        while(another_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            // cout&lt;&lt;&quot;value:&quot;&lt;&lt;another_cur-&gt;val&lt;&lt;endl;</span><br><span class="line">            ListNode *another_next = another_cur-&gt;next;</span><br><span class="line">            another_cur-&gt;next = another_pre;</span><br><span class="line">            another_pre = another_cur;</span><br><span class="line">            another_cur = another_next;</span><br><span class="line">        &#125;</span><br><span class="line">        another_head = another_pre;</span><br><span class="line">        another_cur = another_head;</span><br><span class="line">        // if(another_cur != NULL)</span><br><span class="line">        // &#123;</span><br><span class="line">        //     another_head = another_cur;</span><br><span class="line">        // &#125;</span><br><span class="line">        // else</span><br><span class="line">        // &#123;</span><br><span class="line">        //     cout&lt;&lt;&quot;error&quot;&lt;&lt;endl;</span><br><span class="line">        // &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode *cur = dummy-&gt;next;</span><br><span class="line">        while(cur != NULL &amp;&amp; another_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *cur_next = cur-&gt;next;</span><br><span class="line">            ListNode *another_cur_next = another_cur-&gt;next;</span><br><span class="line">            cur-&gt;next = another_cur;</span><br><span class="line">            another_cur-&gt;next = cur_next;</span><br><span class="line">            cur = cur_next;</span><br><span class="line">            another_cur = another_cur_next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：49ms，超过73.25%</p>
 
       
     </div>
@@ -304,22 +311,28 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+          
+            <a href="/tags/CurList/" rel="tag">#CurList</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/27/introduction-to-algorithms-lecture-1/" rel="next" title="introduction_to_algorithms_lecture_1">
-                <i class="fa fa-chevron-left"></i> introduction_to_algorithms_lecture_1
+              <a href="/2016/11/30/leetcode-linked-list-cycle-ii/" rel="next" title="leetcode_linked_list_cycle_ii">
+                <i class="fa fa-chevron-left"></i> leetcode_linked_list_cycle_ii
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/28/c-plus-plus-copy-control-and-resource-management/" rel="prev" title="c++拷贝控制和资源管理">
-                c++拷贝控制和资源管理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -433,7 +446,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分割线"><span class="nav-number">1.</span> <span class="nav-text">分割线</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
