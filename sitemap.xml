@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/01/leetcode-add-two-numbers-ii/</loc>
+    
+    <lastmod>2016-12-01T10:12:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/01/leetcode-odd-even-linked-list/</loc>
+    
+    <lastmod>2016-12-01T09:29:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/01/leetcode-delete-node-in-a-linked-list/</loc>
     
     <lastmod>2016-12-01T09:17:58.000Z</lastmod>
