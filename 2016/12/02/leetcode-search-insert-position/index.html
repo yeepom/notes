@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,LinkedList,Map," />
+  <meta name="keywords" content="LeetCode,Array,Insertion," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Hard">
+<meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_copy_with_random_pointer">
-<meta property="og:url" content="http://yoursite.com/2016/11/30/leetcode-copy-with-random-pointer/index.html">
+<meta property="og:title" content="leetcode_search_insert_position">
+<meta property="og:url" content="http://yoursite.com/2016/12/02/leetcode-search-insert-position/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Hard">
-<meta property="og:updated_time" content="2016-11-30T13:01:15.000Z">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-12-02T07:27:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_copy_with_random_pointer">
-<meta name="twitter:description" content="难度：Hard">
+<meta name="twitter:title" content="leetcode_search_insert_position">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/30/leetcode-copy-with-random-pointer/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/02/leetcode-search-insert-position/"/>
 
-  <title> leetcode_copy_with_random_pointer | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_search_insert_position | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_copy_with_random_pointer
+                leetcode_search_insert_position
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-30T20:49:40+08:00" content="2016-11-30">
-              2016-11-30
+            <time itemprop="dateCreated" datetime="2016-12-02T15:25:47+08:00" content="2016-12-02">
+              2016-12-02
             </time>
           </span>
 
@@ -278,23 +278,10 @@
       
 
       
-        <p>难度：Hard<br><a id="more"></a></p>
-<p>解题思路：1.暴力求解。2.创建map，存储每个指针和它的位置；创建vector v，存储新链表的每个节点。遍历一遍原始链表和新建链表，找出原始链表中当前节点的随机指针在map中映射的位置i，则新建链表中当前节点的随机指针指向v[i]。</p>
-<pre><code>链表l: a -&gt; b -&gt;c -&gt; d    (随机节点对应：a -&gt; b、b -&gt; d、c -&gt; d)
-       -----    -----
-            ----------
-映射m: (a,0) (b,1) (c,2) (d,3)
-
-新建链表l1: a&apos; -&gt; b&apos; -&gt; c&apos; -&gt; d&apos;
-
-vector v:[a&apos;,b&apos;,c&apos;,d&apos;]
-
-遍历l: 
-    比如当前节点a，a随机指向的节点a-&gt;random。
-    在m中找到a-&gt;random的位置i。
-    则a&apos;的随机节点也映射到l1链表中的第i个节点v[i]。
-</code></pre><p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list with a random pointer.</span><br><span class="line"> * struct RandomListNode &#123;</span><br><span class="line"> *     int label;</span><br><span class="line"> *     RandomListNode *next, *random;</span><br><span class="line"> *     RandomListNode(int x) : label(x), next(NULL), random(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    RandomListNode *copyRandomList(RandomListNode *head) &#123;</span><br><span class="line">        if(head == NULL)    return NULL;</span><br><span class="line">        </span><br><span class="line">        unordered_map&lt;RandomListNode*,int&gt; m;</span><br><span class="line">        vector&lt;RandomListNode*&gt; new_node_vector;</span><br><span class="line">        </span><br><span class="line">        RandomListNode *cur = head;</span><br><span class="line"></span><br><span class="line">        RandomListNode *new_dummy = new RandomListNode(-1);</span><br><span class="line">        RandomListNode *new_cur = new_dummy;</span><br><span class="line">        </span><br><span class="line">        int i = 0;</span><br><span class="line">        while(cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            m[cur] = i++;</span><br><span class="line">            // original_vector.push_back(cur);</span><br><span class="line">            </span><br><span class="line">            RandomListNode *new_node = new RandomListNode(cur-&gt;label);</span><br><span class="line">            new_node_vector.push_back(new_node);</span><br><span class="line">            </span><br><span class="line">            new_cur-&gt;next = new_node;</span><br><span class="line">            new_cur = new_node;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        cur = head;</span><br><span class="line">        new_cur = new_dummy-&gt;next;</span><br><span class="line">        while(cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            RandomListNode *cur_random = cur-&gt;random;</span><br><span class="line">            if(cur_random != NULL)</span><br><span class="line">            &#123;</span><br><span class="line">                int position = m[cur_random];</span><br><span class="line">                // cout&lt;&lt;position&lt;&lt;endl;</span><br><span class="line">                new_cur-&gt;random = new_node_vector[position];</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">            new_cur = new_cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        // for(auto it = original_vector.begin(), new_it = new_node_vector.begin(); it != original_vector.end() &amp;&amp; new_it != new_node_vector.end(); it++,new_it++)</span><br><span class="line">        // &#123;</span><br><span class="line">        //     if((*it)-&gt;random != NULL)</span><br><span class="line">        //     &#123;</span><br><span class="line">        //         int position = m[(*it)-&gt;random];</span><br><span class="line">        //         (*new_it)-&gt;random = new_node_vector[position];</span><br><span class="line">        //     &#125;</span><br><span class="line">            // else</span><br><span class="line">            // &#123;</span><br><span class="line">            //     (*new_it)-&gt;random = NULL;</span><br><span class="line">            // &#125;</span><br><span class="line">        // &#125;</span><br><span class="line"></span><br><span class="line">        return new_dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：136ms，超过23.46%</p>
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>解题思路：插入排序思想的应用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int searchInsert(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        int i = nums.size()-1;</span><br><span class="line">        for(; i &gt;= 0; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            if(nums[i] == target)</span><br><span class="line">                return i;</span><br><span class="line">            else if(nums[i] &lt; target)</span><br><span class="line">                return i+1;</span><br><span class="line">        &#125;</span><br><span class="line">        return i+1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：6ms，超过26.98%</p>
 
       
     </div>
@@ -318,9 +305,9 @@ vector v:[a&apos;,b&apos;,c&apos;,d&apos;]
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/Map/" rel="tag">#Map</a>
+            <a href="/tags/Insertion/" rel="tag">#Insertion</a>
           
         </div>
       
@@ -329,17 +316,13 @@ vector v:[a&apos;,b&apos;,c&apos;,d&apos;]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/30/leetcode-convert-sorted-list-to-binary-search-tree/" rel="next" title="leetcode_convert_sorted_list_to_binary_search_tree">
-                <i class="fa fa-chevron-left"></i> leetcode_convert_sorted_list_to_binary_search_tree
+              <a href="/2016/12/02/leetcode-search-for-a-range/" rel="next" title="leetcode_search_for_a_range">
+                <i class="fa fa-chevron-left"></i> leetcode_search_for_a_range
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/30/leetcode-linked-list-cycle/" rel="prev" title="leetcode_linked_list_cycle">
-                leetcode_linked_list_cycle <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
