@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,LinkedList,Merge,ImportantSet," />
+  <meta name="keywords" content="LeetCode,Array,Search,Rotate," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Medium">
+<meta name="description" content="难度：Hard">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_convert_sorted_list_to_binary_search_tree">
-<meta property="og:url" content="http://yoursite.com/2016/11/30/leetcode-convert-sorted-list-to-binary-search-tree/index.html">
+<meta property="og:title" content="leetcode_search_in_rotated_sorted_array">
+<meta property="og:url" content="http://yoursite.com/2016/12/02/leetcode-search-in-rotated-sorted-array/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Medium">
-<meta property="og:updated_time" content="2016-11-30T09:45:24.000Z">
+<meta property="og:description" content="难度：Hard">
+<meta property="og:updated_time" content="2016-12-02T07:00:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_convert_sorted_list_to_binary_search_tree">
-<meta name="twitter:description" content="难度：Medium">
+<meta name="twitter:title" content="leetcode_search_in_rotated_sorted_array">
+<meta name="twitter:description" content="难度：Hard">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/30/leetcode-convert-sorted-list-to-binary-search-tree/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/02/leetcode-search-in-rotated-sorted-array/"/>
 
-  <title> leetcode_convert_sorted_list_to_binary_search_tree | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_search_in_rotated_sorted_array | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_convert_sorted_list_to_binary_search_tree
+                leetcode_search_in_rotated_sorted_array
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-30T17:39:04+08:00" content="2016-11-30">
-              2016-11-30
+            <time itemprop="dateCreated" datetime="2016-12-02T14:58:13+08:00" content="2016-12-02">
+              2016-12-02
             </time>
           </span>
 
@@ -278,11 +278,16 @@
       
 
       
-        <p>难度：Medium<br><a id="more"></a></p>
-<p>解题思路：采用分治的方法。在链表中找到中间节点，创建树节点，然后截断这个链表，分为两段。再分别调用函数。</p>
-<p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * struct TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode *left;</span><br><span class="line"> *     TreeNode *right;</span><br><span class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* sortedListToBST(ListNode* head) &#123;</span><br><span class="line">        if(head == NULL)</span><br><span class="line">            return NULL;</span><br><span class="line">        if(head-&gt;next == NULL)</span><br><span class="line">            return new TreeNode(head-&gt;val);</span><br><span class="line">        ListNode *dummy = new ListNode(-1);</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        ListNode *slow = dummy;</span><br><span class="line">        ListNode *fast = dummy;</span><br><span class="line">        while(fast-&gt;next != NULL &amp;&amp; fast-&gt;next-&gt;next != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        fast = slow-&gt;next;</span><br><span class="line">        slow-&gt;next = NULL;</span><br><span class="line">        TreeNode *new_node = new TreeNode(fast-&gt;val);</span><br><span class="line">        new_node-&gt;left = sortedListToBST(head);</span><br><span class="line">        new_node-&gt;right = sortedListToBST(fast-&gt;next);</span><br><span class="line">        return new_node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：22ms，超过85.76％</p>
+        <p>难度：Hard<br><a id="more"></a></p>
+<p>解题思路：考虑如下case</p>
+<pre><code>不翻转：[1,2,3,4,5]    5
+
+结果在前半部分：[4,5,1,2,3]    5
+
+结果在后半部分：[4,5,1,2,3]    2
+</code></pre><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int search(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        if(target &gt; nums[0])</span><br><span class="line">        &#123;</span><br><span class="line">            int i = 0;</span><br><span class="line">            for(; i+1 &lt; nums.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(target == nums[i])</span><br><span class="line">                    return i;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    if(nums[i] &gt; nums[i+1])</span><br><span class="line">                        return -1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(target == nums[i])</span><br><span class="line">                return i;</span><br><span class="line">            else</span><br><span class="line">                return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(target &lt; nums[0] &amp;&amp; target &lt;= nums.back())</span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">            for(int i = nums.size()-1; i &gt; 0; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                if(target == nums[i])</span><br><span class="line">                    return i;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    if(nums[i-1] &gt; nums[i])</span><br><span class="line">                        return -1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(target == nums[0])</span><br><span class="line">        &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：3ms，超过66.21%</p>
 
       
     </div>
@@ -306,11 +311,11 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/Merge/" rel="tag">#Merge</a>
+            <a href="/tags/Search/" rel="tag">#Search</a>
           
-            <a href="/tags/ImportantSet/" rel="tag">#ImportantSet</a>
+            <a href="/tags/Rotate/" rel="tag">#Rotate</a>
           
         </div>
       
@@ -319,17 +324,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/30/leetcode-reverse-linked-list-ii/" rel="next" title="leetcode_reverse_linked_list_ii">
-                <i class="fa fa-chevron-left"></i> leetcode_reverse_linked_list_ii
+              <a href="/2016/12/02/leetcode-median-of-two-sorted-arrays/" rel="next" title="leetcode_median_of_two_sorted_arrays">
+                <i class="fa fa-chevron-left"></i> leetcode_median_of_two_sorted_arrays
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/30/leetcode-copy-with-random-pointer/" rel="prev" title="leetcode_copy_with_random_pointer">
-                leetcode_copy_with_random_pointer <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
