@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/02/leetcode-median-of-two-sorted-arrays/</loc>
+    
+    <lastmod>2016-12-02T06:39:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/02/c-plus-plus-overload-operations/</loc>
+    
+    <lastmod>2016-12-02T06:36:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/11/29/c-plus-plus-define-string-vector/</loc>
     
-    <lastmod>2016-12-01T10:25:41.000Z</lastmod>
+    <lastmod>2016-12-01T12:44:14.000Z</lastmod>
     
   </url>
   
