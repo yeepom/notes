@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array,Median," />
+  <meta name="keywords" content="LeetCode,Array,Recursion," />
 
 
 
@@ -88,13 +88,13 @@
 
 <meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_median_of_two_sorted_arrays">
-<meta property="og:url" content="http://yoursite.com/2016/12/02/leetcode-median-of-two-sorted-arrays/index.html">
+<meta property="og:title" content="leetcode_combination_sum">
+<meta property="og:url" content="http://yoursite.com/2016/12/02/leetcode-combination-sum/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Medium">
-<meta property="og:updated_time" content="2016-12-02T06:39:48.000Z">
+<meta property="og:updated_time" content="2016-12-02T08:19:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_median_of_two_sorted_arrays">
+<meta name="twitter:title" content="leetcode_combination_sum">
 <meta name="twitter:description" content="难度：Medium">
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/02/leetcode-median-of-two-sorted-arrays/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/02/leetcode-combination-sum/"/>
 
-  <title> leetcode_median_of_two_sorted_arrays | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_combination_sum | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_median_of_two_sorted_arrays
+                leetcode_combination_sum
               
             
           </h1>
@@ -250,7 +250,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-02T14:36:17+08:00" content="2016-12-02">
+            <time itemprop="dateCreated" datetime="2016-12-02T16:16:37+08:00" content="2016-12-02">
               2016-12-02
             </time>
           </span>
@@ -278,13 +278,10 @@
       
 
       
-        <p>难度：Medium<br><a id="more"></a><br>解题思路：考虑两种情况。</p>
-<pre><code>[1 2 3 4]    [5 6 7]    先比较三次，找出三个最小的，则第四个即为解 -&gt; 4
-
-[1 2 3 4] [5 6 7 8]    先比较三次，找出三个最小的，则第四、五个即为解-&gt; (4+5)/2
-</code></pre><p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) &#123;</span><br><span class="line">        int size_1 = nums1.size();</span><br><span class="line">        int size_2 = nums2.size();</span><br><span class="line">        int step = (size_1 + size_2) / 2;</span><br><span class="line">        int  calculate_times = ((size_1 + size_2) % 2 == 0) ? 2:1;</span><br><span class="line">        int index_1 = 0;</span><br><span class="line">        int index_2 = 0;</span><br><span class="line">        if(calculate_times == 2) step--;</span><br><span class="line">        while(step--)</span><br><span class="line">        &#123;</span><br><span class="line">            if(index_1 != size_1 &amp;&amp; index_2 != size_2)</span><br><span class="line">            &#123;</span><br><span class="line">                if(nums1[index_1] &lt; nums2[index_2])</span><br><span class="line">                &#123;</span><br><span class="line">                    index_1++;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    index_2++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(index_1 != size_1 &amp;&amp;index_2 == size_2)</span><br><span class="line">            &#123;</span><br><span class="line">                index_1++;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(index_1 == size_1 &amp;&amp; index_2 != size_2)</span><br><span class="line">            &#123;</span><br><span class="line">                index_2++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        double sum = 0;</span><br><span class="line">        for(int i = 0; i &lt; calculate_times; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(index_1 != size_1 &amp;&amp; index_2 != size_2)</span><br><span class="line">            &#123;</span><br><span class="line">                if(nums1[index_1] &lt; nums2[index_2])</span><br><span class="line">                &#123;</span><br><span class="line">                    sum += nums1[index_1++];</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    sum += nums2[index_2++];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(index_1 != size_1 &amp;&amp; index_2 == size_2)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += nums1[index_1++];</span><br><span class="line">            &#125;</span><br><span class="line">            else if(index_1 == size_1 &amp;&amp; index_2 != size_2)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += nums2[index_2++];</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum/calculate_times;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：36ms，超过66.4%</p>
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>解题思路：因为元素可以无限制的使用，所以可以用递归的方式求解。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) &#123;</span><br><span class="line">        sort(candidates.begin(), candidates.end());</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ret;</span><br><span class="line">        vector&lt;int&gt; original;</span><br><span class="line">        int i = candidates.size()-1;</span><br><span class="line">        while(i &gt;= 0)</span><br><span class="line">        &#123;</span><br><span class="line">            if(candidates[i] &gt; target)</span><br><span class="line">                i--;</span><br><span class="line">            else</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        find_sum_recursive(ret, candidates, i, target, original);</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">    void find_sum_recursive(vector&lt;vector&lt;int&gt;&gt; &amp;ret,vector&lt;int&gt; &amp;candidates, int start_index, int target, vector&lt;int&gt;&amp; original)</span><br><span class="line">    &#123;</span><br><span class="line">        if(target &lt; 0)</span><br><span class="line">            return ;</span><br><span class="line">        else if(target == 0)</span><br><span class="line">            return ret.push_back(original);</span><br><span class="line">        if(candidates.size() == 0 || start_index &lt; 0)</span><br><span class="line">            return ;</span><br><span class="line">        for(int i = start_index; i &gt;= 0 ; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            // vector&lt;int&gt; new_original(original);</span><br><span class="line">            original.push_back(candidates[i]);</span><br><span class="line">            find_sum_recursive(ret, candidates, i, target-candidates[i], original);</span><br><span class="line">            original.pop_back();	//因为程序不是并行的，所以把元素pop掉，original可以继续使用</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：16ms，超过64.59%</p>
 
       
     </div>
@@ -310,7 +307,7 @@
           
             <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/Median/" rel="tag">#Median</a>
+            <a href="/tags/Recursion/" rel="tag">#Recursion</a>
           
         </div>
       
@@ -319,17 +316,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/02/c-plus-plus-overload-operations/" rel="next" title="c++重载运算符与类型转换">
-                <i class="fa fa-chevron-left"></i> c++重载运算符与类型转换
+              <a href="/2016/12/02/leetcode-search-insert-position/" rel="next" title="leetcode_search_insert_position">
+                <i class="fa fa-chevron-left"></i> leetcode_search_insert_position
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/02/leetcode-search-in-rotated-sorted-array/" rel="prev" title="leetcode_search_in_rotated_sorted_array">
-                leetcode_search_in_rotated_sorted_array <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
