@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-02T08:19:25.000Z</updated>
+  <updated>2016-12-02T08:45:20.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>leetcode_combination_sum_ii</title>
+    <link href="http://yoursite.com/2016/12/02/leetcode-combination-sum-ii/"/>
+    <id>http://yoursite.com/2016/12/02/leetcode-combination-sum-ii/</id>
+    <published>2016-12-02T08:43:38.000Z</published>
+    <updated>2016-12-02T08:45:20.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;解题思路：是CombinationSum系列。不重复使用元素就可以了。&lt;br&gt;代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; combinationSum2(vector&amp;lt;int&amp;gt;&amp;amp; candidates, int target) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        sort(candidates.begin(), candidates.end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int i = candidates.size()-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        while(i &amp;gt;= 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(candidates[i] &amp;gt; target)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                i--;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;int&amp;gt; original;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        hit_target(ret, candidates, i, target, original);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void hit_target(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;ret , vector&amp;lt;int&amp;gt;&amp;amp; candidates, int index, int target, vector&amp;lt;int&amp;gt; original)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(target == 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ret.push_back(original);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else if(target &amp;lt; 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(candidates.size() == 0 || index &amp;lt; 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return ;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        bool flag = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int pre = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(int i = index; i &amp;gt;= 0; i--)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(flag == true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                flag = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                pre = candidates[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(candidates[i] == pre)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    continue;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                pre = candidates[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            // if(i+1 &amp;lt;= index &amp;amp;&amp;amp; candidates[i+1] == candidates[i])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //     continue;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            original.push_back(candidates[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            hit_target(ret, candidates, i-1, target-candidates[i], original);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            original.pop_back();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;运行结果：16ms，超过36.98%&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：Medium&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="CombinationSum" scheme="http://yoursite.com/tags/CombinationSum/"/>
+    
+  </entry>
+  
+  <entry>
     <title>leetcode_combination_sum</title>
     <link href="http://yoursite.com/2016/12/02/leetcode-combination-sum/"/>
     <id>http://yoursite.com/2016/12/02/leetcode-combination-sum/</id>
     <published>2016-12-02T08:16:37.000Z</published>
-    <updated>2016-12-02T08:19:25.000Z</updated>
+    <updated>2016-12-02T08:44:03.000Z</updated>
     
     <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;解题思路：因为元素可以无限制的使用，所以可以用递归的方式求解。&lt;/p&gt;
@@ -40,6 +70,8 @@
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
       <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="CombinationSum" scheme="http://yoursite.com/tags/CombinationSum/"/>
     
   </entry>
   
@@ -638,37 +670,6 @@ vector v:[a&amp;apos;,b&amp;apos;,c&amp;apos;,d&amp;apos;]
       <category term="LinkedList" scheme="http://yoursite.com/tags/LinkedList/"/>
     
       <category term="Map" scheme="http://yoursite.com/tags/Map/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode_convert_sorted_list_to_binary_search_tree</title>
-    <link href="http://yoursite.com/2016/11/30/leetcode-convert-sorted-list-to-binary-search-tree/"/>
-    <id>http://yoursite.com/2016/11/30/leetcode-convert-sorted-list-to-binary-search-tree/</id>
-    <published>2016-11-30T09:39:04.000Z</published>
-    <updated>2016-11-30T09:45:24.000Z</updated>
-    
-    <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;解题思路：采用分治的方法。在链表中找到中间节点，创建树节点，然后截断这个链表，分为两段。再分别调用函数。&lt;/p&gt;
-&lt;p&gt;代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * Definition for singly-linked list.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * struct ListNode &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     int val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     ListNode *next;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     ListNode(int x) : val(x), next(NULL) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * Definition for a binary tree node.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * struct TreeNode &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     int val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode *left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode *right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode(int x) : val(x), left(NULL), right(NULL) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    TreeNode* sortedListToBST(ListNode* head) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(head == NULL)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return NULL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(head-&amp;gt;next == NULL)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return new TreeNode(head-&amp;gt;val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ListNode *dummy = new ListNode(-1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        dummy-&amp;gt;next = head;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ListNode *slow = dummy;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ListNode *fast = dummy;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        while(fast-&amp;gt;next != NULL &amp;amp;&amp;amp; fast-&amp;gt;next-&amp;gt;next != NULL)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            slow = slow-&amp;gt;next;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            fast = fast-&amp;gt;next-&amp;gt;next;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        fast = slow-&amp;gt;next;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        slow-&amp;gt;next = NULL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        TreeNode *new_node = new TreeNode(fast-&amp;gt;val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        new_node-&amp;gt;left = sortedListToBST(head);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        new_node-&amp;gt;right = sortedListToBST(fast-&amp;gt;next);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return new_node;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;运行结果：22ms，超过85.76％&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;难度：Medium&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="LinkedList" scheme="http://yoursite.com/tags/LinkedList/"/>
-    
-      <category term="Merge" scheme="http://yoursite.com/tags/Merge/"/>
-    
-      <category term="ImportantSet" scheme="http://yoursite.com/tags/ImportantSet/"/>
     
   </entry>
   

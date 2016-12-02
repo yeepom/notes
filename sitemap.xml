@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/02/leetcode-combination-sum-ii/</loc>
+    
+    <lastmod>2016-12-02T08:45:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/02/leetcode-combination-sum/</loc>
     
-    <lastmod>2016-12-02T08:19:25.000Z</lastmod>
+    <lastmod>2016-12-02T08:44:03.000Z</lastmod>
     
   </url>
   
