@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/02/leetcode-search-for-a-range/</loc>
+    
+    <lastmod>2016-12-02T07:18:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/02/leetcode-search-in-rotated-sorted-array/</loc>
     
     <lastmod>2016-12-02T07:00:57.000Z</lastmod>
