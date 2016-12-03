@@ -102,7 +102,7 @@
 除了重载的函数调用运算符operator()之外，其他重载运算符不能含有默认实参。
 当一个重载的运算符是成员函数时，this绑定到左侧运算对象。成员运算符函数的参数数量比运算对象的数量少一个。
 对于一个运算符函数来说，它或者是类的">
-<meta property="og:updated_time" content="2016-12-02T06:36:24.000Z">
+<meta property="og:updated_time" content="2016-12-03T03:14:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++重载运算符与类型转换">
 <meta name="twitter:description" content="一、基本概念
@@ -331,6 +331,15 @@ string u = &quot;hi&quot; + s;    //如果+是string的成员，则会报错
 <pre><code>输出运算符应该主要负责打印对象的内容而非控制格式，输出运算符不应该打印换行符。
 </code></pre><p>输入输出运算符必须是非成员函数。</p>
 <p>IO运算符通常需要读写类的非公有数据成员，所以IO运算符一般被声明为友元。</p>
+<p>2.2重载输入运算符&gt;&gt;<br>    第一个形参是运算符将要读取的流的引用，第二个形参是将要读入到的(非常量)对象的的引用。该运算符通常会返回某个给定流的引用。第二个形参之所以必须是个非常量是因为输入运算符本身的目的就是将数据读入到这个对象中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">istream &amp;operator&gt;&gt;(istream &amp;is, Sales_data &amp;item)</span><br><span class="line">&#123;</span><br><span class="line">	double price;</span><br><span class="line">	is &gt;&gt; item.bookNO&gt;&gt;item.units_sold&gt;&gt;price;</span><br><span class="line">	if(is)		//判断是否发生IO错误</span><br><span class="line">		item.revenue = item.units_sold*price;</span><br><span class="line">	else</span><br><span class="line">		item = Sales_data();</span><br><span class="line">	return is;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入运算符必须处理输入可能失败的情况，而输出运算符不需要。</p>
+<p>输入时的错误。</p>
+<pre><code>当流含有错误类型的数据时读取操作可能失败。
+
+当流操作到达文件末尾或者遇到输入流的其他错误时也会失败。
+</code></pre><p>当读取操作发生错误时，输入运算符应该负责从错误中恢复。</p>
+<p>流的失败信息failbit。文件耗尽eofbit。流被破坏badbit。</p>
 
       
     </div>
@@ -441,7 +450,7 @@ string u = &quot;hi&quot; + s;    //如果+是string的成员，则会报错
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
