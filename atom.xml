@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-02T14:12:13.000Z</updated>
+  <updated>2016-12-03T02:55:56.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/12/02/leetcode-jump-game-ii/"/>
     <id>http://yoursite.com/2016/12/02/leetcode-jump-game-ii/</id>
     <published>2016-12-02T14:07:38.000Z</published>
-    <updated>2016-12-02T14:12:13.000Z</updated>
+    <updated>2016-12-03T02:55:56.000Z</updated>
     
     <content type="html">&lt;p&gt;难度：Hard&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;解题思路：用一个数组，保存当前index的最小步数。则下一个index的最小步数为前面所有元素的最小步数＋1的最小值，前提是可以一步跨过来。题目有几个case不好过，需要优化。&lt;/p&gt;
@@ -43,6 +43,8 @@
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
       <category term="Jump" scheme="http://yoursite.com/tags/Jump/"/>
+    
+      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
     
   </entry>
   
