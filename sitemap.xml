@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/04/iterative-binary-search/</loc>
+    
+    <lastmod>2016-12-04T13:15:38.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/04/leetcode-maximum-subarray/</loc>
     
     <lastmod>2016-12-04T12:53:10.000Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://yoursite.com/2016/11/28/leetcode-best-time-to-buy-and-sell-stock/</loc>
     
     <lastmod>2016-12-04T12:43:03.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/12/04/iterative-binary-search/</loc>
-    
-    <lastmod>2016-12-04T07:12:22.000Z</lastmod>
     
   </url>
   
