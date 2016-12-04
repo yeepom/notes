@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,LinkedList,Add," />
+  <meta name="keywords" content="LeetCode,DynamicProgramming,DivedeAndConquer," />
 
 
 
@@ -88,13 +88,13 @@
 
 <meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_add_two_numbers_ii">
-<meta property="og:url" content="http://yoursite.com/2016/12/01/leetcode-add-two-numbers-ii/index.html">
+<meta property="og:title" content="leetcode_maximum_subarray">
+<meta property="og:url" content="http://yoursite.com/2016/12/04/leetcode-maximum-subarray/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Medium">
-<meta property="og:updated_time" content="2016-12-01T10:12:30.000Z">
+<meta property="og:updated_time" content="2016-12-04T12:53:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_add_two_numbers_ii">
+<meta name="twitter:title" content="leetcode_maximum_subarray">
 <meta name="twitter:description" content="难度：Medium">
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/01/leetcode-add-two-numbers-ii/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/04/leetcode-maximum-subarray/"/>
 
-  <title> leetcode_add_two_numbers_ii | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_maximum_subarray | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_add_two_numbers_ii
+                leetcode_maximum_subarray
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T18:10:16+08:00" content="2016-12-01">
-              2016-12-01
+            <time itemprop="dateCreated" datetime="2016-12-04T20:46:27+08:00" content="2016-12-04">
+              2016-12-04
             </time>
           </span>
 
@@ -279,10 +279,12 @@
 
       
         <p>难度：Medium<br><a id="more"></a></p>
-<p>解题思路：因为链表从前到后，是由高到低位。所以这里进行了翻转，然后计算。将链表之和放在了l1上，如果l2的长度超出了l1，则将超出的部分，接到l1的尾部。</p>
-<p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line">        l1 = reverseLinkedList(l1);</span><br><span class="line">        l2 = reverseLinkedList(l2);</span><br><span class="line">        ListNode *l1_cur = l1;</span><br><span class="line">        ListNode *l2_cur = l2;</span><br><span class="line">        ListNode *l1_cur_pre = NULL;</span><br><span class="line">        ListNode *l2_cur_pre = NULL;</span><br><span class="line">        int add = 0;</span><br><span class="line">        while(l1_cur != NULL &amp;&amp; l2_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            int sum = add + l1_cur-&gt;val + l2_cur-&gt;val;</span><br><span class="line">            add = (sum &gt;= 10)?1:0;</span><br><span class="line">            // cout&lt;&lt;add&lt;&lt;endl;</span><br><span class="line">            sum = sum % 10;</span><br><span class="line">            l1_cur-&gt;val = sum;</span><br><span class="line">            l1_cur_pre = l1_cur;</span><br><span class="line">            l2_cur_pre = l2_cur;</span><br><span class="line">            l1_cur = l1_cur-&gt;next;</span><br><span class="line">            l2_cur = l2_cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(l2_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            l1_cur_pre-&gt;next = l2_cur;</span><br><span class="line">            l2_cur_pre-&gt;next = NULL;</span><br><span class="line">            l1_cur = l1_cur_pre-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(l1_cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            int sum = add + l1_cur-&gt;val;</span><br><span class="line">            add = (sum &gt;= 10)?1:0;</span><br><span class="line">            sum = sum % 10;</span><br><span class="line">            l1_cur-&gt;val = sum;  </span><br><span class="line">            l1_cur_pre = l1_cur;</span><br><span class="line">            l1_cur = l1_cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        if(add == 1)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode* new_node = new ListNode(add);</span><br><span class="line">            l1_cur_pre-&gt;next = new_node;</span><br><span class="line">        &#125;</span><br><span class="line">        l1 = reverseLinkedList(l1);</span><br><span class="line">        return l1;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode* reverseLinkedList(ListNode* head)</span><br><span class="line">    &#123;</span><br><span class="line">        ListNode *cur = head;</span><br><span class="line">        ListNode *pre = NULL;</span><br><span class="line">        while(cur != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode *ne = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = pre;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = ne;</span><br><span class="line">        &#125;</span><br><span class="line">        return pre;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：35ms，超过61.02%</p>
+<p>分治法：找到数组的中心点mid，则最大连续元素和可能产生在：左侧子数组、右侧子数组、跨过中心点的数组。</p>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxSubArray(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return find_recursive(nums,0,nums.size()-1);</span><br><span class="line">    &#125;</span><br><span class="line">    int find_recursive(vector&lt;int&gt;&amp; nums, int left,  int right)</span><br><span class="line">    &#123;</span><br><span class="line">        if(left == right)</span><br><span class="line">            return nums[left];</span><br><span class="line">        else if(left &gt; right)</span><br><span class="line">            return 0;</span><br><span class="line">        int mid = left + (right-left)/2;</span><br><span class="line">        int max_left = find_recursive(nums, left, mid);</span><br><span class="line">        int max_right = find_recursive(nums, mid+1, right);</span><br><span class="line">        int max_mid = find_sub_array_with_middle(nums,left,mid,right);</span><br><span class="line">        int ret = max(max_left, max_right);</span><br><span class="line">        ret = max(ret,max_mid);</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">    int find_sub_array_with_middle(vector&lt;int&gt;&amp; nums, int left, int mid, int right)</span><br><span class="line">    &#123;</span><br><span class="line">        int sum_left = INT_MIN;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for(int i = mid; i &gt;= left; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            if(sum &gt; sum_left)</span><br><span class="line">                sum_left = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        sum = 0;</span><br><span class="line">        int sum_right = INT_MIN;</span><br><span class="line">        for(int i = mid+1 ; i &lt;= right; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            if(sum &gt; sum_right)</span><br><span class="line">                sum_right = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum_left+sum_right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>运行时间：22ms，超过2.14%</p>
+<p>动态规划：遍历数组，假设以i-1结尾的最长连续元素之和为local，则以i结尾的最长连续元素之和为max(nums[i],local+nums[i])。维护一个全局最大global，每一步进行更新。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxSubArray(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int local = nums[0];</span><br><span class="line">        int global = nums[0];</span><br><span class="line">        for(int i = 1; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            local = max(nums[i], local+nums[i]);</span><br><span class="line">            global = max(local,global);</span><br><span class="line">        &#125;</span><br><span class="line">        return global;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>运行时间：9ms，超过31.16%</p>
+<p>ref：<a href="http://blog.csdn.net/linhuanmars/article/details/21314059" target="_blank" rel="external">http://blog.csdn.net/linhuanmars/article/details/21314059</a></p>
 
       
     </div>
@@ -306,9 +308,9 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+            <a href="/tags/DynamicProgramming/" rel="tag">#DynamicProgramming</a>
           
-            <a href="/tags/Add/" rel="tag">#Add</a>
+            <a href="/tags/DivedeAndConquer/" rel="tag">#DivedeAndConquer</a>
           
         </div>
       
@@ -317,17 +319,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/01/leetcode-odd-even-linked-list/" rel="next" title="leetcode_odd_even_linked_list">
-                <i class="fa fa-chevron-left"></i> leetcode_odd_even_linked_list
+              <a href="/2016/12/04/iterative-binary-search/" rel="next" title="iterative_binary_search">
+                <i class="fa fa-chevron-left"></i> iterative_binary_search
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/02/c-plus-plus-overload-operations/" rel="prev" title="c++重载运算符与类型转换">
-                c++重载运算符与类型转换 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
