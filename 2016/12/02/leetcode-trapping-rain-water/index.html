@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array," />
+  <meta name="keywords" content="LeetCode,TwoPointer,Stack," />
 
 
 
@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/02/leetcode-trapping-rain-water/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Medium">
-<meta property="og:updated_time" content="2016-12-02T12:58:30.000Z">
+<meta property="og:updated_time" content="2016-12-04T13:50:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_trapping_rain_water">
 <meta name="twitter:description" content="难度：Medium">
@@ -284,7 +284,7 @@
 <p>运行结果：12ms，超过18.07％</p>
 <hr>
 <p>另一种解法：</p>
-<p>求的每一个点上面，能存多少水，然后相加。遍历每个元素，查看该元素左边、右边的最高点，是不是都比它高，如果是则可以存水；否则无法存水。<br>代码如下：</p>
+<p>求的每一个点上面，能存多少水，然后相加。从后往前遍历，存储每一个点右边的最高点。从前往后遍历，查得到左边的最高点，看看是不是都比它高，如果是则可以存水；否则无法存水。<br>代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int right_max = INT_MIN;</span><br><span class="line">        vector&lt;int&gt; right_max_vec(height.size());</span><br><span class="line">        for(int i = height.size()-1; i &gt;= 0; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            right_max = (height[i] &gt; right_max)?height[i]:right_max;</span><br><span class="line">            right_max_vec[i] = right_max;</span><br><span class="line">            //right_max为从i到数组结尾的元素的最大值，包含i</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int left_max = INT_MIN;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        for(int i = 0; i &lt; height.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            left_max = (height[i] &gt; left_max)?height[i]:left_max;</span><br><span class="line">            //left_max为从数组开头到i的元素的最大值，包含i。</span><br><span class="line">            int min_height = min(left_max,right_max_vec[i]);</span><br><span class="line">            if(min_height &gt; height[i])</span><br><span class="line">                sum += min_height-height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>运行结果：9ms，超过30.10%</p>
 
@@ -310,7 +310,9 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/Array/" rel="tag">#Array</a>
+            <a href="/tags/TwoPointer/" rel="tag">#TwoPointer</a>
+          
+            <a href="/tags/Stack/" rel="tag">#Stack</a>
           
         </div>
       
@@ -407,7 +409,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
