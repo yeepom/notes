@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,LinkedList,remove," />
+  <meta name="keywords" content="LeetCode,Array,Sort," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Easy">
+<meta name="description" content="难度：Hard">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_remove_duplicates_from_sorted_list">
-<meta property="og:url" content="http://yoursite.com/2016/11/30/leetcode-remove-duplicates-from-sorted-list/index.html">
+<meta property="og:title" content="leetcode_insert_intervals">
+<meta property="og:url" content="http://yoursite.com/2016/12/05/leetcode-insert-intervals/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Easy">
-<meta property="og:updated_time" content="2016-11-30T05:58:01.000Z">
+<meta property="og:description" content="难度：Hard">
+<meta property="og:updated_time" content="2016-12-05T06:43:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_remove_duplicates_from_sorted_list">
-<meta name="twitter:description" content="难度：Easy">
+<meta name="twitter:title" content="leetcode_insert_intervals">
+<meta name="twitter:description" content="难度：Hard">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/30/leetcode-remove-duplicates-from-sorted-list/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/05/leetcode-insert-intervals/"/>
 
-  <title> leetcode_remove_duplicates_from_sorted_list | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_insert_intervals | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_remove_duplicates_from_sorted_list
+                leetcode_insert_intervals
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-30T13:53:42+08:00" content="2016-11-30">
-              2016-11-30
+            <time itemprop="dateCreated" datetime="2016-12-05T14:33:08+08:00" content="2016-12-05">
+              2016-12-05
             </time>
           </span>
 
@@ -278,11 +278,17 @@
       
 
       
-        <p>难度：Easy<br><a id="more"></a></p>
-<p>注意事项：先写一个dummy，指向head元素。问题会简单很多。</p>
-<p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* deleteDuplicates(ListNode* head) &#123;</span><br><span class="line">        ListNode *dummy = new ListNode(-1), *current = dummy;</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        while(current-&gt;next != NULL &amp;&amp; current-&gt;next-&gt;next != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            if(current-&gt;next-&gt;val == current-&gt;next-&gt;next-&gt;val)</span><br><span class="line">            &#123;</span><br><span class="line">                current-&gt;next-&gt;next = current-&gt;next-&gt;next-&gt;next;   </span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                current = current-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：13ms,超过24.84%</p>
+        <p>难度：Hard<br><a id="more"></a></p>
+<p>解题思路：先找重合时间段的start，再找重合时间段的end。</p>
+<pre><code>数组[[4,7],[10,14]]
+先找重合时间段的start。
+    如果插入时间段为[8,11]，不和[4,7]重合，考虑下一个元素
+    如果插入时间段为[5,13]，在[4,7]之间，找到重合时间段的start，即为这两个时间段较小者。重合时间段的end，即为两者的较大者，但这并不是最终结果。这时标记start已找到，进行下一次迭代，寻找end。
+    如果插入时间段为[1,2]，则不重合，单独插入即可
+    如果插入时间段为[1,5]，则尾部重合，重合时间段的start为1，end暂为两个时间段end较大者，标记start已找到。进行下一次迭代，寻找end。
+</code></pre><p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for an interval.</span><br><span class="line"> * struct Interval &#123;</span><br><span class="line"> *     int start;</span><br><span class="line"> *     int end;</span><br><span class="line"> *     Interval() : start(0), end(0) &#123;&#125;</span><br><span class="line"> *     Interval(int s, int e) : start(s), end(e) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;Interval&gt; insert(vector&lt;Interval&gt;&amp; intervals, Interval newInterval) &#123;</span><br><span class="line">        vector&lt;Interval&gt; ret;</span><br><span class="line">        Interval insert_one = newInterval;</span><br><span class="line">        bool find_start = false;</span><br><span class="line">        int i = 0;</span><br><span class="line">        for(; i &lt; intervals.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            // cout&lt;&lt;intervals[i].start&lt;&lt;&quot; &quot;&lt;&lt;intervals[i].end&lt;&lt;endl;</span><br><span class="line">            if(!find_start)</span><br><span class="line">            &#123;</span><br><span class="line">                if(newInterval.start &gt; intervals[i].end)</span><br><span class="line">                &#123;</span><br><span class="line">                    ret.push_back(intervals[i]);</span><br><span class="line">                &#125;</span><br><span class="line">                else if(newInterval.start &gt;= intervals[i].start &amp;&amp; newInterval.start &lt;= intervals[i].end)</span><br><span class="line">                &#123;</span><br><span class="line">                    find_start = true;</span><br><span class="line">                    insert_one.start = min(newInterval.start, intervals[i].start);</span><br><span class="line">                    insert_one.end = max(newInterval.end, intervals[i].end);</span><br><span class="line">                &#125;</span><br><span class="line">                else if(newInterval.start &lt; intervals[i].start &amp;&amp; newInterval.end &lt; intervals[i].start)</span><br><span class="line">                &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                else if(newInterval.start &lt; intervals[i].start &amp;&amp; newInterval.end &gt;= intervals[i].start)</span><br><span class="line">                &#123;</span><br><span class="line">                    find_start = true;</span><br><span class="line">                    insert_one.start = newInterval.start;</span><br><span class="line">                    insert_one.end = max(newInterval.end, intervals[i].end);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(newInterval.end &lt; intervals[i].start)</span><br><span class="line">                &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    insert_one.end = max(newInterval.end, intervals[i].end);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ret.push_back(insert_one);</span><br><span class="line">        for(;i &lt; intervals.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ret.push_back(intervals[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：26ms，超过13.30%</p>
 
       
     </div>
@@ -306,9 +312,9 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/remove/" rel="tag">#remove</a>
+            <a href="/tags/Sort/" rel="tag">#Sort</a>
           
         </div>
       
@@ -317,17 +323,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/29/c-plus-plus-move-object/" rel="next" title="c++对象移动">
-                <i class="fa fa-chevron-left"></i> c++对象移动
+              <a href="/2016/12/05/leetcode-pascal-triangle/" rel="next" title="leetcode_pascal_triangle">
+                <i class="fa fa-chevron-left"></i> leetcode_pascal_triangle
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/30/leetcode-remove-duplicates-from-sorted-list-ii/" rel="prev" title="leetcode_remove_duplicates_from_sorted_list_ii">
-                leetcode_remove_duplicates_from_sorted_list_ii <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

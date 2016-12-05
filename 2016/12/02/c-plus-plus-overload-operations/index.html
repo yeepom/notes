@@ -102,7 +102,7 @@
 除了重载的函数调用运算符operator()之外，其他重载运算符不能含有默认实参。
 当一个重载的运算符是成员函数时，this绑定到左侧运算对象。成员运算符函数的参数数量比运算对象的数量少一个。
 对于一个运算符函数来说，它或者是类的">
-<meta property="og:updated_time" content="2016-12-04T15:12:19.000Z">
+<meta property="og:updated_time" content="2016-12-05T06:00:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++重载运算符与类型转换">
 <meta name="twitter:description" content="一、基本概念
@@ -343,7 +343,53 @@ string u = &quot;hi&quot; + s;    //如果+是string的成员，则会报错
 <p>三、算术和关系运算符</p>
 <p>通常定义成非成员函数，以允许对左侧或右侧的元算对象进行转换。如果类定义了算数运算符，则它一般也会定义一个对应的复合赋值运算符。此时，最有效的方式是使用复合赋值来定义算术运算符。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Sales_data operator+(const Sales_data &amp;lhs, const Sales_data &amp;rhs)</span><br><span class="line">&#123;</span><br><span class="line">	Sales_data sum = lhs;</span><br><span class="line">	sum += rhs;</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.1相等运算符<br>    通常，比较对象的每一个数据成员，只有当所有对应的成员都相等时才认为两个对象相等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sales_data operator==(const Sales_data &amp;lhs, const Sales_data &amp;rhs)</span><br><span class="line">&#123;</span><br><span class="line">    return lhs.bookNO_ == rhs.bookNO_ &amp;&amp; lhs.units_sold_ == rhs.units_sold_ &amp;&amp; lhs.revenue_ == rhs.revenue_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sales_data operator!=(const Sales_data &amp;lhs, const Sales_data &amp;rhs)</span><br><span class="line">&#123;</span><br><span class="line">    return !(lhs == rhs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>涉及准则：</p>
+<pre><code>使用operator==，而不是普通成员函数
 
+operator==用来判断一组给定的对象中是否含有重复数据
+
+相等运算符具有传递性
+
+同样也要定义operator!=
+
+==和!=中的一个应该把工作委托给另外一个
+</code></pre><p>3.2关系运算符<br>    如果存在唯一一种逻辑可靠的&lt;定义，则应该为这个累定义&lt;运算符。如果类同时还包含==，则当且仅当&lt;的定义和==产生的结果一致时才定义&lt;运算符。</p>
+<p>四、赋值运算符<br>    除拷贝赋值和移动赋值运算符之外，还定义了接受花括号内元素列表为参数的。</p>
+<pre><code>vector&lt;string&gt; v;
+v = {&quot;A&quot;,&quot;an&quot;};
+
+StrVec &amp;StrVec::operator=(initilizer_list&lt;string&gt; il)
+{
+    auto data = alloc_n_copy(il.begin(), il.end());
+    free();
+    elements = data.first;
+    first_free = cap = data.second;
+    return *this;
+}
+</code></pre><p>赋值运算符必须定义成类的成员，复合赋值运算符通常也应该这样。都返回左侧运算对象的引用。</p>
+<p>五、下标运算符<br>    通过元素在容器中的位置访问元素，这些类一般会定义下标运算符operator[]。<br>    下标运算符必须是成员函数。返回值为所访问元素的引用，下标可以出现在赋值运算符的任意一端。最好同时定义下标运算符的常量版本和非常量版本，当作用于一个常量对象时，下标运算符返回常量引用以确保我们不会给返回的对象赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class StrVec</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	std::string&amp; operator[](std::size_t n)&#123;return elements[n];&#125;</span><br><span class="line">	const std::string&amp; operator[](std::size_t n) const &#123;return elements[n];&#125;</span><br><span class="line">private:</span><br><span class="line">	std::string *elements;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const StrVec cvec = svec;</span><br><span class="line">if(svec.size() &amp;&amp; svec[0].empty())</span><br><span class="line">&#123;</span><br><span class="line">	svec[0] = &quot;zero&quot;;</span><br><span class="line">	cvec[0] = &quot;zip&quot;;		//错误：对cvec取下标返回的是常量引用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>六、递增和递减运算符<br>    因为它们改变的正好是所操作对象的状态，所以建议设定为成员函数。<br>    定义递增和递减运算符的类应该同时定义前置和后置版本。</p>
+<p>前置，返回递增或递减后对象的引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class StrBlobPtr</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	StrBlobStr&amp; operator++();</span><br><span class="line">	StrBlobStr&amp; operator--();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">StrBlobPtr&amp; StrBlobPtr::operator++()</span><br><span class="line">&#123;</span><br><span class="line">	check(curr,&quot;increment past end&quot;);</span><br><span class="line">	++curr;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StrBlobPtr&amp; StrBlobPtr::operator--()</span><br><span class="line">&#123;</span><br><span class="line">	--curr;</span><br><span class="line">	check(curr,&quot;decrement past begin&quot;);</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>后置，普通的重载形式无法区分这两个情况。为解决这个问题，后置版本接受一个额外的int类型的形参。使用后置运算符时，编译器为这个形参提供一个值为0的实参。<br>后置运算符返回对象的原值，返回值而不是引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class StrBlobPtr</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	StrBlobPtr operator++(int);</span><br><span class="line">	StrBlobPtr operator--(int);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">StrBlobPtr StrBlobPtr::operator++(int)</span><br><span class="line">&#123;</span><br><span class="line">	StrBlobPtr ret = *this;</span><br><span class="line">	++*this;</span><br><span class="line">	return ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StrBlobPtr StrBlobPtr::operator--(int)</span><br><span class="line">&#123;</span><br><span class="line">	StrBlobPtr ret = *this;</span><br><span class="line">	--*this;</span><br><span class="line">	return ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们的后置运算符调用各自的前置版本来完成实际工作。</p>
+<p>显示调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StrBlobPtr p(a);</span><br><span class="line">p.operator++(0);		//后置</span><br><span class="line">p.operator++();		//前置</span><br></pre></td></tr></table></figure>
+<p>七、成员访问运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class StrBlobPtr</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	std::string&amp; operator*() const</span><br><span class="line">	&#123;</span><br><span class="line">		auto p = check(curr, &quot;dereference past end&quot;);</span><br><span class="line">		return (*p)[curr];	//(*p)是对象所指的vector</span><br><span class="line">	&#125;</span><br><span class="line">	std::string* operator-&gt;() const</span><br><span class="line">	&#123;</span><br><span class="line">		return &amp;this-&gt;operator*();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>箭头运算符必须是类的成员。解引用运算符通常也是类的成员，尽管并非必须如此。</p>
+<p>对箭头运算符的限定</p>
+<pre><code>point-&gt;mem
+
+1.如果point是指针，则我们应用内置的箭头运算符，表达式等价于(*point).mem。首先解引用该指针，然后从所得的对象中获取指定的成员。如果point所指的类型没有名为mem的成员，程序会发生错误。
+2.如果point是定义了operator-&gt;的类的一个对象，则我们使用point.operator-&gt;()的结果来获取mem。如果该结果是一个指针，则制定第一步；如果该结果本身含有重载的operator-&gt;()，则重复调用当前步骤。
+
+重载的箭头运算符必须返回累的指针或者自定义箭头运算符的某个类的对象。
+</code></pre>
       
     </div>
 
@@ -453,7 +499,7 @@ string u = &quot;hi&quot; + s;    //如果+是string的成员，则会报错
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">76</span>
+              <span class="site-state-item-count">77</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
