@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/25/leetcode-sort-colors/</loc>
+    
+    <lastmod>2016-12-05T13:07:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/05/leetcode-search-in-rotated-sorted-array-ii/</loc>
     
     <lastmod>2016-12-05T12:46:11.000Z</lastmod>
@@ -432,13 +439,6 @@
     <loc>http://yoursite.com/2016/11/22/c-plus-plus-explicit-specifier/</loc>
     
     <lastmod>2016-11-27T15:05:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/11/25/leetcode-sort-colors/</loc>
-    
-    <lastmod>2016-11-27T06:49:06.000Z</lastmod>
     
   </url>
   
