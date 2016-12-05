@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-05T11:42:28.000Z</updated>
+  <updated>2016-12-05T12:46:11.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode_search_in_rotated_sorted_array_ii</title>
+    <link href="http://yoursite.com/2016/12/05/leetcode-search-in-rotated-sorted-array-ii/"/>
+    <id>http://yoursite.com/2016/12/05/leetcode-search-in-rotated-sorted-array-ii/</id>
+    <published>2016-12-05T12:41:05.000Z</published>
+    <updated>2016-12-05T12:46:11.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;解题思路：是系列1的延伸。遇到[1,1,5,1] [5,1,1]这种我们无法判断哪部分是有序的。处理方式是，最右边的向左移动一位，直到移到不同值。&lt;/p&gt;
+&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool search(vector&amp;lt;int&amp;gt;&amp;amp; nums, int target) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int low = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int high = nums.size()-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        while(low &amp;lt;= high)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            int mid = low+(high-low)/2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(target == nums[mid])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                return true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(nums[mid] &amp;lt; nums[high])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(target &amp;gt; nums[mid] &amp;amp;&amp;amp; target &amp;lt;= nums[high])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    low = mid+1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    high = mid-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else if(nums[mid] &amp;gt; nums[high])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(target &amp;gt;= nums[low] &amp;amp;&amp;amp; target &amp;lt; nums[mid])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    high = mid-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    low = mid+1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                --high;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;运行结果：6ms，超过31.56%&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：Medium&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="BinarySearch" scheme="http://yoursite.com/tags/BinarySearch/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode_word_search</title>
@@ -615,127 +644,6 @@
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
       <category term="Median" scheme="http://yoursite.com/tags/Median/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++重载运算符与类型转换</title>
-    <link href="http://yoursite.com/2016/12/02/c-plus-plus-overload-operations/"/>
-    <id>http://yoursite.com/2016/12/02/c-plus-plus-overload-operations/</id>
-    <published>2016-12-02T00:55:40.000Z</published>
-    <updated>2016-12-05T06:00:35.000Z</updated>
-    
-    <content type="html">&lt;p&gt;一、基本概念&lt;/p&gt;
-&lt;p&gt;由关键字operator和其后要定义的运算符号共同组成。也包含返回类型、参数列表以及函数体。&lt;/p&gt;
-&lt;p&gt;重载运算符函数的参数数量与该运算符作用的运算对象数量一样多。&lt;/p&gt;
-&lt;p&gt;除了重载的函数调用运算符operator()之外，其他重载运算符不能含有默认实参。&lt;/p&gt;
-&lt;p&gt;当一个重载的运算符是成员函数时，this绑定到左侧运算对象。成员运算符函数的参数数量比运算对象的数量少一个。&lt;/p&gt;
-&lt;p&gt;对于一个运算符函数来说，它或者是类的成员，或者至少含有一个类类型的参数。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//错误:不能为int重定义内置的运算符
-int operator+(int, int);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只能重载已有的运算符，无权发明新的运算符号。&lt;/p&gt;
-&lt;p&gt;有四个符号(+ - * &amp;amp;)既是一元运算符也是二元运算符，从参数的数量可以推断定义的是哪种运算符。&lt;/p&gt;
-&lt;p&gt;对于一个重载的运算符来说，其优先级和结合律与对应的内置运算符保持一致。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;不能被重载的运算符：::        .*        .        ?:
-
-//非成员运算符函数的等价调用
-data1 + data2;                //普通的表达式
-operator+(data1, data2);    //等价的函数调用
-
-//成员运算符函数的等价调用
-data1 += data2;                //基于“调用”的表达式
-data1.operator+=(data2);    //对成员运算符函数的等价调用
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通常情况下，不应该重载逗号、取地址、逻辑与和逻辑或运算符。&lt;/p&gt;
-&lt;p&gt;使用与内置类型一致的含义&lt;/p&gt;
-&lt;p&gt;赋值和复合赋值运算符：赋值之后，左侧运算对象和右侧运算对象的值相等，并且运算符应该返回它左侧运算对象的一个引用。如果类含有算术运算符或者位运算符，则最好也提供对应的复合赋值运算符。&lt;/p&gt;
-&lt;p&gt;成员or非成员&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;= [] () -&amp;gt;运算符必须是成员
-复合赋值运算符一般是成员
-改变对象状态的运算符活着与给定类型密切相关的运算符，如递增、递减和解引用，通常是成员
-具有对称性的运算符可能转换任意一段的运算对象，如算术、相等性、关系和位运算符等，它们通常是非成员函数。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;运算符定义成成员函数时，左侧运算对象必须是运算符所属类的一个对象。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;string s = &amp;quot;world&amp;quot;;
-string t = s + &amp;quot;!&amp;quot;;        //正确：可以把一个const char*加到一个string对象中
-string u = &amp;quot;hi&amp;quot; + s;    //如果+是string的成员，则会报错
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;string将+定义成普通的非成员函数，所以”hi”+s等价于operator+(“hi”,s)。和任何其他函数diaoyong一样，每个实参都能被转换成行参类型。唯一的要求是至少有一个运算类型是类类型，并且两个运算对象都能准确无误的准换成string。&lt;/p&gt;
-&lt;p&gt;二、输入和输出运算符&lt;/p&gt;
-&lt;p&gt;2.1 重载输出运算符&amp;lt;&amp;lt;&lt;br&gt;    第一个形参是一个非常量ostream对象的引用。之所以ostream是非常量是因为向流写入内容会改变其状态；而该形参是引用是因为我们无法直接复制一个ostream对象。&lt;br&gt;    第二个形参一般是常量的引用。形参是引用为了避免复制实参；之所以为常量是打印对象不会改变对象的内容。&lt;br&gt;    为了与其他输出运算符保持一致，operator&amp;lt;&amp;lt;一般返回它的ostream形参。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;输出运算符应该主要负责打印对象的内容而非控制格式，输出运算符不应该打印换行符。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输入输出运算符必须是非成员函数。&lt;/p&gt;
-&lt;p&gt;IO运算符通常需要读写类的非公有数据成员，所以IO运算符一般被声明为友元。&lt;/p&gt;
-&lt;p&gt;2.2重载输入运算符&amp;gt;&amp;gt;&lt;br&gt;    第一个形参是运算符将要读取的流的引用，第二个形参是将要读入到的(非常量)对象的的引用。该运算符通常会返回某个给定流的引用。第二个形参之所以必须是个非常量是因为输入运算符本身的目的就是将数据读入到这个对象中。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;istream &amp;amp;operator&amp;gt;&amp;gt;(istream &amp;amp;is, Sales_data &amp;amp;item)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	double price;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	is &amp;gt;&amp;gt; item.bookNO&amp;gt;&amp;gt;item.units_sold&amp;gt;&amp;gt;price;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if(is)		//判断是否发生IO错误&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		item.revenue = item.units_sold*price;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		item = Sales_data();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return is;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;输入运算符必须处理输入可能失败的情况，而输出运算符不需要。&lt;/p&gt;
-&lt;p&gt;输入时的错误。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;当流含有错误类型的数据时读取操作可能失败。
-
-当流操作到达文件末尾或者遇到输入流的其他错误时也会失败。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当读取操作发生错误时，输入运算符应该负责从错误中恢复。&lt;/p&gt;
-&lt;p&gt;流的失败信息failbit。文件耗尽eofbit。流被破坏badbit。&lt;/p&gt;
-&lt;p&gt;三、算术和关系运算符&lt;/p&gt;
-&lt;p&gt;通常定义成非成员函数，以允许对左侧或右侧的元算对象进行转换。如果类定义了算数运算符，则它一般也会定义一个对应的复合赋值运算符。此时，最有效的方式是使用复合赋值来定义算术运算符。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Sales_data operator+(const Sales_data &amp;amp;lhs, const Sales_data &amp;amp;rhs)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Sales_data sum = lhs;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	sum += rhs;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return sum;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;3.1相等运算符&lt;br&gt;    通常，比较对象的每一个数据成员，只有当所有对应的成员都相等时才认为两个对象相等。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Sales_data operator==(const Sales_data &amp;amp;lhs, const Sales_data &amp;amp;rhs)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return lhs.bookNO_ == rhs.bookNO_ &amp;amp;&amp;amp; lhs.units_sold_ == rhs.units_sold_ &amp;amp;&amp;amp; lhs.revenue_ == rhs.revenue_;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Sales_data operator!=(const Sales_data &amp;amp;lhs, const Sales_data &amp;amp;rhs)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return !(lhs == rhs);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;涉及准则：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;使用operator==，而不是普通成员函数
-
-operator==用来判断一组给定的对象中是否含有重复数据
-
-相等运算符具有传递性
-
-同样也要定义operator!=
-
-==和!=中的一个应该把工作委托给另外一个
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.2关系运算符&lt;br&gt;    如果存在唯一一种逻辑可靠的&amp;lt;定义，则应该为这个累定义&amp;lt;运算符。如果类同时还包含==，则当且仅当&amp;lt;的定义和==产生的结果一致时才定义&amp;lt;运算符。&lt;/p&gt;
-&lt;p&gt;四、赋值运算符&lt;br&gt;    除拷贝赋值和移动赋值运算符之外，还定义了接受花括号内元素列表为参数的。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;vector&amp;lt;string&amp;gt; v;
-v = {&amp;quot;A&amp;quot;,&amp;quot;an&amp;quot;};
-
-StrVec &amp;amp;StrVec::operator=(initilizer_list&amp;lt;string&amp;gt; il)
-{
-    auto data = alloc_n_copy(il.begin(), il.end());
-    free();
-    elements = data.first;
-    first_free = cap = data.second;
-    return *this;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;赋值运算符必须定义成类的成员，复合赋值运算符通常也应该这样。都返回左侧运算对象的引用。&lt;/p&gt;
-&lt;p&gt;五、下标运算符&lt;br&gt;    通过元素在容器中的位置访问元素，这些类一般会定义下标运算符operator[]。&lt;br&gt;    下标运算符必须是成员函数。返回值为所访问元素的引用，下标可以出现在赋值运算符的任意一端。最好同时定义下标运算符的常量版本和非常量版本，当作用于一个常量对象时，下标运算符返回常量引用以确保我们不会给返回的对象赋值。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class StrVec&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	std::string&amp;amp; operator[](std::size_t n)&amp;#123;return elements[n];&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	const std::string&amp;amp; operator[](std::size_t n) const &amp;#123;return elements[n];&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;private:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	std::string *elements;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;const StrVec cvec = svec;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if(svec.size() &amp;amp;&amp;amp; svec[0].empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	svec[0] = &amp;quot;zero&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cvec[0] = &amp;quot;zip&amp;quot;;		//错误：对cvec取下标返回的是常量引用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;六、递增和递减运算符&lt;br&gt;    因为它们改变的正好是所操作对象的状态，所以建议设定为成员函数。&lt;br&gt;    定义递增和递减运算符的类应该同时定义前置和后置版本。&lt;/p&gt;
-&lt;p&gt;前置，返回递增或递减后对象的引用&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class StrBlobPtr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StrBlobStr&amp;amp; operator++();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StrBlobStr&amp;amp; operator--();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;StrBlobPtr&amp;amp; StrBlobPtr::operator++()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	check(curr,&amp;quot;increment past end&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++curr;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return *this;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;StrBlobPtr&amp;amp; StrBlobPtr::operator--()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	--curr;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	check(curr,&amp;quot;decrement past begin&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return *this;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;后置，普通的重载形式无法区分这两个情况。为解决这个问题，后置版本接受一个额外的int类型的形参。使用后置运算符时，编译器为这个形参提供一个值为0的实参。&lt;br&gt;后置运算符返回对象的原值，返回值而不是引用。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class StrBlobPtr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StrBlobPtr operator++(int);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StrBlobPtr operator--(int);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;StrBlobPtr StrBlobPtr::operator++(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StrBlobPtr ret = *this;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++*this;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;StrBlobPtr StrBlobPtr::operator--(int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StrBlobPtr ret = *this;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	--*this;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;我们的后置运算符调用各自的前置版本来完成实际工作。&lt;/p&gt;
-&lt;p&gt;显示调用&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;StrBlobPtr p(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p.operator++(0);		//后置&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p.operator++();		//前置&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;七、成员访问运算符&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class StrBlobPtr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	std::string&amp;amp; operator*() const&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		auto p = check(curr, &amp;quot;dereference past end&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return (*p)[curr];	//(*p)是对象所指的vector&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	std::string* operator-&amp;gt;() const&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &amp;amp;this-&amp;gt;operator*();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;箭头运算符必须是类的成员。解引用运算符通常也是类的成员，尽管并非必须如此。&lt;/p&gt;
-&lt;p&gt;对箭头运算符的限定&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;point-&amp;gt;mem
-
-1.如果point是指针，则我们应用内置的箭头运算符，表达式等价于(*point).mem。首先解引用该指针，然后从所得的对象中获取指定的成员。如果point所指的类型没有名为mem的成员，程序会发生错误。
-2.如果point是定义了operator-&amp;gt;的类的一个对象，则我们使用point.operator-&amp;gt;()的结果来获取mem。如果该结果是一个指针，则制定第一步；如果该结果本身含有重载的operator-&amp;gt;()，则重复调用当前步骤。
-
-重载的箭头运算符必须返回累的指针或者自定义箭头运算符的某个类的对象。
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一、基本概念&lt;/p&gt;
-&lt;p&gt;由关键字operator和其后要定义的运算符号共同组成。也包含返回类型、参数列表以及函数体。&lt;/p&gt;
-&lt;p&gt;重载运算符函数的参数数量与该运算符作用的运算对象数量一样多。&lt;/p&gt;
-&lt;p&gt;除了重载的函数调用运算符operator()之外，其他重载运算
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
-    
-      <category term="overload operations" scheme="http://yoursite.com/tags/overload-operations/"/>
     
   </entry>
   
