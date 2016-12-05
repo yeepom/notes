@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array,Search,Rotate," />
+  <meta name="keywords" content="LeetCode,Array,BinarySearch,Search," />
 
 
 
@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/02/leetcode-search-in-rotated-sorted-array/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Hard">
-<meta property="og:updated_time" content="2016-12-02T07:00:57.000Z">
+<meta property="og:updated_time" content="2016-12-05T12:22:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_search_in_rotated_sorted_array">
 <meta name="twitter:description" content="难度：Hard">
@@ -288,6 +288,23 @@
 </code></pre><p>代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int search(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        if(target &gt; nums[0])</span><br><span class="line">        &#123;</span><br><span class="line">            int i = 0;</span><br><span class="line">            for(; i+1 &lt; nums.size(); i++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(target == nums[i])</span><br><span class="line">                    return i;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    if(nums[i] &gt; nums[i+1])</span><br><span class="line">                        return -1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(target == nums[i])</span><br><span class="line">                return i;</span><br><span class="line">            else</span><br><span class="line">                return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(target &lt; nums[0] &amp;&amp; target &lt;= nums.back())</span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">            for(int i = nums.size()-1; i &gt; 0; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                if(target == nums[i])</span><br><span class="line">                    return i;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    if(nums[i-1] &gt; nums[i])</span><br><span class="line">                        return -1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(target == nums[0])</span><br><span class="line">        &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>运行结果：3ms，超过66.21%</p>
+<hr>
+<p>此题意在考察二分查找。观察下面，会发现mid &lt; right时，右边的都是有序的；mid &gt; left 时，左边的都是有序的。找出有序的部分，然后进行处理。</p>
+<pre><code>0　　1　　2　　 4　　5　　6　　7
+
+7　　0　　1　　 2　　4　　5　　6
+
+6　　7　　0　　 1　　2　　4　　5
+
+5　　6　　7　　 0　　1　　2　　4
+
+4　　5　　6　　 7　　0　　1　　2
+
+2　　4　　5　　 6　　7　　0　　1
+
+1　　2　　4　　 5　　6　　7　　0
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int search(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        int low = 0;</span><br><span class="line">        int high = nums.size()-1;</span><br><span class="line">        while(low &lt;= high)</span><br><span class="line">        &#123;</span><br><span class="line">            int mid = low + (high-low)/2;</span><br><span class="line">            if(nums[mid] == target)</span><br><span class="line">            &#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if(nums[mid] &lt; nums[high])</span><br><span class="line">            &#123;</span><br><span class="line">                if(target &gt; nums[mid] &amp;&amp; target &lt;= nums[high])</span><br><span class="line">                    low = mid+1;</span><br><span class="line">                else</span><br><span class="line">                    high = mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(target &gt;= nums[low] &amp;&amp; target &lt; nums[mid])</span><br><span class="line">                    high = mid-1;</span><br><span class="line">                else</span><br><span class="line">                    low = mid+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：6ms，超过13.33%</p>
 
       
     </div>
@@ -313,9 +330,9 @@
           
             <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/Search/" rel="tag">#Search</a>
+            <a href="/tags/BinarySearch/" rel="tag">#BinarySearch</a>
           
-            <a href="/tags/Rotate/" rel="tag">#Rotate</a>
+            <a href="/tags/Search/" rel="tag">#Search</a>
           
         </div>
       
