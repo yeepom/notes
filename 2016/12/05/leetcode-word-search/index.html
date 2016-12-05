@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,LinkedList,Remove," />
+  <meta name="keywords" content="LeetCode,Array,BackTracking," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Easy">
+<meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_remove_n_th_from_end_of_the_list">
-<meta property="og:url" content="http://yoursite.com/2016/11/29/leetcode-remove-n-th-from-end-of-the-list/index.html">
+<meta property="og:title" content="leetcode_word_search">
+<meta property="og:url" content="http://yoursite.com/2016/12/05/leetcode-word-search/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Easy">
-<meta property="og:updated_time" content="2016-11-29T06:37:20.000Z">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-12-05T11:42:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_remove_n_th_from_end_of_the_list">
-<meta name="twitter:description" content="难度：Easy">
+<meta name="twitter:title" content="leetcode_word_search">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/29/leetcode-remove-n-th-from-end-of-the-list/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/05/leetcode-word-search/"/>
 
-  <title> leetcode_remove_n_th_from_end_of_the_list | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_word_search | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_remove_n_th_from_end_of_the_list
+                leetcode_word_search
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-29T14:31:10+08:00" content="2016-11-29">
-              2016-11-29
+            <time itemprop="dateCreated" datetime="2016-12-05T19:35:18+08:00" content="2016-12-05">
+              2016-12-05
             </time>
           </span>
 
@@ -278,10 +278,10 @@
       
 
       
-        <p>难度：Easy<br><a id="more"></a></p>
-<p>解题思路：对于input:[1],1的情况，还是加入一个dummy节点比较好。<br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* removeNthFromEnd(ListNode* head, int n) &#123;</span><br><span class="line">        ListNode *dummy = new ListNode(-1);</span><br><span class="line">        dummy-&gt;next = head;</span><br><span class="line">        ListNode* fast = dummy, *slow = dummy;</span><br><span class="line">        while(n--)</span><br><span class="line">        &#123;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(fast-&gt;next != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        slow-&gt;next = slow-&gt;next-&gt;next;</span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>代码结果：9ms，超过1.50%</p>
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>解题思路：深度优先遍历。如果某个字符串匹配，则对它的上、下、左、右分别进行递归，同时将匹配的字符串辨识成”*”，防止重复，递归好之后，要记得还原。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool exist(vector&lt;vector&lt;char&gt;&gt;&amp; board, string word) &#123;</span><br><span class="line">        bool ret;</span><br><span class="line">        for(int i = 0; i &lt; board.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j = 0; j &lt; board[0].size(); j++)</span><br><span class="line">            &#123;</span><br><span class="line">                ret = search_char(board,i,j,word,0);</span><br><span class="line">                if(ret ==true)</span><br><span class="line">                    return ret;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    bool search_char(vector&lt;vector&lt;char&gt;&gt;&amp; board, int i, int j, string word, int word_index)</span><br><span class="line">    &#123;</span><br><span class="line">        if(i &lt; 0 || i &gt;= board.size())</span><br><span class="line">            return false;</span><br><span class="line">        if(j &lt; 0 || j &gt;= board[0].size())</span><br><span class="line">            return false;</span><br><span class="line">        // cout&lt;&lt;&quot;find: &quot;&lt;&lt;board[i][j]&lt;&lt;endl;</span><br><span class="line">        if(word[word_index] != board[i][j])</span><br><span class="line">        &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            char ch = board[i][j];</span><br><span class="line">            board[i][j] = &apos;$&apos;;</span><br><span class="line">            bool ret = true;</span><br><span class="line">            if(word_index+1 == word.size())</span><br><span class="line">                return ret;</span><br><span class="line">            ret = ret &amp;&amp; search_char(board, i-1,j,word,word_index+1);</span><br><span class="line">            if(ret == true)</span><br><span class="line">                return true;</span><br><span class="line">            ret = true;</span><br><span class="line">            ret = ret &amp;&amp; search_char(board, i+1,j,word,word_index+1);</span><br><span class="line">            if(ret == true)</span><br><span class="line">                return true;</span><br><span class="line">            ret = true;</span><br><span class="line">            ret = ret &amp;&amp; search_char(board, i,j-1,word,word_index+1);</span><br><span class="line">            if(ret == true)</span><br><span class="line">                return true;</span><br><span class="line">            ret = true;</span><br><span class="line">            ret = ret &amp;&amp; search_char(board, i,j+1,word,word_index+1);</span><br><span class="line">            board[i][j] = ch;</span><br><span class="line">            return ret;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：56ms，超过34.01%</p>
 
       
     </div>
@@ -305,9 +305,9 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/Remove/" rel="tag">#Remove</a>
+            <a href="/tags/BackTracking/" rel="tag">#BackTracking</a>
           
         </div>
       
@@ -316,17 +316,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/29/leetcode-add-two-numbers/" rel="next" title="leetcode_add_two_numbers">
-                <i class="fa fa-chevron-left"></i> leetcode_add_two_numbers
+              <a href="/2016/12/05/leetcode-subsets/" rel="next" title="leetcode_subsets">
+                <i class="fa fa-chevron-left"></i> leetcode_subsets
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/29/leetcode-merge-two-sorted-lists/" rel="prev" title="leetcode_merge_two_sorted_lists">
-                leetcode_merge_two_sorted_lists <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

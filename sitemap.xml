@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/05/leetcode-word-search/</loc>
+    
+    <lastmod>2016-12-05T11:42:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/05/leetcode-subsets/</loc>
     
     <lastmod>2016-12-05T09:38:50.000Z</lastmod>
