@@ -102,7 +102,7 @@
 除了重载的函数调用运算符operator()之外，其他重载运算符不能含有默认实参。
 当一个重载的运算符是成员函数时，this绑定到左侧运算对象。成员运算符函数的参数数量比运算对象的数量少一个。
 对于一个运算符函数来说，它或者是类的">
-<meta property="og:updated_time" content="2016-12-05T06:00:35.000Z">
+<meta property="og:updated_time" content="2016-12-06T00:53:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++重载运算符与类型转换">
 <meta name="twitter:description" content="一、基本概念
@@ -389,7 +389,10 @@ StrVec &amp;StrVec::operator=(initilizer_list&lt;string&gt; il)
 2.如果point是定义了operator-&gt;的类的一个对象，则我们使用point.operator-&gt;()的结果来获取mem。如果该结果是一个指针，则制定第一步；如果该结果本身含有重载的operator-&gt;()，则重复调用当前步骤。
 
 重载的箭头运算符必须返回累的指针或者自定义箭头运算符的某个类的对象。
-</code></pre>
+</code></pre><p>八、函数调用运算符<br>如果类重载了函数调用运算符，则我们可以像使用函数一样使用该类的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct absInt</span><br><span class="line">&#123;</span><br><span class="line">	int operator()(int val) const&#123;</span><br><span class="line">		return val &lt; 0 ? -val : val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int i = -42;</span><br><span class="line">absInt absObj;		//含有函数调用运算符的对象</span><br><span class="line">int ui = absObj(i);	//将i传递给absObj.operator()</span><br></pre></td></tr></table></figure>
+<p>如果类定义了调用运算符，则该类的对象称作函数对象。</p>
+
       
     </div>
 
