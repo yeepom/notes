@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/06/leetcode-subsets-ii/</loc>
+    
+    <lastmod>2016-12-06T13:02:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/06/leetcode-largest-rectangle-in-histogram/</loc>
     
     <lastmod>2016-12-06T11:55:53.000Z</lastmod>
