@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/07/leetcode-majority-element/</loc>
+    
+    <lastmod>2016-12-07T10:15:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/02/c-plus-plus-overload-operations/</loc>
+    
+    <lastmod>2016-12-07T09:20:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/07/leetcode-construct-binary-tree-from-preorder-and-inorder-traversal/</loc>
+    
+    <lastmod>2016-12-07T09:08:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/07/leetcode-construct-binary-tree-from-inorder-and-postorder-traversal/</loc>
+    
+    <lastmod>2016-12-07T09:08:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/07/leetcode-triangle/</loc>
+    
+    <lastmod>2016-12-07T08:53:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/06/leetcode-subsets-ii/</loc>
     
     <lastmod>2016-12-06T13:02:03.000Z</lastmod>
@@ -19,13 +54,6 @@
     <loc>http://yoursite.com/2016/12/06/leetcode-pascal-triangle-ii/</loc>
     
     <lastmod>2016-12-06T11:48:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/12/02/c-plus-plus-overload-operations/</loc>
-    
-    <lastmod>2016-12-06T02:45:52.000Z</lastmod>
     
   </url>
   
