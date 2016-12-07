@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/24/leetcode-rotate-array/</loc>
+    
+    <lastmod>2016-12-07T13:25:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/07/leetcode-two-sum-ii/</loc>
     
     <lastmod>2016-12-07T12:42:14.000Z</lastmod>
@@ -565,13 +572,6 @@
     <loc>http://yoursite.com/2016/11/22/c-plus-plus-smart-pointer/</loc>
     
     <lastmod>2016-11-24T06:48:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/11/24/leetcode-rotate-array/</loc>
-    
-    <lastmod>2016-11-24T05:09:46.000Z</lastmod>
     
   </url>
   
