@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-07T10:33:56.000Z</updated>
+  <updated>2016-12-07T11:47:26.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode_find_minimum_in_rotated_sorted_array_ii</title>
+    <link href="http://yoursite.com/2016/12/07/leetcode-find-minimum-in-rotated-sorted-array-ii/"/>
+    <id>http://yoursite.com/2016/12/07/leetcode-find-minimum-in-rotated-sorted-array-ii/</id>
+    <published>2016-12-07T11:45:36.000Z</published>
+    <updated>2016-12-07T11:47:26.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;解题思路：如果遇到重复的，右边的index向前进一步。&lt;/p&gt;
+&lt;p&gt;代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int findMin(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return find_min_with_binary(nums,0,nums.size()-1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int find_min_with_binary(vector&amp;lt;int&amp;gt; &amp;amp;nums, int left, int right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(left == right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return nums[left];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else if(left+1 == right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return min(nums[left],nums[right]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int mid = left+(right-left)/2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(nums[mid] &amp;lt; nums[right])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return  min(nums[mid], find_min_with_binary(nums,left,mid));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else if(nums[mid] &amp;gt; nums[right])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return  find_min_with_binary(nums,mid+1,right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return find_min_with_binary(nums,left,right-1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;运行结果：6ms，超过28.63%&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：Medium&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="BinarySearch" scheme="http://yoursite.com/tags/BinarySearch/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode_find_minimum_in_rotated_sorted_array</title>
@@ -629,37 +658,6 @@ d  e  f  g
     
     
       <category term="BinarySearch" scheme="http://yoursite.com/tags/BinarySearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode_jump_game</title>
-    <link href="http://yoursite.com/2016/12/03/leetcode-jump-game/"/>
-    <id>http://yoursite.com/2016/12/03/leetcode-jump-game/</id>
-    <published>2016-12-03T03:47:36.000Z</published>
-    <updated>2016-12-03T03:51:10.000Z</updated>
-    
-    <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;解题思路：数组can_jump保存能否跳到当前的点。假设到第i个点，则can_jump[i]为真的前提是前面0~i的点中，有一个点j，can_jump[j]为真，nums[j]可以跳到i。&lt;/p&gt;
-&lt;p&gt;代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    bool canJump(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int max_jump = INT_MIN;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(int i = 0; i &amp;lt; nums.size(); i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(nums[i] &amp;gt; max_jump)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                max_jump = nums[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;bool&amp;gt; can_jump(nums.size(), false);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        can_jump[0] = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // cout&amp;lt;&amp;lt;can_jump[0]&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(int i = 1; i &amp;lt; nums.size();i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            int start_index = (i-max_jump) &amp;gt; 0 ? (i-max_jump):0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            bool cur_jump_state = false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            for(int j = start_index; j &amp;lt; i; j++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                int standard_jump = i-j;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(nums[j] &amp;gt;= standard_jump &amp;amp;&amp;amp; can_jump[j] == true)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    cur_jump_state = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            can_jump[i] = cur_jump_state;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return can_jump[can_jump.size()-1];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;运行结果：16ms，超过20.37%&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;难度：Medium&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
-    
-      <category term="Jump" scheme="http://yoursite.com/tags/Jump/"/>
     
   </entry>
   
