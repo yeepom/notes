@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,LinkedList,MergeK," />
+  <meta name="keywords" content="LeetCode,Array,BinarySearch,TwoPointer," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度：Hard">
+<meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_merge_k_sorted_lists">
-<meta property="og:url" content="http://yoursite.com/2016/11/29/leetcode-merge-k-sorted-lists/index.html">
+<meta property="og:title" content="leetcode_two_sum_ii">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/leetcode-two-sum-ii/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度：Hard">
-<meta property="og:updated_time" content="2016-11-29T08:14:33.000Z">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-12-07T12:42:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_merge_k_sorted_lists">
-<meta name="twitter:description" content="难度：Hard">
+<meta name="twitter:title" content="leetcode_two_sum_ii">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/29/leetcode-merge-k-sorted-lists/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/07/leetcode-two-sum-ii/"/>
 
-  <title> leetcode_merge_k_sorted_lists | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_two_sum_ii | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_merge_k_sorted_lists
+                leetcode_two_sum_ii
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-29T15:40:10+08:00" content="2016-11-29">
-              2016-11-29
+            <time itemprop="dateCreated" datetime="2016-12-07T20:38:37+08:00" content="2016-12-07">
+              2016-12-07
             </time>
           </span>
 
@@ -278,16 +278,14 @@
       
 
       
-        <p>难度：Hard<br><a id="more"></a></p>
-<p>解题思路：<br>    1.比较list[i]-&gt;val的大小，更新lists[i]＝list[i]-&gt;next。最后效率会比较低<br>    2.按照merge2的思路，1+2-&gt;result,result+3-&gt;result,….以此类推。这个效率也不高</p>
-<p>代码如下(思路2)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * struct ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) &#123;</span><br><span class="line">        if(lists.size() == 0)   return nullptr;</span><br><span class="line">        ListNode* result = lists[0];</span><br><span class="line">        for(int i = 1; i &lt; lists.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ListNode* l = lists[i];</span><br><span class="line">            result = mergeTwoLists(result, l);</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line">        ListNode* dummy = new ListNode(-1);</span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        while(l1 != NULL &amp;&amp; l2 != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            if(l1-&gt;val &lt; l2-&gt;val)</span><br><span class="line">            &#123;</span><br><span class="line">                cur-&gt;next = l1;</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                cur-&gt;next = l2;</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(l1 != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            cur-&gt;next = l1;</span><br><span class="line">        &#125;</span><br><span class="line">        if(l2 != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            cur-&gt;next = l2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：316ms，超过7.19%</p>
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>遍历数组，然后在当前元素的右侧，寻找另一个值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; numbers, int target) &#123;</span><br><span class="line">        for(int i = 0; i &lt; numbers.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            int match = target - numbers[i];</span><br><span class="line">            int left = i+1;</span><br><span class="line">            int right = numbers.size()-1;</span><br><span class="line">            while(left &lt;= right)</span><br><span class="line">            &#123;</span><br><span class="line">                int mid = left+(right-left)/2;</span><br><span class="line">                if(numbers[mid] == match)</span><br><span class="line">                    return &#123;i+1,mid+1&#125;;</span><br><span class="line">                else if(numbers[mid] &lt; match)</span><br><span class="line">                    left = mid+1;</span><br><span class="line">                else </span><br><span class="line">                    right = mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;1,1&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：6ms，超过38.57%</p>
 <hr>
-<p>第三种思路：参考了“喜唰唰”的博客。这种算是第一种思路的优化方法，使用priority_queue。将lists中的每个节点放入priority_queue中，创建一个min_heap。之后每从queue中取出一个节点，则将该节点在其list中的下一个节点插入，以此类推直到全部节点都经过priority queue。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    struct compNode &#123;</span><br><span class="line">        bool operator()(ListNode *p, ListNode *q) const &#123;</span><br><span class="line">            return p-&gt;val&gt;q-&gt;val;</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    ListNode *mergeKLists(vector&lt;ListNode *&gt; &amp;lists) &#123;</span><br><span class="line">        priority_queue&lt;ListNode*, vector&lt;ListNode*&gt;, compNode&gt; pq;</span><br><span class="line">        ListNode *dummy = new ListNode(0), *tail = dummy;</span><br><span class="line">        </span><br><span class="line">        for(int i=0; i&lt;lists.size(); i++) </span><br><span class="line">            if(lists[i]) pq.push(lists[i]);</span><br><span class="line">            </span><br><span class="line">        while(!pq.empty()) &#123;</span><br><span class="line">            tail-&gt;next = pq.top();</span><br><span class="line">            tail = tail-&gt;next;</span><br><span class="line">            pq.pop();</span><br><span class="line">            if(tail-&gt;next) pq.push(tail-&gt;next);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行时间：52ms，超过26.34%</p>
-<p>ref:<a href="http://bangbingsyb.blogspot.com/2014/11/leetcode-merge-k-sorted-lists.html" target="_blank" rel="external">http://bangbingsyb.blogspot.com/2014/11/leetcode-merge-k-sorted-lists.html</a></p>
+<p>TwoPointers做法。一个left_index在最左侧，一个right_index在最右侧。相加之和，小于target，则left_index++,大于target，则right_index–。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; numbers, int target) &#123;</span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = numbers.size()-1;</span><br><span class="line">        while(left &lt; right)</span><br><span class="line">        &#123;</span><br><span class="line">            int val = numbers[left]+numbers[right];</span><br><span class="line">            if(val == target)</span><br><span class="line">            &#123;</span><br><span class="line">                return &#123;left+1,right+1&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(val &gt; target)</span><br><span class="line">            &#123;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;0,0&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：9ms，超过15.26%</p>
 
       
     </div>
@@ -311,9 +309,11 @@
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/LinkedList/" rel="tag">#LinkedList</a>
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/MergeK/" rel="tag">#MergeK</a>
+            <a href="/tags/BinarySearch/" rel="tag">#BinarySearch</a>
+          
+            <a href="/tags/TwoPointer/" rel="tag">#TwoPointer</a>
           
         </div>
       
@@ -322,17 +322,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/29/leetcode-merge-two-sorted-lists/" rel="next" title="leetcode_merge_two_sorted_lists">
-                <i class="fa fa-chevron-left"></i> leetcode_merge_two_sorted_lists
+              <a href="/2016/12/07/leetcode-find-minimum-in-rotated-sorted-array-ii/" rel="next" title="leetcode_find_minimum_in_rotated_sorted_array_ii">
+                <i class="fa fa-chevron-left"></i> leetcode_find_minimum_in_rotated_sorted_array_ii
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/29/leetcode-swap-nodes-in-pairs/" rel="prev" title="leetcode_swap_nodes_in_pairs">
-                leetcode_swap_nodes_in_pairs <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
