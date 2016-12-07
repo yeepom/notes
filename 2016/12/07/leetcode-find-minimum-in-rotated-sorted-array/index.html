@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LeetCode,Array,BinarySearch," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="this is my blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yan">
-<meta property="og:url" content="http://yoursite.com/tags/Intersection/index.html">
+<meta name="description" content="难度：Medium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode_find_minimum_in_rotated_sorted_array">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/leetcode-find-minimum-in-rotated-sorted-array/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="this is my blog">
+<meta property="og:description" content="难度：Medium">
+<meta property="og:updated_time" content="2016-12-07T10:33:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yan">
-<meta name="twitter:description" content="this is my blog">
+<meta name="twitter:title" content="leetcode_find_minimum_in_rotated_sorted_array">
+<meta name="twitter:description" content="难度：Medium">
 
 
 
@@ -115,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Intersection/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/07/leetcode-find-minimum-in-rotated-sorted-array/"/>
 
-  <title> 标签: Intersection | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_find_minimum_in_rotated_sorted_array | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +139,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,46 +217,129 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Intersection
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                leetcode_find_minimum_in_rotated_sorted_array
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-07T18:30:55+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>难度：Medium<br><a id="more"></a></p>
+<p>解题思路：二分查找的题目。<a href="https://yeepom.github.io/2016/12/02/leetcode-search-in-rotated-sorted-array/" target="_blank" rel="external">类似题目</a></p>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findMin(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return find_min_with_binary(nums,0,nums.size()-1);</span><br><span class="line">    &#125;</span><br><span class="line">    int find_min_with_binary(vector&lt;int&gt; &amp;nums, int left, int right)</span><br><span class="line">    &#123;</span><br><span class="line">        if(left == right)</span><br><span class="line">            return nums[left];</span><br><span class="line">        else if(left+1 == right)</span><br><span class="line">            return min(nums[left],nums[right]);</span><br><span class="line">        int mid = left+(right-left)/2;</span><br><span class="line">        if(nums[mid] &lt; nums[right])</span><br><span class="line">            return  min(nums[mid], find_min_with_binary(nums,left,mid));</span><br><span class="line">        else</span><br><span class="line">            return  find_min_with_binary(nums,mid+1,right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行结果：6ms，超过1.6%</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/12/01/leetcode-intersection-of-two-linked-lists/" itemprop="url">
-              
-                <span itemprop="name">leetcode_intersection_of_two_linked_lists</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-01T16:41:49+08:00"
-              content="2016-12-01" >
-          12-01
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+            <a href="/tags/Array/" rel="tag">#Array</a>
+          
+            <a href="/tags/BinarySearch/" rel="tag">#BinarySearch</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/07/leetcode-majority-element/" rel="next" title="leetcode_majority_element">
+                <i class="fa fa-chevron-left"></i> leetcode_majority_element
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -263,6 +347,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -282,8 +370,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o9kchgjar.bkt.clouddn.com/11949811256_99cd5cbd55_b.jpg"
@@ -333,6 +430,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -437,6 +545,10 @@ MathJax.Hub.Config({
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
