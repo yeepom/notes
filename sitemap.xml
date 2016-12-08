@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/11/28/leetcode-longest-consecutive-sequence/</loc>
+    
+    <lastmod>2016-12-08T13:15:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/08/leetcode-maximum-product-subarray/</loc>
     
     <lastmod>2016-12-08T13:02:29.000Z</lastmod>
@@ -516,13 +523,6 @@
     <loc>http://yoursite.com/2016/11/28/leetcode-surrounded-regions/</loc>
     
     <lastmod>2016-11-28T11:49:15.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2016/11/28/leetcode-longest-consecutive-sequence/</loc>
-    
-    <lastmod>2016-11-28T02:36:38.000Z</lastmod>
     
   </url>
   
