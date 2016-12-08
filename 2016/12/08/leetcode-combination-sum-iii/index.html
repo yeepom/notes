@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="LeetCode,Array,BinarySearch," />
+  <meta name="keywords" content="LeetCode,Array,BackTracking," />
 
 
 
@@ -88,13 +88,13 @@
 
 <meta name="description" content="难度：Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_find_peak_element">
-<meta property="og:url" content="http://yoursite.com/2016/12/07/leetcode-find-peak-element/index.html">
+<meta property="og:title" content="leetcode_combination_sum_iii">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/leetcode-combination-sum-iii/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Medium">
-<meta property="og:updated_time" content="2016-12-07T14:11:06.000Z">
+<meta property="og:updated_time" content="2016-12-08T13:57:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_find_peak_element">
+<meta name="twitter:title" content="leetcode_combination_sum_iii">
 <meta name="twitter:description" content="难度：Medium">
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/07/leetcode-find-peak-element/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/08/leetcode-combination-sum-iii/"/>
 
-  <title> leetcode_find_peak_element | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_combination_sum_iii | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_find_peak_element
+                leetcode_combination_sum_iii
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-07T22:02:57+08:00" content="2016-12-07">
-              2016-12-07
+            <time itemprop="dateCreated" datetime="2016-12-08T21:56:18+08:00" content="2016-12-08">
+              2016-12-08
             </time>
           </span>
 
@@ -279,13 +279,9 @@
 
       
         <p>难度：Medium<br><a id="more"></a></p>
-<p>因为nums[i] != nums[i+1]，i=0时，nums[0] &gt; nums[-1]，只需查看右边界，如果nums[1]<nums[0]，0即为解；如果nums[1]> nums[0]，则前两个元素为升序，继续找下一个，直到最后一个元素。</nums[0]，0即为解；如果nums[1]></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findPeakElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int i = 1;</span><br><span class="line">        for(; i &lt; nums.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(nums[i] &lt; nums[i-1])</span><br><span class="line">                return i-1;</span><br><span class="line">        &#125;</span><br><span class="line">        return i-1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：6ms，超过14.08%</p>
-<hr>
-<p>看到提示是二分查找，顺着思路。找到nums[mid]后，跟左右的比较，如果不符合条件，肯定要从大的那一侧继续找。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findPeakElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size() &lt;= 1)    return 0;</span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = nums.size()-1;</span><br><span class="line">        while(left &lt;= right)</span><br><span class="line">        &#123;</span><br><span class="line">            int mid = left + (right-left)/2;</span><br><span class="line">            if(mid == 0 )</span><br><span class="line">            &#123;</span><br><span class="line">                if(nums[mid] &lt; nums[mid+1])</span><br><span class="line">                    left = mid+1;</span><br><span class="line">                else </span><br><span class="line">                    return mid;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(mid == nums.size()-1)</span><br><span class="line">            &#123;</span><br><span class="line">                if(nums[mid] &lt; nums[mid-1])</span><br><span class="line">                    right = mid-1;</span><br><span class="line">                else</span><br><span class="line">                    return mid;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if(nums[mid] &gt; nums[mid-1] &amp;&amp; nums[mid] &gt; nums[mid+1])</span><br><span class="line">                    return mid;</span><br><span class="line">                else if(nums[mid] &gt; nums[mid-1] &amp;&amp; nums[mid] &lt; nums[mid+1])</span><br><span class="line">                    left = mid+1;</span><br><span class="line">                else </span><br><span class="line">                    right = mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行结果：6ms，超过14.08%</p>
+<p>使用回溯法，递归调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ret;</span><br><span class="line">        vector&lt;int&gt; cur_vec;</span><br><span class="line">        combination_sum_3_recur(ret,k,n,cur_vec);</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void combination_sum_3_recur(vector&lt;vector&lt;int&gt;&gt; &amp;ret, int k, int rest, vector&lt;int&gt; &amp;cur_vec)</span><br><span class="line">    &#123;</span><br><span class="line">        if(k == 0 &amp;&amp; rest == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            ret.push_back(cur_vec);</span><br><span class="line">            // for_each(cur_vec.begin(), cur_vec.end(),[](int i)&#123;cout&lt;&lt;i&lt;&lt;&quot; &quot;;&#125;);</span><br><span class="line">            // cout&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(k &gt; 0 &amp;&amp; rest &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            int start = (cur_vec.empty() ? 1 : cur_vec.back()+1);</span><br><span class="line">            for(int i = start; i &lt;= 9; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                cur_vec.push_back(i);</span><br><span class="line">                combination_sum_3_recur(ret,k-1,rest-i,cur_vec);</span><br><span class="line">                cur_vec.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>0ms，超过42.38%</p>
 
       
     </div>
@@ -311,7 +307,7 @@
           
             <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/BinarySearch/" rel="tag">#BinarySearch</a>
+            <a href="/tags/BackTracking/" rel="tag">#BackTracking</a>
           
         </div>
       
@@ -320,17 +316,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/07/leetcode-two-sum-ii/" rel="next" title="leetcode_two_sum_ii">
-                <i class="fa fa-chevron-left"></i> leetcode_two_sum_ii
+              <a href="/2016/12/08/leetcode-maximum-product-subarray/" rel="next" title="leetcode_maximum_product_subarray">
+                <i class="fa fa-chevron-left"></i> leetcode_maximum_product_subarray
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/08/leetcode-minimum-size-subarray-sum/" rel="prev" title="leetcode_minimum_size_subarray_sum">
-                leetcode_minimum_size_subarray_sum <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
