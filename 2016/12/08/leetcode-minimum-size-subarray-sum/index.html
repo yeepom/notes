@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/08/leetcode-minimum-size-subarray-sum/index.html">
 <meta property="og:site_name" content="yan">
 <meta property="og:description" content="难度：Meidum">
-<meta property="og:updated_time" content="2016-12-08T03:23:11.000Z">
+<meta property="og:updated_time" content="2016-12-08T03:25:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode_minimum_size_subarray_sum">
 <meta name="twitter:description" content="难度：Meidum">
@@ -278,7 +278,8 @@
       
 
       
-        <p>难度：Meidum<br><a id="more"></a></p>
+        <p>难度：Meidum</p>
+<a id="more"></a>
 <p>遍历数组，分别计算以该元素为结尾的，满足条件的子数组的最小长度。维护一个全局最小值，进行更新。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        int start = 0;</span><br><span class="line">        int minimum = 0;</span><br><span class="line">        for(int i = 0; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum+=nums[i];</span><br><span class="line">            if(sum &gt;= s)</span><br><span class="line">            &#123;</span><br><span class="line">                while((sum-nums[start]) &gt;= s)</span><br><span class="line">                &#123;</span><br><span class="line">                    sum -= nums[start];</span><br><span class="line">                    start++;</span><br><span class="line">                &#125;</span><br><span class="line">                if(minimum == 0)</span><br><span class="line">                    minimum = i-start+1;</span><br><span class="line">                else</span><br><span class="line">                    minimum = min(minimum, i-start+1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return minimum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>运行结果：6ms，超过20.22%</p>
