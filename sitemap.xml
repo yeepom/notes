@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/09/leetcode-move-zeroes/</loc>
+    
+    <lastmod>2016-12-09T09:31:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/09/leetcode-find-all-duplicates-in-an-array/</loc>
+    
+    <lastmod>2016-12-09T09:26:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/09/leetcode-product-of-array-except-self/</loc>
     
     <lastmod>2016-12-09T08:31:08.000Z</lastmod>
