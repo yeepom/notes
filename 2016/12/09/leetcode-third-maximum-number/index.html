@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="难度:Medium解题思路：可以按照3Sum的思路来。代码如下。">
+<meta name="description" content="难度：Easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_four_sum">
-<meta property="og:url" content="http://yoursite.com/2016/11/23/fourSum/index.html">
+<meta property="og:title" content="leetcode_third_maximum_number">
+<meta property="og:url" content="http://yoursite.com/2016/12/09/leetcode-third-maximum-number/index.html">
 <meta property="og:site_name" content="yan">
-<meta property="og:description" content="难度:Medium解题思路：可以按照3Sum的思路来。代码如下。">
-<meta property="og:updated_time" content="2016-11-23T13:56:58.000Z">
+<meta property="og:description" content="难度：Easy">
+<meta property="og:updated_time" content="2016-12-09T10:43:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode_four_sum">
-<meta name="twitter:description" content="难度:Medium解题思路：可以按照3Sum的思路来。代码如下。">
+<meta name="twitter:title" content="leetcode_third_maximum_number">
+<meta name="twitter:description" content="难度：Easy">
 
 
 
@@ -116,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/23/fourSum/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/09/leetcode-third-maximum-number/"/>
 
-  <title> leetcode_four_sum | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> leetcode_third_maximum_number | yan </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -238,7 +238,7 @@
             
             
               
-                leetcode_four_sum
+                leetcode_third_maximum_number
               
             
           </h1>
@@ -250,8 +250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-23T09:01:27+08:00" content="2016-11-23">
-              2016-11-23
+            <time itemprop="dateCreated" datetime="2016-12-09T18:41:59+08:00" content="2016-12-09">
+              2016-12-09
             </time>
           </span>
 
@@ -278,8 +278,11 @@
       
 
       
-        <p>难度:Medium<br>解题思路：可以按照3Sum的思路来。代码如下。<br><a id="more"></a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; rst;</span><br><span class="line">        if (nums.size() &lt; 3) return rst;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        auto begin_it = nums.begin();</span><br><span class="line">        auto end_it = nums.end();</span><br><span class="line">        </span><br><span class="line">        auto first_it = begin_it;</span><br><span class="line">        for(; first_it + 3 != end_it ; first_it++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(first_it != begin_it &amp;&amp; *(first_it-1) == *first_it)</span><br><span class="line">                continue;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                auto second_it = first_it + 1;</span><br><span class="line">                for(; second_it+2 != end_it ; second_it++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if(second_it != (first_it + 1) &amp;&amp; *(second_it-1) == *second_it)</span><br><span class="line">                        continue;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        auto third_it = second_it+1;</span><br><span class="line">                        auto forth_it = end_it-1;</span><br><span class="line">                        while(third_it != forth_it)</span><br><span class="line">                        &#123;</span><br><span class="line">                            int first_value=*first_it, second_value=*second_it,third_value=*third_it,forth_value=*forth_it;</span><br><span class="line">                            int fourSum = first_value + second_value + third_value + forth_value;</span><br><span class="line">                            if(fourSum &lt; target)</span><br><span class="line">                                third_it++;</span><br><span class="line">                            else if(fourSum &gt; target)</span><br><span class="line">                                forth_it--;</span><br><span class="line">                            else&#123;</span><br><span class="line">                                vector&lt;int&gt; temp &#123;first_value,second_value,third_value,forth_value&#125;;</span><br><span class="line">                                rst.push_back(temp);</span><br><span class="line">                                while((third_it + 1) != forth_it &amp;&amp; *(third_it+1) == third_value)</span><br><span class="line">                                    third_it++;</span><br><span class="line">                                third_it++;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return rst;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>难度：Easy<br><a id="more"></a></p>
+<p>维护一个数组ret,ret[0]为最大值，ret[1]为第二大，ret[2]为最小值。初始化成LONG_MIN。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int thirdMax(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;long&gt; ret&#123;LONG_MIN,LONG_MIN,LONG_MIN&#125;;</span><br><span class="line">        for(int i = 0; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(nums[i] &gt; ret[2])</span><br><span class="line">            &#123;</span><br><span class="line">                if(nums[i] &gt; ret[1])</span><br><span class="line">                &#123;</span><br><span class="line">                    if(nums[i] &gt; ret[0])</span><br><span class="line">                    &#123;</span><br><span class="line">                        ret[2] = ret[1];</span><br><span class="line">                        ret[1] = ret[0];</span><br><span class="line">                        ret[0] = nums[i];</span><br><span class="line">                    &#125;</span><br><span class="line">                    else if(nums[i] == ret[0])</span><br><span class="line">                        continue;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        ret[2] = ret[1];</span><br><span class="line">                        ret[1] = nums[i];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else if(nums[i] == ret[1])</span><br><span class="line">                    continue;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    ret[2] = nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return (ret[2]==LONG_MIN)?((ret[0]==LONG_MIN)?0:ret[0]):ret[2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>6ms，66.19%</p>
+
       
     </div>
 
@@ -311,17 +314,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/22/3SumClosest/" rel="next" title="leetcode_three_sum_closest">
-                <i class="fa fa-chevron-left"></i> leetcode_three_sum_closest
+              <a href="/2016/12/09/leetcode-find-all-numbers-disappeared-in-an-array/" rel="next" title="leetcode_find_all_numbers_disappeared_in_an_array">
+                <i class="fa fa-chevron-left"></i> leetcode_find_all_numbers_disappeared_in_an_array
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/23/c-plus-plus-new-and-allocator/" rel="prev" title="c++动态数组">
-                c++动态数组 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
