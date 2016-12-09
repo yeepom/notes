@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2016/12/09/leetcode-move-zeroes/</loc>
+    <loc>http://yoursite.com/2016/12/09/leetcode-find-all-duplicates-in-an-array/</loc>
     
-    <lastmod>2016-12-09T09:31:17.000Z</lastmod>
+    <lastmod>2016-12-09T10:12:53.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2016/12/09/leetcode-find-all-duplicates-in-an-array/</loc>
+    <loc>http://yoursite.com/2016/12/09/leetcode-find-all-numbers-disappeared-in-an-array/</loc>
     
-    <lastmod>2016-12-09T09:26:48.000Z</lastmod>
+    <lastmod>2016-12-09T10:06:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/09/leetcode-move-zeroes/</loc>
+    
+    <lastmod>2016-12-09T09:31:17.000Z</lastmod>
     
   </url>
   
