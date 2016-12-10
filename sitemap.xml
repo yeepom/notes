@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/10/leetcode-insert-delete-getrandom-O-1-duplicates-allowed/</loc>
+    
+    <lastmod>2016-12-10T07:00:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/12/10/leetcode-insert-delete-getrandom-O-1/</loc>
+    
+    <lastmod>2016-12-10T05:10:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/09/leetcode-find-the-duplicate-number/</loc>
     
     <lastmod>2016-12-09T11:25:29.000Z</lastmod>
