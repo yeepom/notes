@@ -399,7 +399,7 @@
     <link href="http://yoursite.com/2016/12/08/c-plus-plus-general-algorithm/"/>
     <id>http://yoursite.com/2016/12/08/c-plus-plus-general-algorithm/</id>
     <published>2016-12-08T03:41:19.000Z</published>
-    <updated>2016-12-10T07:20:39.000Z</updated>
+    <updated>2016-12-11T04:17:48.000Z</updated>
     
     <content type="html">&lt;p&gt;一、概述&lt;/p&gt;
 &lt;p&gt;大多数算法都定义在头文件algorithm中，numeric中定义了一组数值范型算法。&lt;br&gt;一般情况下，算法不直接操作容器，而是遍历由两个迭代器指定的一个元素范围来进行操作。&lt;br&gt;通常情况下，算法遍历范围，对其中每个元素进行一些处理。&lt;/p&gt;
@@ -521,6 +521,194 @@ f(a,b,Y,c,X)
 &lt;p&gt;绑定引用参数&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for_each(words.begin(), words.end(),[&amp;amp;os, c](const string &amp;amp;s)&amp;#123;os&amp;lt;&amp;lt;s&amp;lt;&amp;lt;c;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ostream &amp;amp;print(ostream &amp;amp;os, const string &amp;amp;s, char c)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return os&amp;lt;&amp;lt;s&amp;lt;&amp;lt;c;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for_each(words.begin(), words.end(), bind(print, os, _1, &amp;apos; &amp;apos;));//错误：os不能拷贝&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for_each(words.begin(), words.end(), bind(print, ref(os), _1, &amp;apos; &amp;apos;));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;标准库ref函数返回一个对象，包含给定的引用。还有一个cref函数，生成一个保存const引用的类。ref和cref都定义在functional中。&lt;/p&gt;
+&lt;p&gt;四、再探迭代器&lt;/p&gt;
+&lt;p&gt;标准库在头文件iterator中还定义了几种：插入迭代器(insert iterator)、流迭代器(stream iterator)、反向迭代器(reverse iterator)、移动迭代器(move iterator)。&lt;/p&gt;
+&lt;p&gt;4.1 插入迭代器&lt;/p&gt;
+&lt;p&gt;是一种迭代器适配器，接受一个容器，生成一个迭代器，能实现向给定容器添加元素。&lt;br&gt;有三种:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;back_inserter：创建一个使用push_back的迭代器，只有容器支持push_back才可以使用
+
+front_inserter：创建一个使用push_front的迭代器，只有容器支持push_front才可以使用
+
+inserter：创建一个使用inserter的迭代器。此函数接受第二个参数，这个参数必须是一个指向给定容器的迭代器。元素将被插入到给定迭代器所表示的元素之前。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;理解插入器：当调用inserter(c,iter)时，我们得到一个迭代器，接下来使用它，会将元素插入到iter原来所指向的元素之前的位置。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;*it = val;
+
+等价于：
+
+it = c.insert(it, val);        //it指向新加入的元素
+++it;    //递增it使它指向原来的元素
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;int&amp;gt; lst = &amp;#123;1,2,3,4&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;int&amp;gt; lst2, lst3, lst4(lst);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;copy(lst.cbegin(), lst.cend(), front_inserter(lst2));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;copy(lst.cbegin(), lst.cend(), inserter(lst3,lst3.begin()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;copy(lst.cbegin(), lst.cend(), inserter(lst4,lst4.begin()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出分别为：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4 3 2 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 2 3 4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 2 3 4 1 2 3 4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;4.2 iostream迭代器&lt;/p&gt;
+&lt;p&gt;istream_iterator读取输入流，ostream_iterator向一个输出流写数据。&lt;/p&gt;
+&lt;p&gt;istream_iterator操作&lt;/p&gt;
+&lt;p&gt;当创建一个流迭代器时，必须指定迭代器将要读写的对象类型。一个istream_iterator使用&amp;gt;&amp;gt;来读取流。因此，istream_iterator要读取的类型必须定义了输入运算符。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;istream_iteraotr&lt;t&gt; in(is)&lt;/t&gt;&lt;/td&gt;
+&lt;td&gt;in从输入流is读取类型为T的流&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;istream_iteraotr&lt;t&gt; end&lt;/t&gt;&lt;/td&gt;
+&lt;td&gt;读取类型为T的值的istream_iterator迭代器，表示尾后位置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;in1 == in2&lt;/td&gt;
+&lt;td&gt;in1和in2必须读取相同类型。如果它们都是尾后迭代器或绑定到相同的输入，则相等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;in1 != in2&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;*in&lt;/td&gt;
+&lt;td&gt;返回从流中读取的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;in-&amp;gt;mem&lt;/td&gt;
+&lt;td&gt;与(*in).mem的含义相同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;++in, in++&lt;/td&gt;
+&lt;td&gt;使用元素类型所定义的&amp;gt;&amp;gt;运算符从输入流中读取下一个值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;istream_iterator&amp;lt;int&amp;gt; int_it(cin);	//从cin读取int&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;istream_iterator&amp;lt;int&amp;gt; int_eof;		//尾后迭代器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ifstream in(&amp;quot;afile&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;istream_iterator&amp;lt;string&amp;gt;	str_it(in);	//从&amp;quot;afile&amp;quot;中读取字符串&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;从输入读取数据，存入一个vector的例子。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;istream_iterator&amp;lt;int&amp;gt; in_iter(cin);	//从cin读取int&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;istream_iterator&amp;lt;int&amp;gt; eof;				//istream尾后迭代器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(in_iter != eof)	//当有数据可供读取时&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	vec.push_back(*in_iter++);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;等价于&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;istream_iterator&amp;lt;int&amp;gt; in_iter(cin), eof;//从cin读取int&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; vec(in_iter, eof);	//从迭代器范围构造vec&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;使用算法操作流迭代&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;istream_iterator&amp;lt;int&amp;gt; in_iter(cin), eof;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;accumulate(in,eof,0)&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;ostream_iterator操作&lt;/p&gt;
+&lt;p&gt;可以对任何具有输出运算符(&amp;lt;&amp;lt;)的类型定义ostream_iteraotr。当创建一个ostream_iterator时，可以提供(可选的)第二参数，是一个字符串，在输出每个元素后都会打印此字符串。必须是C风格字符串(即，一个字符串字面常量或一个指向以空字符串结尾的字符数组的指针)。必须将一个ostream_iterator绑定到一个指定的流，不允许空的或表示尾后位置的ostream_iterator。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ostream_iterator&lt;t&gt; out(os)&lt;/t&gt;&lt;/td&gt;
+&lt;td&gt;out将类型为T的值写到输出流os中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ostream_iterator&lt;t&gt; out(os,d)&lt;/t&gt;&lt;/td&gt;
+&lt;td&gt;out将类型为T的值写到输出流os中，每个值后面都输出d。d指向一个空字符结尾的字符数组&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;out = val&lt;/td&gt;
+&lt;td&gt;用&amp;lt;&amp;lt;运算符将val写入到out绑定的ostream中。val的类型必须与out可写的类型兼容&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;*out,++out,out++&lt;/td&gt;
+&lt;td&gt;这些运算符存在，但部队out做任何事情。每个运算符都返回out&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ostream_iterator&amp;lt;int&amp;gt; out_iter(cout, &amp;quot; &amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(auto e:vec)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	*out_iter++ = e;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;可以忽略解引用和递增运算，等价于&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(auto e:vec)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	out_iter = e;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;copy(vec.begin(), vec.end(), out_iter);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;```  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4.3 反向迭代器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;除了forward_list之外，其他容器都支持反响迭代器。可以通过rbegin、rend、从日本给 i 呢、crend成员函数来获得。递增一个反向迭代器会移动到前一个元素；递减会移动到下一个元素。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;vector&lt;int&gt; vec = {0,1,2,3,4};&lt;br&gt;for(auto r_iter = vec.crbegin(); r_iter != vec.crend(); ++r_iter)&lt;br&gt;    cout&amp;lt;&amp;lt; *r_iter&amp;lt;&amp;lt;endl;&lt;br&gt;//打印4 3 2 1 0&lt;/int&gt;&lt;/p&gt;
+&lt;p&gt;sort(vec.begin(),vec.end());    //按“正常顺序”排序&lt;br&gt;sort(vec.rbegin(),vec.rend());    //按“逆序”排序&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;反向迭代器需要递减运算符&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;调用base()可转换成普通迭代器。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;![transform photo](http://o9kchgjar.bkt.clouddn.com/Snip20161211_1.png)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;auto comma = find(line.cbegin(), line.cend(), ‘,’);&lt;br&gt;cout&amp;lt;&amp;lt;string(line.cbegin(),comma)&amp;lt;&amp;lt;endl;&lt;br&gt;输出:FIRST&lt;/p&gt;
+&lt;p&gt;auto rcomma = find(line.crbegin(), line.crend(), ‘,’);&lt;br&gt;cout&amp;lt;&amp;lt;string(line.crbegin(),rcomma)&amp;lt;&amp;lt;endl;&lt;br&gt;输出：TSAL&lt;/p&gt;
+&lt;p&gt;cout&amp;lt;&amp;lt;string(rcomma.base(), line.cend())&amp;lt;&amp;lt;endl;&lt;br&gt;输出LAST&lt;br&gt;```&lt;/p&gt;
+&lt;p&gt;五、泛型算法结构&lt;/p&gt;
+&lt;p&gt;5.1 5类迭代器&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;输入迭代器：只读不写；单遍扫描，只能递增。操作：== != ++ * -&amp;gt;
+
+输出迭代器：只写不读；单遍扫描，只能递增。操作：++ *
+
+前向迭代器：可读写；多遍扫描，只能递增。操作：== != ++ * -&amp;gt;
+
+双向迭代器：可读写；多遍扫描，可递增递减。操作：== != ++ -- * -&amp;gt;
+
+随机访问迭代器：可读写；多边扫描，支持全部迭代器运算。操作：== != &amp;lt; &amp;lt;= &amp;gt; &amp;gt;= ++ -- + += - -= - * -&amp;gt; iter[n] = *(iter+n)
+
+vector    :    random access iterator
+list    :    bidirectional iterator
+map        :    bidirectional iterator
+set        :    bidirectional iterator
+forward_lsit: forward iterator
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.2 算法形参模式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;alg(beg, end, other args);
+alg(beg, end, dest, other args);
+alg(beg, end, beg2, other args);
+alg(beg, end, beg2, end2, other args);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接受单个目标迭代器的算法&lt;br&gt;    dest参数是一个表示算法可以写入的目的位置的迭代器。按需要写入数据，不管写入多少个都是安全的。常见的：插入迭代器、ostream_iterator。&lt;/p&gt;
+&lt;p&gt;接受第二个输入序列的算法&lt;br&gt;    单独接受beg2或是接受beg2和end2的算法。接受单独beg2的算法假定从beg2开始的序列与beg和end所表示的范围至少一样大&lt;/p&gt;
+&lt;p&gt;5.3算法命名规范&lt;/p&gt;
+&lt;p&gt;一些算法使用重载形式传递一个谓词&lt;/p&gt;
+&lt;p&gt;接受谓词参数来代替&amp;lt;或==运算符。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;unique(beg,end);        //使用==运算符比较元素
+unique(beg,end,comp);    //使用comp比较元素
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;_if 版本的算法&lt;br&gt;    接受一个元素值的算法通常有另一个不同名的版本，该版本接受一个谓词代替元素值。接受谓词参数的算法都有附加的_if前缀。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;find(beg, end, val);    //查找输入范围中val第一次出现的位置
+find_if(beg, end, pred);    //查找第一个令pred为真的元素
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;区分拷贝元素的版本和不拷贝的版本&lt;br&gt;    默认情况下，重排元素的算法将重排后的元素写回给定的输入序列中。这些算法还提供另一个版本，将元素写到一个指定的输出目的位置。写道额外目的空间的算法都在名字后面附加一个_copy。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;reverse(beg, end);    //翻转输入范围中的元素的顺序
+reverse_copy(beg, end);    //将元素按逆序拷贝到dest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一些算法同时提供_copy和_if版本。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;remove_if(v1.begin(), v1.end(), [](int i){return i % 2;});
+
+remove_copy_if(v1.begin(), v1.end(), back_inserter(v2),[](int i) {
+return i % 2});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;六、特定容器算法&lt;/p&gt;
+&lt;p&gt;list和forward_list定义了几个成员函数形式的算法。它们定义了独有的sort merge remove reverse unique。通用版本的sort要求随机访问迭代器，不能用于list和forward_list。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.merge(lst2)&lt;/td&gt;
+&lt;td&gt;将来自lst2的元素合并入lst。lst和lst2都必须是有序的。元素将从lst2中删除。在合并之后，lst2变为空。第一个版本使用&amp;lt;运算符；第二个版本使用给定的比较操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.merge(lst2,comp)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.remove(val)&lt;/td&gt;
+&lt;td&gt;调用erase删除掉与val相等或令一元谓词为真的每一个元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.remove_if(pred)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.reverse()&lt;/td&gt;
+&lt;td&gt;反转lst中元素的顺序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.sort()&lt;/td&gt;
+&lt;td&gt;使用&amp;lt;或给定比较操作排序元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.sort(comp)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.unique()&lt;/td&gt;
+&lt;td&gt;调用erase删除同一个值的连续拷贝。使用==或谓词 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.unique(pred)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;链表特有的操作会改变容器&lt;/p&gt;
 </content>
     
     <summary type="html">
