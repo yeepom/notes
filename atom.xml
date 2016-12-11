@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-11T10:04:41.000Z</updated>
+  <updated>2016-12-11T11:10:53.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode_majority_elements_ii</title>
+    <link href="http://yoursite.com/2016/12/11/leetcode-majority-elements-ii/"/>
+    <id>http://yoursite.com/2016/12/11/leetcode-majority-elements-ii/</id>
+    <published>2016-12-11T11:05:10.000Z</published>
+    <updated>2016-12-11T11:10:53.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：Hard&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用Moore Voting，先找出两个或一个多数，然后再遍历一遍，看看各自的个数是不是大于1/3。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vector&amp;lt;int&amp;gt; majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(nums.size() == 0)    return vector&amp;lt;int&amp;gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int m = 0,n = 0,cm = 0,cn = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(int i = 0; i &amp;lt; nums.size(); i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(nums[i] == m) cm++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else if(nums[i] == n) cn++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else if(nums[i] != m &amp;amp;&amp;amp; cm == 0) m=nums[i],cm=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else if(nums[i] != n &amp;amp;&amp;amp; cn == 0) n=nums[i],cn=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else cm--,cn--;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // cout&amp;lt;&amp;lt;m&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;n&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cm = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        cn = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(int i = 0; i &amp;lt; nums.size(); i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(nums[i] == m)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                cm++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else if(nums[i] == n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                cn++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // cout&amp;lt;&amp;lt;cm&amp;lt;&amp;lt;&amp;quot; &amp;quot;&amp;lt;&amp;lt;cn&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;int&amp;gt;ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(cm &amp;gt; nums.size()/3)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ret.push_back(m);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(cn &amp;gt; nums.size()/3)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ret.push_back(n);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：Hard&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode_maximal_rectangle</title>
@@ -861,35 +885,6 @@ return i % 2});
 &lt;p&gt;代码如下：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int findMin(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return find_min_with_binary(nums,0,nums.size()-1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int find_min_with_binary(vector&amp;lt;int&amp;gt; &amp;amp;nums, int left, int right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(left == right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return nums[left];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else if(left+1 == right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return min(nums[left],nums[right]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int mid = left+(right-left)/2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(nums[mid] &amp;lt; nums[right])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return  min(nums[mid], find_min_with_binary(nums,left,mid));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else if(nums[mid] &amp;gt; nums[right])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return  find_min_with_binary(nums,mid+1,right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return find_min_with_binary(nums,left,right-1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;运行结果：6ms，超过28.63%&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;难度：Medium&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-      <category term="BinarySearch" scheme="http://yoursite.com/tags/BinarySearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode_find_minimum_in_rotated_sorted_array</title>
-    <link href="http://yoursite.com/2016/12/07/leetcode-find-minimum-in-rotated-sorted-array/"/>
-    <id>http://yoursite.com/2016/12/07/leetcode-find-minimum-in-rotated-sorted-array/</id>
-    <published>2016-12-07T10:30:55.000Z</published>
-    <updated>2016-12-07T10:33:56.000Z</updated>
-    
-    <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;解题思路：二分查找的题目。&lt;a href=&quot;https://yeepom.github.io/2016/12/02/leetcode-search-in-rotated-sorted-array/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;类似题目&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int findMin(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return find_min_with_binary(nums,0,nums.size()-1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int find_min_with_binary(vector&amp;lt;int&amp;gt; &amp;amp;nums, int left, int right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(left == right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return nums[left];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else if(left+1 == right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return min(nums[left],nums[right]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int mid = left+(right-left)/2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(nums[mid] &amp;lt; nums[right])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return  min(nums[mid], find_min_with_binary(nums,left,mid));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return  find_min_with_binary(nums,mid+1,right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;运行结果：6ms，超过1.6%&lt;/p&gt;
 </content>
     
     <summary type="html">

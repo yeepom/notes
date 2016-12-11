@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/12/11/leetcode-majority-elements-ii/</loc>
+    
+    <lastmod>2016-12-11T11:10:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/12/11/leetcode-maximal-rectangle/</loc>
     
     <lastmod>2016-12-11T10:04:41.000Z</lastmod>
