@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-12T12:36:12.000Z</updated>
+  <updated>2016-12-12T14:13:58.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode_binary_tree_inorder_traversal</title>
+    <link href="http://yoursite.com/2016/12/12/leetcode-binary-tree-inorder-traversal/"/>
+    <id>http://yoursite.com/2016/12/12/leetcode-binary-tree-inorder-traversal/</id>
+    <published>2016-12-12T14:04:09.000Z</published>
+    <updated>2016-12-12T14:13:58.000Z</updated>
+    
+    <content type="html">&lt;p&gt;难度：Meidum&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;中序遍历是：左 根 右。从根开始，把元素push进stack。从stack中取出top元素，然后查看左节点是否为空，如果不为空，则push进stack，一直做下去，直到左节点为空。当左节点为空时，将top元素pop除去，查看该元素右节点是否为空，如果不为空，则push进stack。在元素进栈时，要将元素记录下来，防止从右节点回来时，重复访问。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * Definition for a binary tree node.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * struct TreeNode &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     int val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode *left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode *right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode(int x) : val(x), left(NULL), right(NULL) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vector&amp;lt;int&amp;gt; inorderTraversal(TreeNode* root) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (root == NULL)   return &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        stack&amp;lt;TreeNode*&amp;gt; s;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        unordered_map&amp;lt;TreeNode*,bool&amp;gt; m;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        s.push(root);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        m[root] = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;int&amp;gt; ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        while(!s.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            TreeNode *cur = s.top();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(cur-&amp;gt;left != NULL &amp;amp;&amp;amp; m[cur-&amp;gt;left] == false)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                s.push(cur-&amp;gt;left);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                m[cur-&amp;gt;left] = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                ret.push_back(cur-&amp;gt;val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                s.pop();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(cur-&amp;gt;right != NULL)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    s.push(cur-&amp;gt;right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    m[cur-&amp;gt;right] = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;难度：Meidum&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+      <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode_minimum_window_substring</title>
@@ -38,9 +64,9 @@
     
       <category term="String" scheme="http://yoursite.com/tags/String/"/>
     
-      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
-    
       <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
     
   </entry>
   
@@ -116,9 +142,9 @@
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
-      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
-    
       <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
     
       <category term="TwoPointers" scheme="http://yoursite.com/tags/TwoPointers/"/>
     
@@ -153,7 +179,7 @@
     <link href="http://yoursite.com/2016/12/12/c-plus-plus-sequential-container/"/>
     <id>http://yoursite.com/2016/12/12/c-plus-plus-sequential-container/</id>
     <published>2016-12-12T00:52:31.000Z</published>
-    <updated>2016-12-12T05:56:01.000Z</updated>
+    <updated>2016-12-14T05:11:48.000Z</updated>
     
     <content type="html">&lt;p&gt;一、概念&lt;/p&gt;
 &lt;table&gt;
@@ -204,7 +230,7 @@ vector&amp;lt;noDefault&amp;gt; v2(12);        //错误：noDefault没有默认�
 &lt;p&gt;迭代器范围[begin,end)，分别指向同一个容器中的元素或者是尾元素之后的位置。&lt;br&gt;end可以与begin指向相同的位置，但不能指向begin之前的位置。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;int&amp;gt; lst;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;int&amp;gt;::iterator first = lst.begin(), second = lst.end()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(first &amp;lt; end)	//错误：因为list是双向链表，链表的节点地址不是连续的。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(first != end)	//正确&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;2.2 容器类型成员&lt;/p&gt;
-&lt;p&gt;在不了解容器中元素类型的情况下。如果需要元素类型，可以使用value_type。如果需要元素类型的引用，可以使用reference或const_reference。&lt;/p&gt;
+&lt;p&gt;在不了解容器中元素类型的情况下。如果需要元素类型，可以使用value_ type。如果需要元素类型的引用，可以使用reference或const_reference。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;list&amp;lt;string&amp;gt;::iterator iter;
 vector&amp;lt;int&amp;gt;::difference_type count;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.3 begin和end成员&lt;/p&gt;
@@ -355,6 +381,333 @@ vector&amp;lt;int&amp;gt;::difference_type count;
 &lt;p&gt;左右两边必须是相同类型的容器，必须保存相同类型的元素。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; v1 = &amp;#123;1,3,5,7,9,12&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; v2 = &amp;#123;1,3,9&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; v3 = &amp;#123;1,3,5,7&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; v4 = &amp;#123;1,3,5,7,9,12&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v1 &amp;lt; v2;	//true v1 v2在元素[2]处不同，v1[2] &amp;lt;= v2[2]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v1 &amp;lt; v3;	//false 所有元素都相等，但v3中元素数目更少&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v1 == v4;	//true	每个元素都相等，且v1和v4大小相同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v1 == v2;	//false	v2元素数目比v1小&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;只有当其元素类型也定义了相应的比较运算符时，才可以使用关系运算符来比较容器。&lt;/p&gt;
+&lt;p&gt;三、顺序容器操作&lt;/p&gt;
+&lt;p&gt;3.1 向顺序容器添加元素&lt;/p&gt;
+&lt;p&gt;操作&lt;br&gt;这些操作会改变容器的大小；array不支持这些操作&lt;/p&gt;
+&lt;p&gt;forward&lt;em&gt; list有自己版本的insert emplace，且不支持push&lt;/em&gt; back emplace_back&lt;/p&gt;
+&lt;p&gt;vector和string不支持push&lt;em&gt; front和emplace&lt;/em&gt; front&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c.push_back(t)&lt;/td&gt;
+&lt;td&gt;在c的尾部创建一个值为t或由args创建的元素。返回void&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.emplace_back(args)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.push_front(t)&lt;/td&gt;
+&lt;td&gt;在c的头部创建一个值为t或由args创建的元素。返回void&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.emplace_front(args)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.insert(p,t)&lt;/td&gt;
+&lt;td&gt;在迭代器p指向的元素之前创建一个值为t或由args创建的元素。返回指向新添加的元素的迭代器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.emplace(p,args)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.insert(p,n,t)&lt;/td&gt;
+&lt;td&gt;在迭代器p指向的元素之前插入n个值为t的元素。返回指向新添加的第一个元素的迭代器；若n为0，则返回p&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.insert(p,b,e)&lt;/td&gt;
+&lt;td&gt;将迭代器b和e指定的范围内的元素插入到迭代器p指向的元素之前。b和e不能指向c中的元素。返回指向新添加的第一个元素的迭代器；若范围为空，则返回p&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.insert(p,il)&lt;/td&gt;
+&lt;td&gt;将迭代器b和e指定的范围内的元素插入到迭代器p指向的元素之前。b和e不能指向c中的元素。返回指向新添加的第一个元素的迭代器；若范围为空，则返回p&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;使用push_back&lt;/p&gt;
+&lt;p&gt;除了array和forward_list之外，每个顺序容器(vector list deque string)都支持。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string word;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(cin &amp;gt;&amp;gt; word)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	container.push_back(word);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当用一个对象来初始化容器时，或将一个对象插入到容器中时，实际上放入到容器中的是对象值的一个拷贝。&lt;/p&gt;
+&lt;p&gt;使用push_front&lt;/p&gt;
+&lt;p&gt;list forward_list deque支持。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;int&amp;gt; ilist;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(size_t ix = 0; ix != 4; ++ix)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	ilist.push_front(ix);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;deque和vector一样提供了随机访问元素的能力，同时它提供了vector不支持的push_front。&lt;/p&gt;
+&lt;p&gt;在容器的特定位置添加元素&lt;/p&gt;
+&lt;p&gt;insert成员允许我们在容器中任意位置插入0个或多个元素。vector deque list string都支持。forward_list提供了特殊版本的insert成员。&lt;/p&gt;
+&lt;p&gt;insert函数将元素插入到迭代器所指定的位置之前。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;slist.insert(iter,&amp;quot;Hello!&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;尽管有些容器不支持push_front操作，但它们对于insert操作并无类似限制。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;string&amp;gt; svec;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;string&amp;gt; slist;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;slist.insert(slist.begin(), &amp;quot;hello&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;svec.insert(svec.begin(), &amp;quot;hello&amp;quot;);	//插入到vector末尾之外的任何位置都可能很慢&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;插入范围内的元素&lt;/p&gt;
+&lt;p&gt;insert函数还可以接受更多的参数，这与容器构造函数类似。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;svec.insert(svec.end(),10,&amp;quot;Anna&amp;quot;);	//将10个元素插入到svec的末尾。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;string&amp;gt; v = &amp;#123;&amp;quot;quansi&amp;quot;,&amp;quot;simba&amp;quot;,&amp;quot;frollo&amp;quot;,&amp;quot;scar&amp;quot;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;slist.insert(slist.begin(),v.end()-2,v.end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;slist.insert(slist.end(),&amp;#123;&amp;quot;three&amp;quot;,&amp;quot;words&amp;quot;,&amp;quot;will&amp;quot;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;slist.insert(slist.begin(),slist.begin(),slist.end());	//runtime错误：要拷贝的范围，不能指向雨目的位置相同的容器&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;使用insert的返回值&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;string&amp;gt; lst;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto iter = lst.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(cin &amp;gt;&amp;gt; word)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	iter = lst.insert(iter,word);	//等价于调用push_front;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;使用emplace操作&lt;/p&gt;
+&lt;p&gt;新标准引入了三个新成员：emplace_front emplace emplace_back，这些操作构造而不是拷贝元素。分别对应于push_front insert push_back。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;c.emplace_back(&amp;quot;978-069&amp;quot;,25,15.88);	//在c的末尾构造一个Sales_data对象。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;c.push_back(&amp;quot;978-069&amp;quot;,25,15.88);	//错误&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;c.push_back(Sales_data(&amp;quot;978-069&amp;quot;,25,15.88));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;emplace函数的参数根据与元素类型而变化，参数必须与元素类型的构造函数相匹配。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;c.emplace_back();	//使用Sales_data的默认构造函数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;c.emplace(iter,&amp;quot;999-999999&amp;quot;);	//使用Sales_data(string)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;c.emplac_front(&amp;quot;978-2833&amp;quot;,29,18);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;3.2 访问元素&lt;/p&gt;
+&lt;p&gt;包括array在内的每个顺序容器都有一个front函数，而除forward_list之外的所有顺序容器都有一个back成员函数。这两个操作分别是首元素和尾元素的引用。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;if(!c.empty())	//在解引用一个迭代器或调用front back之前检查是否有元素&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	auto val = *c.begin,val2 = c.front();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	auto last = c.end();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	auto val3 = *(--last);	//不能递减forward_list迭代器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	auto val4 = c.back();	//forward_list不支持&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;at和下标操作只适用于string vector deque和array。&lt;br&gt;back不适用于forward_list。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c.back()&lt;/td&gt;
+&lt;td&gt;返回c中尾元素的引用。若c为空，函数行为未定义。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.front()&lt;/td&gt;
+&lt;td&gt;返回c中首元素的引用。若c为空，函数行为未定义。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c[n]&lt;/td&gt;
+&lt;td&gt;返回c中下标为n的元素的引用，n是一个无符号整数。若n&amp;gt;=c.size(),函数行为未定义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.at[n]&lt;/td&gt;
+&lt;td&gt;返回c中下标为n的元素的引用。如果下标越界，则抛出out_of_range异常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;对于一个空容器调用front和back，就像使用一个越界的下标一样，是严重的程序设计错误。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;访问成员函数返回的是引用&lt;/p&gt;
+&lt;p&gt;在容器中访问元素的成员函数返回的都是引用。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;if(!c.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	c.front()=42;	//将42赋予c中的第一个元素&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	auto &amp;amp;v = c.back();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	v=1024;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	auto v2 = c.back();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	v2=0;	//未改变c中的元素&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;提供快速随机访问的容器(string vector deque array)也都提供下标运算符。给定的下标必须在范围内。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;string&amp;gt; svec;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;svec[0];	//runtime错误：svec中没有元素&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;svec.at(0);	//抛出一个out_of_range异常&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;3.3 删除元素&lt;/p&gt;
+&lt;p&gt;这些操作会改变容器的大小；array不支持这些操作&lt;/p&gt;
+&lt;p&gt;forward&lt;em&gt; list有自己版本的erase，且不支持pop&lt;/em&gt; back emplace_back&lt;/p&gt;
+&lt;p&gt;vector和string不支持pop_ front&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c.pop_back()&lt;/td&gt;
+&lt;td&gt;删除c中尾元素。若c为空，则函数行为未定义。函数返回void&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.pop_front()&lt;/td&gt;
+&lt;td&gt;删除c中首元素。若c为空，则函数行为未定义。函数返回void&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.erase(p)&lt;/td&gt;
+&lt;td&gt;删除迭代器p所指向的元素，返回一个指向被删除元素之后的迭代器，若p指向尾元素，则返回尾后迭代器。若p是尾后迭代器，则函数行为未定义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.erase(b,e)&lt;/td&gt;
+&lt;td&gt;删除迭代器b和e所制定范围内的元素。返回一个指向最后一个被删元素之后元素的迭代器，若e本身就是尾后迭代器，则函数也返回尾后迭代器。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.clear()&lt;/td&gt;
+&lt;td&gt;删除c中所有元素，函数返回void&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre&gt;&lt;code&gt;删除deque中除首尾位置之外的任何元素都会使所有迭代器、引用和指针失效。指向vector或string中删除点之外位置的迭代器、引用和指针都会失效。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;pop&lt;em&gt; front和pop&lt;/em&gt; back成员函数&lt;/p&gt;
+&lt;p&gt;vector string foward&lt;em&gt; list不支持pop&lt;/em&gt; back。&lt;/p&gt;
+&lt;p&gt;与元素访问成员函数类似，不能对一个空容器执行弹出操作。返回void，如果需要弹出的元素的值，就必须在执行弹出操作之前保存它。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;while(!ilist.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	process(ilist.front());	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	ilist.pop_front();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;从容器内部删除一个元素&lt;/p&gt;
+&lt;p&gt;若j是i之后的元素，那么erase(i)将返回指向j的迭代器&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;int&amp;gt; lst = &amp;#123;0,1,2,3,4,5,6,7,8,9&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto it = lst.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(it != lst.end())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if(*it % 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		it = lst.erase(it);	//将it设置为删除元素之后的元素&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		++it;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;删除多个元素&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;elem1 = slist.erase(elem1, elem2);	//调用后，elem1 = elem2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;删除所有内容&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;slist.clear();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;slist.erase(slist.begin(), slist.end());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;3.4 特殊的forward_list操作&lt;/p&gt;
+&lt;p&gt;forward_list定义了首前迭代器，这个迭代器允许我们在链表首元素之前并不存在的元素“之后”添加或删除元素。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.before_begin()&lt;/td&gt;
+&lt;td&gt;返回指向链表首元素之前不存在的元素的迭代器。此迭代器不能解引用。cbegin_before()返回一个const_iterator&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.cbefore_begin()&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.insert_after(p,t)&lt;/td&gt;
+&lt;td&gt;在迭代器p之后的位置插入元素。t是一个对象，n是数量，b和e是表示范围的一对迭代器(b和e不能指向lst内)，il是一个花括号表。返回一个指向最后一个插入元素的迭代器。如果范围为空，则返回p。若p为尾后迭代器，ze函数未定义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.insert_after(p,n,t)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.insert_after(p,b,e)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.insert_after(p,il)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;emplace_after(p,args)&lt;/td&gt;
+&lt;td&gt;使用args在p指定的位置之后创建一个元素。返回一个指向这个新元素的迭代器。若p为尾后迭代器，则函数行为未定义。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.erase_after(p)&lt;/td&gt;
+&lt;td&gt;删除p指向的位置之后的元素，或删除从b之后知道（但不包含）e之间的元素。返回一个指向被删元素之后元素的迭代器，若不存在这样的元素，则返回尾后迭代器。如果p指向lst的尾元素或者是一个尾后迭代器，则函数行为未定义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lst.erase_after(b,e)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;forward_list&amp;lt;int&amp;gt; lst = &amp;#123;0,1,2,3,4,5,6,7,8,9&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; auto prev = lst.before_begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; auto curr = lst.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; while(curr != lst.end())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     if(*curr % 2 == 1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         curr = lst.erase_after(prev);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         prev = curr;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         curr++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; copy(lst.begin(), lst.end(), ostream_iterator&amp;lt;int&amp;gt;(cout,&amp;quot; &amp;quot;));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;3.5 改变容器的大小&lt;/p&gt;
+&lt;p&gt;resize来增大或缩小容器。array不支持。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;list&amp;lt;int&amp;gt; ilist(10,42);		//10个int：每个值都是42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ilist.resize(15);			//将5个值为0的元素添加到ilist的末尾&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ilist.resize(25,-1);		//将10个值为-1的元素添加到ilist的末尾&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ilist.resize(5);				//从ilist末尾删除20个元素&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code&gt;如果resize缩小容器，则指向被删除元素的迭代器、引用和指针都会失效。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.6 容器操作可能使迭代器失效&lt;/p&gt;
+&lt;p&gt;当使用迭代器时，最小化要求迭代器必须保持有效的程序片段是一个好的方法。&lt;br&gt;由于向迭代器添加元素和从迭代器删除元素的代码可能会使迭代器失效，因此必须保证每次改变容器的操作之后都正确的重新定位迭代器。这个建议对vector string deque尤为重要。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; vi = &amp;#123;0,1,2,3,4,5,6,7,8,9&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto iter = vi.begin();	//不是cbegin(),因为要改变vi&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(iter != vi.end())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if(*iter % 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		iter = vi.insert(iter,*iter);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		iter += 2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		iter = vi.erase(iter);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;不要保存end返回的迭代器&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;auto begin = v.begin(), end=v.end();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(begin != end)	//灾难：添加元素后，保存在end中的迭代器失效。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++begin;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	begin = v.insert(begin,42);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++begin;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//正确写法&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto begin = v.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(begin != v.end())	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++begin;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	begin = v.insert(begin,42);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++begin;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果在一个循环中插入 删除deque string或vector中的元素，不要缓存end返回的迭代器。&lt;/p&gt;
+&lt;p&gt;四、vector对象是如何增长的&lt;/p&gt;
+&lt;p&gt;为了支持快速随机访问，vector将元素连续存储—每个元素紧挨着前一个元素。&lt;/p&gt;
+&lt;p&gt;shrink_to_fit只适用于vector string deque&lt;br&gt;capacity和reserve只适用于vector string&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c.shrink_to_fit()&lt;/td&gt;
+&lt;td&gt;请将capacity()减少为与size()相同大小&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.capacity()&lt;/td&gt;
+&lt;td&gt;不重新分配内存空间的话，c可以保存多少元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c.reserve(n)&lt;/td&gt;
+&lt;td&gt;分配至少能容纳n个元素的内存空间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;reserve并不改变容器中元素的数量，仅影响vector预先分配多大的内存空间。&lt;/p&gt;
+&lt;p&gt;只有当需要的内存空间超过当前容量时，reserve调用才会改变vector的容量。如果需求大小大于当前容量，reserve至少分配与需求一样大的内存空间。因此，在调用reserve之后，capacity将会大于或等于传递给reserve的参数。&lt;/p&gt;
+&lt;p&gt;这样，调用reserve永远也不会减少容器占用的内存空间。类似的，resize成员函数只改变容器中元素的数目，而不是容器的容量。&lt;/p&gt;
+&lt;p&gt;capacity和size&lt;/p&gt;
+&lt;p&gt;容器的size是指它已经保存的元素的数目；capacity则是在不分配新的内存空间的前提下它最多可以保存多少个元素。&lt;/p&gt;
+&lt;p&gt;只有当迫不得已时，才可以分配新的内存空间。&lt;/p&gt;
+&lt;p&gt;五、额外的string操作&lt;/p&gt;
+&lt;p&gt;5.1 构造string的其他方法&lt;/p&gt;
+&lt;p&gt;n、len2和pos2都是无符号值&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;string s(cp,n)&lt;/td&gt;
+&lt;td&gt;s是cp指向的数组中前n个字符的拷贝。此数组至少应该包含n个字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string s(s2,pos2)&lt;/td&gt;
+&lt;td&gt;s是string s2从下标pos2开始的字符的拷贝。若pos2&amp;gt;s2.size(),构造函数行为未定义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string s(s2,pos2,len2)&lt;/td&gt;
+&lt;td&gt;s是string s2从下标pos2开始len2个字符的拷贝。若pos2&amp;gt;s2.size()，构造函数的行为未定义。不管len2的值是多少，构造函数至多拷贝s2.size()*-pos2个字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;const char *cp = &amp;quot;hello world!!!&amp;quot;;	//以空字符串结束的数组&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;char noNull[] = &amp;#123;&amp;apos;h&amp;apos;,&amp;apos;i&amp;apos;&amp;#125;;	//不以空字符结束&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s1(cp);	//拷贝cp中的字符直到遇到空字符；s1 == &amp;quot;hello world!!!&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s2(noNull,2);	//从noNull拷贝两个字符；s2 == &amp;quot;Hi&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s3(noNull);	//未定义；noNull不是以空字符结束&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s4(cp+6,5);	//从cp[6]开始拷贝5个字符；s4 == &amp;quot;world&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s5(s1,6,5);	//从s1[6]开始拷贝5个字符；s4 == &amp;quot;world&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s6(s1,6);		//从s1[6]开始拷贝，直至s1末尾；s6 == &amp;quot;world!!!&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s7(s1,6,20);	//正确，只拷贝到s1末尾；s7 == &amp;quot;world!!!&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s8(s1,16);	//抛出一个out_of_range异常&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;用const char*创建string时，指针指向的数组必须以空字符结尾，拷贝操作遇到空字符时停止。如果传递了一个计数值，数组可以不以空字符结尾。如果未传递计数值且未以空字符结尾，或给定计数值大于数组大小，则构造函数的行为未定义。&lt;/p&gt;
+&lt;p&gt;当从一个string拷贝字符时，可以提供一个可选的开始位置和一个计数值，开始位置必须小于或等于给定的string的大小。如果位置大于size，则构造函数抛出out_of_range异常。如果传递了计数值，则从给定位置开始拷贝这么多字符。最多拷贝到string的结尾。&lt;/p&gt;
+&lt;p&gt;substr操作&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;s.substr(pos,n)&lt;/td&gt;
+&lt;td&gt;返回一个string，包含s中从pos开始的n个字符的拷贝。pos的默认值为0。n的默认值为s.size()-pos，即拷贝从pos开始的所有字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;如果开始位置超过了string的大小，则substr函数抛出一个out_of_range异常。如果开始位置加上计数值大于string的大小，则substr会调整计数值，只拷贝到string的末尾。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string s(&amp;quot;hello world&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s2 = s.substr(0,5);	//s2=&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s3 = s.substr(6);	//s3=&amp;quot;world&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s4 = s.substr(6,11);	//s3=&amp;quot;world&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s5 = s.substr(12);	//抛出out_of_range异常&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;5.2 改变string的其他方法&lt;/p&gt;
+&lt;p&gt;除了接受迭代器的insert和erase版本外，string还提供接受下标的版本。下标指出了开始删除的位置，或是insert到给定值之前的位置&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;s.insert(s.size(),5,&amp;apos;!&amp;apos;);	//在s末尾插入5个感叹号&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.erase(s.size()-5, 5);		//从s删除最后5个字符&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;标准库还提供了接受C风格字符数组的insert和assign版本。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;const char *cp = &amp;quot;Stately, plump Buck&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.assign(cp,7);				//s == &amp;quot;Stately&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.insert(s.size(), cp+7);	//s == &amp;quot;Stately, plump Buck&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;还可以指定将来自其他string或子字符串的字符插入到当前string中或赋予当前string&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string s = &amp;quot;some string&amp;quot;, s2 = &amp;quot;some other string&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.insert(0,s2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.insert(0,s2,0,s2.size());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;append和replace函数&lt;/p&gt;
+&lt;p&gt;append操作是在string末尾进行插入操作。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string s(&amp;quot;C++ Primer&amp;quot;),s2=s;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.insert(s.size(), &amp;quot; 4th Ed.&amp;quot;);	//s== &amp;quot;C++ Primer 4th Ed.&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s2.append(&amp;quot; 4th Ed.&amp;quot;);		//等价方法&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;replace操作是调用erase和insert的一种简写形式。插入的文本不必与删除的文本一样大。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;s.erase(11,3);	//s==&amp;quot;C++ Primer Ed.&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.insert(11,&amp;quot;5th&amp;quot;);	//s==&amp;quot;C++ Primer 5th Ed.&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.replace(11,3,&amp;quot;5th&amp;quot;);	//等价方法&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;s.replace(11,3,&amp;quot;Fifth&amp;quot;);	//s == &amp;quot;C++ Primer Fifth Ed.&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;5.3 string搜索操作&lt;/p&gt;
+&lt;p&gt;每个搜索操作都返回string::size_type值，匹配发生位置的下标。如果搜索失败，则返回一个string::npos的static成员。标准库将npos定义为const string::size_type类型，并初始化为-1。由于npos是一个unsigned类型，此初始值意味着npos等于任何string最大的可能大小。&lt;/p&gt;
+&lt;p&gt;find查找参数指定的字符串。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string name(&amp;quot;AnnaBelle&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto pos1 = name.find(&amp;quot;Anna&amp;quot;);	//pos1 == 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string lowercase(&amp;quot;annaBelle&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pos1 = lowercase.find(&amp;quot;Anna&amp;quot;);	//pos1 == npos&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;find_first_of查找与给定字符串中任何一个字符匹配的位置。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string numbers(&amp;quot;0123456789&amp;quot;),name(&amp;quot;r2d2&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto pos = name.find_first_of(numbers);	//返回1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string dept(&amp;quot;03714p3&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto pos = dept.find_first_not_of(numbers);//返回5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;指定在哪里开始搜索&lt;/p&gt;
+&lt;p&gt;接受可选的第二个参数，指定从什么位置开始搜索&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string::size_type pos = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while((pos = name.find_first_of(numbers,pos)) != string::npos)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cout&amp;lt;&amp;lt;&amp;quot;found number at index: &amp;quot;&amp;lt;&amp;lt;pos&amp;lt;&amp;lt;&amp;quot; element is &amp;quot;&amp;lt;&amp;lt;name[pos]&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++pos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;逆向搜索&lt;/p&gt;
+&lt;p&gt;rfind成员函数搜索最后一个匹配，即子字符串最靠右的出现位置。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string river(&amp;quot;Mississippi&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto first_pos = river.find(&amp;quot;is&amp;quot;);	//返回1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto last_pos = river.rfind(&amp;quot;is&amp;quot;);	//返回4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;5.4 compare函数&lt;/p&gt;
+&lt;p&gt;根据s是等于、大于还是小于参数指定的字符串，s.compare返回0 正数 负数&lt;/p&gt;
+&lt;p&gt;5.5 数值转换&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int i = 42;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s = to_string(i);	//将i转换为string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;double d = stod(s);	//将s转换为浮点类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s2 = &amp;quot;p = 3.14&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;d = stod(s2.substr(s2.find_first_of(&amp;quot;+-.0123456789&amp;quot;)));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果string不能转换为一个数值，这些函数抛出一个invalid_argument异常。如果转换得到的数值无法用任何类型来表示，则抛出out_of_range异常。&lt;/p&gt;
+&lt;p&gt;5.6 容器适配器&lt;/p&gt;
+&lt;p&gt;标准库定义了三个顺序容器适配器：stack queue priority_queue。&lt;br&gt;容器、迭代器、函数都有适配器。本质上，一个适配器是一种机制，能使某种事物的行为看起来像另外一种事物一样。一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。&lt;/p&gt;
+&lt;p&gt;stack和queue是基于deque实现的，priority_queue是在vector之上实现的。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;stack&amp;lt;int&amp;gt; stk(deq);	//deq是一个deque&amp;lt;int&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;stack&amp;lt;string, vector&amp;lt;string&amp;gt;&amp;gt; str_stk;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;stack&amp;lt;string, vector&amp;lt;string&amp;gt;&amp;gt; str_stk2(svec);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;所有适配器都要求容器具有添加和删除元素的能力。因此，不能用array forward_list来构造适配器。&lt;/p&gt;
+&lt;p&gt;stack只要求push_back pop_back back操作，因此可以使用除array forward_list之外的任何容器类型来构造。&lt;/p&gt;
+&lt;p&gt;queue适配器要求back push_back front push_front，因此构造于list deque之上，但不能基于vector构造。&lt;/p&gt;
+&lt;p&gt;priority_queue除了front push_back pop_back，还要求随机访问，因此它构造于vector deque之上，但不能基于list。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -384,10 +737,10 @@ vector&amp;lt;int&amp;gt;::difference_type count;
     <link href="http://yoursite.com/2016/12/11/leetcode-game-of-life/"/>
     <id>http://yoursite.com/2016/12/11/leetcode-game-of-life/</id>
     <published>2016-12-11T11:37:16.000Z</published>
-    <updated>2016-12-11T13:22:28.000Z</updated>
+    <updated>2016-12-12T13:34:06.000Z</updated>
     
     <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/grandyang/p/4854466.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/grandyang/p/4854466.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;状态机转换：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;0:死为死
 1:活为活
@@ -455,9 +808,9 @@ vector&amp;lt;int&amp;gt;::difference_type count;
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
-      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
-    
       <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
+    
+      <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
     
   </entry>
   
@@ -746,34 +1099,6 @@ vector&amp;lt;int&amp;gt;::difference_type count;
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode_combination_sum_iii</title>
-    <link href="http://yoursite.com/2016/12/08/leetcode-combination-sum-iii/"/>
-    <id>http://yoursite.com/2016/12/08/leetcode-combination-sum-iii/</id>
-    <published>2016-12-08T13:56:18.000Z</published>
-    <updated>2016-12-08T13:57:15.000Z</updated>
-    
-    <content type="html">&lt;p&gt;难度：Medium&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;使用回溯法，递归调用。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; combinationSum3(int k, int n) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;int&amp;gt; cur_vec;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        combination_sum_3_recur(ret,k,n,cur_vec);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void combination_sum_3_recur(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; &amp;amp;ret, int k, int rest, vector&amp;lt;int&amp;gt; &amp;amp;cur_vec)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(k == 0 &amp;amp;&amp;amp; rest == 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ret.push_back(cur_vec);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            // for_each(cur_vec.begin(), cur_vec.end(),[](int i)&amp;#123;cout&amp;lt;&amp;lt;i&amp;lt;&amp;lt;&amp;quot; &amp;quot;;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            // cout&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        else if(k &amp;gt; 0 &amp;amp;&amp;amp; rest &amp;gt; 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            int start = (cur_vec.empty() ? 1 : cur_vec.back()+1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            for(int i = start; i &amp;lt;= 9; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                cur_vec.push_back(i);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                combination_sum_3_recur(ret,k-1,rest-i,cur_vec);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                cur_vec.pop_back();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;0ms，超过42.38%&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;难度：Medium&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-      <category term="BackTracking" scheme="http://yoursite.com/tags/BackTracking/"/>
     
   </entry>
   

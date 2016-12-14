@@ -144,7 +144,7 @@ forward_list
 
 
 a">
-<meta property="og:updated_time" content="2016-12-12T05:56:01.000Z">
+<meta property="og:updated_time" content="2016-12-14T05:11:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++顺序容器">
 <meta name="twitter:description" content="一、概念
@@ -405,7 +405,7 @@ vector&lt;noDefault&gt; v2(12);        //错误：noDefault没有默认构造函
 <p>迭代器范围[begin,end)，分别指向同一个容器中的元素或者是尾元素之后的位置。<br>end可以与begin指向相同的位置，但不能指向begin之前的位置。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">list&lt;int&gt; lst;</span><br><span class="line">list&lt;int&gt;::iterator first = lst.begin(), second = lst.end()</span><br><span class="line">while(first &lt; end)	//错误：因为list是双向链表，链表的节点地址不是连续的。</span><br><span class="line">while(first != end)	//正确</span><br></pre></td></tr></table></figure>
 <p>2.2 容器类型成员</p>
-<p>在不了解容器中元素类型的情况下。如果需要元素类型，可以使用value_type。如果需要元素类型的引用，可以使用reference或const_reference。</p>
+<p>在不了解容器中元素类型的情况下。如果需要元素类型，可以使用value_ type。如果需要元素类型的引用，可以使用reference或const_reference。</p>
 <pre><code>list&lt;string&gt;::iterator iter;
 vector&lt;int&gt;::difference_type count;
 </code></pre><p>2.3 begin和end成员</p>
@@ -556,6 +556,333 @@ vector&lt;int&gt;::difference_type count;
 <p>左右两边必须是相同类型的容器，必须保存相同类型的元素。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; v1 = &#123;1,3,5,7,9,12&#125;;</span><br><span class="line">vector&lt;int&gt; v2 = &#123;1,3,9&#125;;</span><br><span class="line">vector&lt;int&gt; v3 = &#123;1,3,5,7&#125;;</span><br><span class="line">vector&lt;int&gt; v4 = &#123;1,3,5,7,9,12&#125;;</span><br><span class="line"></span><br><span class="line">v1 &lt; v2;	//true v1 v2在元素[2]处不同，v1[2] &lt;= v2[2]</span><br><span class="line">v1 &lt; v3;	//false 所有元素都相等，但v3中元素数目更少</span><br><span class="line">v1 == v4;	//true	每个元素都相等，且v1和v4大小相同</span><br><span class="line">v1 == v2;	//false	v2元素数目比v1小</span><br></pre></td></tr></table></figure>
 <p>只有当其元素类型也定义了相应的比较运算符时，才可以使用关系运算符来比较容器。</p>
+<p>三、顺序容器操作</p>
+<p>3.1 向顺序容器添加元素</p>
+<p>操作<br>这些操作会改变容器的大小；array不支持这些操作</p>
+<p>forward<em> list有自己版本的insert emplace，且不支持push</em> back emplace_back</p>
+<p>vector和string不支持push<em> front和emplace</em> front</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c.push_back(t)</td>
+<td>在c的尾部创建一个值为t或由args创建的元素。返回void</td>
+</tr>
+<tr>
+<td>c.emplace_back(args)</td>
+<td></td>
+</tr>
+<tr>
+<td>c.push_front(t)</td>
+<td>在c的头部创建一个值为t或由args创建的元素。返回void</td>
+</tr>
+<tr>
+<td>c.emplace_front(args)</td>
+<td></td>
+</tr>
+<tr>
+<td>c.insert(p,t)</td>
+<td>在迭代器p指向的元素之前创建一个值为t或由args创建的元素。返回指向新添加的元素的迭代器</td>
+</tr>
+<tr>
+<td>c.emplace(p,args)</td>
+<td></td>
+</tr>
+<tr>
+<td>c.insert(p,n,t)</td>
+<td>在迭代器p指向的元素之前插入n个值为t的元素。返回指向新添加的第一个元素的迭代器；若n为0，则返回p</td>
+</tr>
+<tr>
+<td>c.insert(p,b,e)</td>
+<td>将迭代器b和e指定的范围内的元素插入到迭代器p指向的元素之前。b和e不能指向c中的元素。返回指向新添加的第一个元素的迭代器；若范围为空，则返回p</td>
+</tr>
+<tr>
+<td>c.insert(p,il)</td>
+<td>将迭代器b和e指定的范围内的元素插入到迭代器p指向的元素之前。b和e不能指向c中的元素。返回指向新添加的第一个元素的迭代器；若范围为空，则返回p</td>
+</tr>
+</tbody>
+</table>
+<p>使用push_back</p>
+<p>除了array和forward_list之外，每个顺序容器(vector list deque string)都支持。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string word;</span><br><span class="line">while(cin &gt;&gt; word)</span><br><span class="line">	container.push_back(word);</span><br></pre></td></tr></table></figure>
+<p>当用一个对象来初始化容器时，或将一个对象插入到容器中时，实际上放入到容器中的是对象值的一个拷贝。</p>
+<p>使用push_front</p>
+<p>list forward_list deque支持。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list&lt;int&gt; ilist;</span><br><span class="line">for(size_t ix = 0; ix != 4; ++ix)</span><br><span class="line">	ilist.push_front(ix);</span><br></pre></td></tr></table></figure>
+<p>deque和vector一样提供了随机访问元素的能力，同时它提供了vector不支持的push_front。</p>
+<p>在容器的特定位置添加元素</p>
+<p>insert成员允许我们在容器中任意位置插入0个或多个元素。vector deque list string都支持。forward_list提供了特殊版本的insert成员。</p>
+<p>insert函数将元素插入到迭代器所指定的位置之前。</p>
+<pre><code>slist.insert(iter,&quot;Hello!&quot;);
+</code></pre><p>尽管有些容器不支持push_front操作，但它们对于insert操作并无类似限制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; svec;</span><br><span class="line">list&lt;string&gt; slist;</span><br><span class="line"></span><br><span class="line">slist.insert(slist.begin(), &quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">svec.insert(svec.begin(), &quot;hello&quot;);	//插入到vector末尾之外的任何位置都可能很慢</span><br></pre></td></tr></table></figure>
+<p>插入范围内的元素</p>
+<p>insert函数还可以接受更多的参数，这与容器构造函数类似。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">svec.insert(svec.end(),10,&quot;Anna&quot;);	//将10个元素插入到svec的末尾。</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; v = &#123;&quot;quansi&quot;,&quot;simba&quot;,&quot;frollo&quot;,&quot;scar&quot;&#125;;</span><br><span class="line">slist.insert(slist.begin(),v.end()-2,v.end());</span><br><span class="line">slist.insert(slist.end(),&#123;&quot;three&quot;,&quot;words&quot;,&quot;will&quot;&#125;);</span><br><span class="line">slist.insert(slist.begin(),slist.begin(),slist.end());	//runtime错误：要拷贝的范围，不能指向雨目的位置相同的容器</span><br></pre></td></tr></table></figure>
+<p>使用insert的返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list&lt;string&gt; lst;</span><br><span class="line">auto iter = lst.begin();</span><br><span class="line">while(cin &gt;&gt; word)</span><br><span class="line">	iter = lst.insert(iter,word);	//等价于调用push_front;</span><br></pre></td></tr></table></figure>
+<p>使用emplace操作</p>
+<p>新标准引入了三个新成员：emplace_front emplace emplace_back，这些操作构造而不是拷贝元素。分别对应于push_front insert push_back。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c.emplace_back(&quot;978-069&quot;,25,15.88);	//在c的末尾构造一个Sales_data对象。</span><br><span class="line">c.push_back(&quot;978-069&quot;,25,15.88);	//错误</span><br><span class="line">c.push_back(Sales_data(&quot;978-069&quot;,25,15.88));</span><br></pre></td></tr></table></figure>
+<p>emplace函数的参数根据与元素类型而变化，参数必须与元素类型的构造函数相匹配。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c.emplace_back();	//使用Sales_data的默认构造函数</span><br><span class="line">c.emplace(iter,&quot;999-999999&quot;);	//使用Sales_data(string)</span><br><span class="line">c.emplac_front(&quot;978-2833&quot;,29,18);</span><br></pre></td></tr></table></figure>
+<p>3.2 访问元素</p>
+<p>包括array在内的每个顺序容器都有一个front函数，而除forward_list之外的所有顺序容器都有一个back成员函数。这两个操作分别是首元素和尾元素的引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if(!c.empty())	//在解引用一个迭代器或调用front back之前检查是否有元素</span><br><span class="line">&#123;</span><br><span class="line">	auto val = *c.begin,val2 = c.front();</span><br><span class="line">	auto last = c.end();</span><br><span class="line">	auto val3 = *(--last);	//不能递减forward_list迭代器</span><br><span class="line">	auto val4 = c.back();	//forward_list不支持</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>at和下标操作只适用于string vector deque和array。<br>back不适用于forward_list。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c.back()</td>
+<td>返回c中尾元素的引用。若c为空，函数行为未定义。</td>
+</tr>
+<tr>
+<td>c.front()</td>
+<td>返回c中首元素的引用。若c为空，函数行为未定义。</td>
+</tr>
+<tr>
+<td>c[n]</td>
+<td>返回c中下标为n的元素的引用，n是一个无符号整数。若n&gt;=c.size(),函数行为未定义</td>
+</tr>
+<tr>
+<td>c.at[n]</td>
+<td>返回c中下标为n的元素的引用。如果下标越界，则抛出out_of_range异常</td>
+</tr>
+</tbody>
+</table>
+<pre><code>对于一个空容器调用front和back，就像使用一个越界的下标一样，是严重的程序设计错误。
+</code></pre><p>访问成员函数返回的是引用</p>
+<p>在容器中访问元素的成员函数返回的都是引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(!c.empty())</span><br><span class="line">&#123;</span><br><span class="line">	c.front()=42;	//将42赋予c中的第一个元素</span><br><span class="line">	auto &amp;v = c.back();</span><br><span class="line">	v=1024;</span><br><span class="line">	auto v2 = c.back();</span><br><span class="line">	v2=0;	//未改变c中的元素</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>提供快速随机访问的容器(string vector deque array)也都提供下标运算符。给定的下标必须在范围内。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; svec;</span><br><span class="line">cout&lt;&lt;svec[0];	//runtime错误：svec中没有元素</span><br><span class="line">cout&lt;&lt;svec.at(0);	//抛出一个out_of_range异常</span><br></pre></td></tr></table></figure>
+<p>3.3 删除元素</p>
+<p>这些操作会改变容器的大小；array不支持这些操作</p>
+<p>forward<em> list有自己版本的erase，且不支持pop</em> back emplace_back</p>
+<p>vector和string不支持pop_ front</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c.pop_back()</td>
+<td>删除c中尾元素。若c为空，则函数行为未定义。函数返回void</td>
+</tr>
+<tr>
+<td>c.pop_front()</td>
+<td>删除c中首元素。若c为空，则函数行为未定义。函数返回void</td>
+</tr>
+<tr>
+<td>c.erase(p)</td>
+<td>删除迭代器p所指向的元素，返回一个指向被删除元素之后的迭代器，若p指向尾元素，则返回尾后迭代器。若p是尾后迭代器，则函数行为未定义</td>
+</tr>
+<tr>
+<td>c.erase(b,e)</td>
+<td>删除迭代器b和e所制定范围内的元素。返回一个指向最后一个被删元素之后元素的迭代器，若e本身就是尾后迭代器，则函数也返回尾后迭代器。</td>
+</tr>
+<tr>
+<td>c.clear()</td>
+<td>删除c中所有元素，函数返回void</td>
+</tr>
+</tbody>
+</table>
+<pre><code>删除deque中除首尾位置之外的任何元素都会使所有迭代器、引用和指针失效。指向vector或string中删除点之外位置的迭代器、引用和指针都会失效。
+</code></pre><p>pop<em> front和pop</em> back成员函数</p>
+<p>vector string foward<em> list不支持pop</em> back。</p>
+<p>与元素访问成员函数类似，不能对一个空容器执行弹出操作。返回void，如果需要弹出的元素的值，就必须在执行弹出操作之前保存它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while(!ilist.empty())</span><br><span class="line">&#123;</span><br><span class="line">	process(ilist.front());	</span><br><span class="line">	ilist.pop_front();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从容器内部删除一个元素</p>
+<p>若j是i之后的元素，那么erase(i)将返回指向j的迭代器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">list&lt;int&gt; lst = &#123;0,1,2,3,4,5,6,7,8,9&#125;;</span><br><span class="line">auto it = lst.begin();</span><br><span class="line">while(it != lst.end())</span><br><span class="line">	if(*it % 2)</span><br><span class="line">		it = lst.erase(it);	//将it设置为删除元素之后的元素</span><br><span class="line">	else</span><br><span class="line">		++it;</span><br></pre></td></tr></table></figure>
+<p>删除多个元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elem1 = slist.erase(elem1, elem2);	//调用后，elem1 = elem2</span><br></pre></td></tr></table></figure>
+<p>删除所有内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">slist.clear();</span><br><span class="line">slist.erase(slist.begin(), slist.end());</span><br></pre></td></tr></table></figure>
+<p>3.4 特殊的forward_list操作</p>
+<p>forward_list定义了首前迭代器，这个迭代器允许我们在链表首元素之前并不存在的元素“之后”添加或删除元素。</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lst.before_begin()</td>
+<td>返回指向链表首元素之前不存在的元素的迭代器。此迭代器不能解引用。cbegin_before()返回一个const_iterator</td>
+</tr>
+<tr>
+<td>lst.cbefore_begin()</td>
+<td></td>
+</tr>
+<tr>
+<td>lst.insert_after(p,t)</td>
+<td>在迭代器p之后的位置插入元素。t是一个对象，n是数量，b和e是表示范围的一对迭代器(b和e不能指向lst内)，il是一个花括号表。返回一个指向最后一个插入元素的迭代器。如果范围为空，则返回p。若p为尾后迭代器，ze函数未定义</td>
+</tr>
+<tr>
+<td>lst.insert_after(p,n,t)</td>
+<td></td>
+</tr>
+<tr>
+<td>lst.insert_after(p,b,e)</td>
+<td></td>
+</tr>
+<tr>
+<td>lst.insert_after(p,il)</td>
+<td></td>
+</tr>
+<tr>
+<td>emplace_after(p,args)</td>
+<td>使用args在p指定的位置之后创建一个元素。返回一个指向这个新元素的迭代器。若p为尾后迭代器，则函数行为未定义。</td>
+</tr>
+<tr>
+<td>lst.erase_after(p)</td>
+<td>删除p指向的位置之后的元素，或删除从b之后知道（但不包含）e之间的元素。返回一个指向被删元素之后元素的迭代器，若不存在这样的元素，则返回尾后迭代器。如果p指向lst的尾元素或者是一个尾后迭代器，则函数行为未定义</td>
+</tr>
+<tr>
+<td>lst.erase_after(b,e)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">forward_list&lt;int&gt; lst = &#123;0,1,2,3,4,5,6,7,8,9&#125;;</span><br><span class="line"> auto prev = lst.before_begin();</span><br><span class="line"> auto curr = lst.begin();</span><br><span class="line"> while(curr != lst.end())</span><br><span class="line"> &#123;</span><br><span class="line">     if(*curr % 2 == 1)</span><br><span class="line">         curr = lst.erase_after(prev);</span><br><span class="line">     else</span><br><span class="line">     &#123;</span><br><span class="line">         prev = curr;</span><br><span class="line">         curr++;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> copy(lst.begin(), lst.end(), ostream_iterator&lt;int&gt;(cout,&quot; &quot;));</span><br></pre></td></tr></table></figure>
+<p>3.5 改变容器的大小</p>
+<p>resize来增大或缩小容器。array不支持。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list&lt;int&gt; ilist(10,42);		//10个int：每个值都是42</span><br><span class="line">ilist.resize(15);			//将5个值为0的元素添加到ilist的末尾</span><br><span class="line">ilist.resize(25,-1);		//将10个值为-1的元素添加到ilist的末尾</span><br><span class="line">ilist.resize(5);				//从ilist末尾删除20个元素</span><br></pre></td></tr></table></figure>
+<pre><code>如果resize缩小容器，则指向被删除元素的迭代器、引用和指针都会失效。
+</code></pre><p>3.6 容器操作可能使迭代器失效</p>
+<p>当使用迭代器时，最小化要求迭代器必须保持有效的程序片段是一个好的方法。<br>由于向迭代器添加元素和从迭代器删除元素的代码可能会使迭代器失效，因此必须保证每次改变容器的操作之后都正确的重新定位迭代器。这个建议对vector string deque尤为重要。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; vi = &#123;0,1,2,3,4,5,6,7,8,9&#125;;</span><br><span class="line">auto iter = vi.begin();	//不是cbegin(),因为要改变vi</span><br><span class="line">while(iter != vi.end())</span><br><span class="line">&#123;</span><br><span class="line">	if(*iter % 2)</span><br><span class="line">	&#123;</span><br><span class="line">		iter = vi.insert(iter,*iter);</span><br><span class="line">		iter += 2;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">		iter = vi.erase(iter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不要保存end返回的迭代器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">auto begin = v.begin(), end=v.end();</span><br><span class="line">while(begin != end)	//灾难：添加元素后，保存在end中的迭代器失效。</span><br><span class="line">&#123;</span><br><span class="line">	++begin;</span><br><span class="line">	begin = v.insert(begin,42);</span><br><span class="line">	++begin;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//正确写法</span><br><span class="line">auto begin = v.begin();</span><br><span class="line">while(begin != v.end())	</span><br><span class="line">&#123;</span><br><span class="line">	++begin;</span><br><span class="line">	begin = v.insert(begin,42);</span><br><span class="line">	++begin;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果在一个循环中插入 删除deque string或vector中的元素，不要缓存end返回的迭代器。</p>
+<p>四、vector对象是如何增长的</p>
+<p>为了支持快速随机访问，vector将元素连续存储—每个元素紧挨着前一个元素。</p>
+<p>shrink_to_fit只适用于vector string deque<br>capacity和reserve只适用于vector string</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c.shrink_to_fit()</td>
+<td>请将capacity()减少为与size()相同大小</td>
+</tr>
+<tr>
+<td>c.capacity()</td>
+<td>不重新分配内存空间的话，c可以保存多少元素</td>
+</tr>
+<tr>
+<td>c.reserve(n)</td>
+<td>分配至少能容纳n个元素的内存空间</td>
+</tr>
+</tbody>
+</table>
+<p>reserve并不改变容器中元素的数量，仅影响vector预先分配多大的内存空间。</p>
+<p>只有当需要的内存空间超过当前容量时，reserve调用才会改变vector的容量。如果需求大小大于当前容量，reserve至少分配与需求一样大的内存空间。因此，在调用reserve之后，capacity将会大于或等于传递给reserve的参数。</p>
+<p>这样，调用reserve永远也不会减少容器占用的内存空间。类似的，resize成员函数只改变容器中元素的数目，而不是容器的容量。</p>
+<p>capacity和size</p>
+<p>容器的size是指它已经保存的元素的数目；capacity则是在不分配新的内存空间的前提下它最多可以保存多少个元素。</p>
+<p>只有当迫不得已时，才可以分配新的内存空间。</p>
+<p>五、额外的string操作</p>
+<p>5.1 构造string的其他方法</p>
+<p>n、len2和pos2都是无符号值</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string s(cp,n)</td>
+<td>s是cp指向的数组中前n个字符的拷贝。此数组至少应该包含n个字符</td>
+</tr>
+<tr>
+<td>string s(s2,pos2)</td>
+<td>s是string s2从下标pos2开始的字符的拷贝。若pos2&gt;s2.size(),构造函数行为未定义</td>
+</tr>
+<tr>
+<td>string s(s2,pos2,len2)</td>
+<td>s是string s2从下标pos2开始len2个字符的拷贝。若pos2&gt;s2.size()，构造函数的行为未定义。不管len2的值是多少，构造函数至多拷贝s2.size()*-pos2个字符</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const char *cp = &quot;hello world!!!&quot;;	//以空字符串结束的数组</span><br><span class="line">char noNull[] = &#123;&apos;h&apos;,&apos;i&apos;&#125;;	//不以空字符结束</span><br><span class="line">string s1(cp);	//拷贝cp中的字符直到遇到空字符；s1 == &quot;hello world!!!&quot;</span><br><span class="line">string s2(noNull,2);	//从noNull拷贝两个字符；s2 == &quot;Hi&quot;</span><br><span class="line">string s3(noNull);	//未定义；noNull不是以空字符结束</span><br><span class="line">string s4(cp+6,5);	//从cp[6]开始拷贝5个字符；s4 == &quot;world&quot;</span><br><span class="line">string s5(s1,6,5);	//从s1[6]开始拷贝5个字符；s4 == &quot;world&quot;</span><br><span class="line">string s6(s1,6);		//从s1[6]开始拷贝，直至s1末尾；s6 == &quot;world!!!&quot;</span><br><span class="line">string s7(s1,6,20);	//正确，只拷贝到s1末尾；s7 == &quot;world!!!&quot;</span><br><span class="line">string s8(s1,16);	//抛出一个out_of_range异常</span><br></pre></td></tr></table></figure>
+<p>用const char*创建string时，指针指向的数组必须以空字符结尾，拷贝操作遇到空字符时停止。如果传递了一个计数值，数组可以不以空字符结尾。如果未传递计数值且未以空字符结尾，或给定计数值大于数组大小，则构造函数的行为未定义。</p>
+<p>当从一个string拷贝字符时，可以提供一个可选的开始位置和一个计数值，开始位置必须小于或等于给定的string的大小。如果位置大于size，则构造函数抛出out_of_range异常。如果传递了计数值，则从给定位置开始拷贝这么多字符。最多拷贝到string的结尾。</p>
+<p>substr操作</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s.substr(pos,n)</td>
+<td>返回一个string，包含s中从pos开始的n个字符的拷贝。pos的默认值为0。n的默认值为s.size()-pos，即拷贝从pos开始的所有字符</td>
+</tr>
+</tbody>
+</table>
+<p>如果开始位置超过了string的大小，则substr函数抛出一个out_of_range异常。如果开始位置加上计数值大于string的大小，则substr会调整计数值，只拷贝到string的末尾。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string s(&quot;hello world&quot;);</span><br><span class="line">string s2 = s.substr(0,5);	//s2=&quot;hello&quot;</span><br><span class="line">string s3 = s.substr(6);	//s3=&quot;world&quot;</span><br><span class="line">string s4 = s.substr(6,11);	//s3=&quot;world&quot;</span><br><span class="line">string s5 = s.substr(12);	//抛出out_of_range异常</span><br></pre></td></tr></table></figure>
+<p>5.2 改变string的其他方法</p>
+<p>除了接受迭代器的insert和erase版本外，string还提供接受下标的版本。下标指出了开始删除的位置，或是insert到给定值之前的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.insert(s.size(),5,&apos;!&apos;);	//在s末尾插入5个感叹号</span><br><span class="line">s.erase(s.size()-5, 5);		//从s删除最后5个字符</span><br></pre></td></tr></table></figure>
+<p>标准库还提供了接受C风格字符数组的insert和assign版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const char *cp = &quot;Stately, plump Buck&quot;;</span><br><span class="line">s.assign(cp,7);				//s == &quot;Stately&quot;</span><br><span class="line">s.insert(s.size(), cp+7);	//s == &quot;Stately, plump Buck&quot;</span><br></pre></td></tr></table></figure>
+<p>还可以指定将来自其他string或子字符串的字符插入到当前string中或赋予当前string</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string s = &quot;some string&quot;, s2 = &quot;some other string&quot;;</span><br><span class="line">s.insert(0,s2);</span><br><span class="line">s.insert(0,s2,0,s2.size());</span><br></pre></td></tr></table></figure>
+<p>append和replace函数</p>
+<p>append操作是在string末尾进行插入操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string s(&quot;C++ Primer&quot;),s2=s;</span><br><span class="line">s.insert(s.size(), &quot; 4th Ed.&quot;);	//s== &quot;C++ Primer 4th Ed.&quot;</span><br><span class="line">s2.append(&quot; 4th Ed.&quot;);		//等价方法</span><br></pre></td></tr></table></figure>
+<p>replace操作是调用erase和insert的一种简写形式。插入的文本不必与删除的文本一样大。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s.erase(11,3);	//s==&quot;C++ Primer Ed.&quot;</span><br><span class="line">s.insert(11,&quot;5th&quot;);	//s==&quot;C++ Primer 5th Ed.&quot;</span><br><span class="line"></span><br><span class="line">s.replace(11,3,&quot;5th&quot;);	//等价方法</span><br><span class="line"></span><br><span class="line">s.replace(11,3,&quot;Fifth&quot;);	//s == &quot;C++ Primer Fifth Ed.&quot;</span><br></pre></td></tr></table></figure>
+<p>5.3 string搜索操作</p>
+<p>每个搜索操作都返回string::size_type值，匹配发生位置的下标。如果搜索失败，则返回一个string::npos的static成员。标准库将npos定义为const string::size_type类型，并初始化为-1。由于npos是一个unsigned类型，此初始值意味着npos等于任何string最大的可能大小。</p>
+<p>find查找参数指定的字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string name(&quot;AnnaBelle&quot;);</span><br><span class="line">auto pos1 = name.find(&quot;Anna&quot;);	//pos1 == 0</span><br><span class="line"></span><br><span class="line">string lowercase(&quot;annaBelle&quot;);</span><br><span class="line">pos1 = lowercase.find(&quot;Anna&quot;);	//pos1 == npos</span><br></pre></td></tr></table></figure></p>
+<p>find_first_of查找与给定字符串中任何一个字符匹配的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string numbers(&quot;0123456789&quot;),name(&quot;r2d2&quot;);</span><br><span class="line">auto pos = name.find_first_of(numbers);	//返回1</span><br><span class="line"></span><br><span class="line">string dept(&quot;03714p3&quot;);</span><br><span class="line">auto pos = dept.find_first_not_of(numbers);//返回5</span><br></pre></td></tr></table></figure>
+<p>指定在哪里开始搜索</p>
+<p>接受可选的第二个参数，指定从什么位置开始搜索<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">string::size_type pos = 0;</span><br><span class="line">while((pos = name.find_first_of(numbers,pos)) != string::npos)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;&quot;found number at index: &quot;&lt;&lt;pos&lt;&lt;&quot; element is &quot;&lt;&lt;name[pos]&lt;&lt;endl;</span><br><span class="line">	++pos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>逆向搜索</p>
+<p>rfind成员函数搜索最后一个匹配，即子字符串最靠右的出现位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string river(&quot;Mississippi&quot;);</span><br><span class="line">auto first_pos = river.find(&quot;is&quot;);	//返回1</span><br><span class="line">auto last_pos = river.rfind(&quot;is&quot;);	//返回4</span><br></pre></td></tr></table></figure>
+<p>5.4 compare函数</p>
+<p>根据s是等于、大于还是小于参数指定的字符串，s.compare返回0 正数 负数</p>
+<p>5.5 数值转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int i = 42;</span><br><span class="line">string s = to_string(i);	//将i转换为string</span><br><span class="line">double d = stod(s);	//将s转换为浮点类</span><br><span class="line"></span><br><span class="line">string s2 = &quot;p = 3.14&quot;;</span><br><span class="line"></span><br><span class="line">d = stod(s2.substr(s2.find_first_of(&quot;+-.0123456789&quot;)));</span><br></pre></td></tr></table></figure>
+<p>如果string不能转换为一个数值，这些函数抛出一个invalid_argument异常。如果转换得到的数值无法用任何类型来表示，则抛出out_of_range异常。</p>
+<p>5.6 容器适配器</p>
+<p>标准库定义了三个顺序容器适配器：stack queue priority_queue。<br>容器、迭代器、函数都有适配器。本质上，一个适配器是一种机制，能使某种事物的行为看起来像另外一种事物一样。一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。</p>
+<p>stack和queue是基于deque实现的，priority_queue是在vector之上实现的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;int&gt; stk(deq);	//deq是一个deque&lt;int&gt;</span><br><span class="line"></span><br><span class="line">stack&lt;string, vector&lt;string&gt;&gt; str_stk;</span><br><span class="line"></span><br><span class="line">stack&lt;string, vector&lt;string&gt;&gt; str_stk2(svec);</span><br></pre></td></tr></table></figure>
+<p>所有适配器都要求容器具有添加和删除元素的能力。因此，不能用array forward_list来构造适配器。</p>
+<p>stack只要求push_back pop_back back操作，因此可以使用除array forward_list之外的任何容器类型来构造。</p>
+<p>queue适配器要求back push_back front push_front，因此构造于list deque之上，但不能基于vector构造。</p>
+<p>priority_queue除了front push_back pop_back，还要求随机访问，因此它构造于vector deque之上，但不能基于list。</p>
 
       
     </div>
@@ -664,7 +991,7 @@ vector&lt;int&gt;::difference_type count;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">120</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
