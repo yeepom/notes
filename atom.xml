@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-12T14:13:58.000Z</updated>
+  <updated>2016-12-15T01:12:47.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,9 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>c++Primer 11章 关联容器</title>
+    <link href="http://yoursite.com/2016/12/15/c-plus-plus-primer-chapter-11-associated-container/"/>
+    <id>http://yoursite.com/2016/12/15/c-plus-plus-primer-chapter-11-associated-container/</id>
+    <published>2016-12-15T00:24:03.000Z</published>
+    <updated>2016-12-15T01:12:47.000Z</updated>
+    
+    <content type="html">&lt;p&gt;1.使用关联容器&lt;/p&gt;
+&lt;p&gt;使用map&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;map&amp;lt;string, size_t&amp;gt; word_count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string word;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(cin&amp;gt;&amp;gt;word)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	++word_count[word];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(const auto &amp;amp;w : word_count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cout&amp;lt;&amp;lt;w.first&amp;lt;&amp;lt;&amp;quot; occurs&amp;quot;&amp;lt;&amp;lt;w.second&amp;lt;&amp;lt;((w.second &amp;gt;1)?&amp;quot; times&amp;quot;:&amp;quot; time&amp;quot;)&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;使用set&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;map&amp;lt;string, size_t&amp;gt; word_count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set&amp;lt;string&amp;gt; exclude = &amp;#123;&amp;quot;The&amp;quot;,&amp;quot;But&amp;quot;,&amp;quot;And&amp;quot;,&amp;quot;Or&amp;quot;,&amp;quot;An&amp;quot;,&amp;quot;A&amp;quot;,&amp;quot;the&amp;quot;,&amp;quot;but&amp;quot;,&amp;quot;and&amp;quot;,&amp;quot;or&amp;quot;,&amp;quot;an&amp;quot;,&amp;quot;a&amp;quot;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string word;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while(cin &amp;gt;&amp;gt; word)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if(exclude.find(word) == exclude.end())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		++word_count[word];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;2.概述&lt;/p&gt;
+&lt;p&gt;关联容器不支持顺序容器的位置相关的操作，例如push_front push_back。而且关联容器也不支持构造函数或插入函数这些接受一个元素值和一个数量值的操作。&lt;br&gt;关联容器的迭代器都是双向的。&lt;/p&gt;
+&lt;p&gt;2.1 定义关联容器&lt;/p&gt;
+&lt;p&gt;可以创建一个指定类型的空容器，也可以将关联容器初始化为另一个同类型容器的拷贝，或是从一个值范围来初始化关联容器，只要这些值可以转化为容器所需类型就可以。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;map&amp;lt;string, size_t&amp;gt; word_count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set&amp;lt;string&amp;gt; exclude = &amp;#123;&amp;quot;the&amp;quot;,&amp;quot;but&amp;quot;,&amp;quot;and&amp;quot;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;map&amp;lt;string,string&amp;gt; authors = &amp;#123;&amp;#123;&amp;quot;joyce&amp;quot;,&amp;quot;james&amp;quot;&amp;#125;,&amp;#123;&amp;quot;austen&amp;quot;,&amp;quot;jane&amp;quot;&amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当初始化一个map时，必须提供关键字类型和值类型。&lt;/p&gt;
+&lt;p&gt;multimap和multiset允许多个元素具有相同的关键字。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt; ivec;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(vector&amp;lt;int&amp;gt;::size_type i = 0; i != 10; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	ivec.push_back(i);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	ivec.push_back(i);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set&amp;lt;int&amp;gt; iset(ivec.cbegin(),ivec.cend());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;multiset&amp;lt;int&amp;gt; miset(ivec.cbegin(), ivec.cend());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;ivec.size()&amp;lt;&amp;lt;endl;	//20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;iset.size()&amp;lt;&amp;lt;endl;	//20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cout&amp;lt;&amp;lt;miset.size()&amp;lt;&amp;lt;endl;	//20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.使用关联容器&lt;/p&gt;
+&lt;p&gt;使用map&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
     <title>leetcode_binary_tree_inorder_traversal</title>
-    <link href="http://yoursite.com/2016/12/12/leetcode-binary-tree-inorder-traversal/"/>
-    <id>http://yoursite.com/2016/12/12/leetcode-binary-tree-inorder-traversal/</id>
+    <link href="http://yoursite.com/2016/12/12/leetcode-94-binary-tree-inorder-traversal/"/>
+    <id>http://yoursite.com/2016/12/12/leetcode-94-binary-tree-inorder-traversal/</id>
     <published>2016-12-12T14:04:09.000Z</published>
     <updated>2016-12-12T14:13:58.000Z</updated>
     
@@ -43,8 +78,8 @@
   
   <entry>
     <title>leetcode_minimum_window_substring</title>
-    <link href="http://yoursite.com/2016/12/12/leetcode-minimum-window-substring/"/>
-    <id>http://yoursite.com/2016/12/12/leetcode-minimum-window-substring/</id>
+    <link href="http://yoursite.com/2016/12/12/leetcode-76-minimum-window-substring/"/>
+    <id>http://yoursite.com/2016/12/12/leetcode-76-minimum-window-substring/</id>
     <published>2016-12-12T12:28:48.000Z</published>
     <updated>2016-12-12T12:36:12.000Z</updated>
     
@@ -64,16 +99,16 @@
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
-    
       <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
     
   </entry>
   
   <entry>
     <title>leetcode_group_anagrams</title>
-    <link href="http://yoursite.com/2016/12/12/leetcode-group-anagrams/"/>
-    <id>http://yoursite.com/2016/12/12/leetcode-group-anagrams/</id>
+    <link href="http://yoursite.com/2016/12/12/leetcode-49-group-anagrams/"/>
+    <id>http://yoursite.com/2016/12/12/leetcode-49-group-anagrams/</id>
     <published>2016-12-12T10:20:25.000Z</published>
     <updated>2016-12-12T12:36:27.000Z</updated>
     
@@ -116,16 +151,16 @@
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
-    
       <category term="TwoPointers" scheme="http://yoursite.com/tags/TwoPointers/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
     
   </entry>
   
   <entry>
     <title>leetcode_longest_substring_without_repeating_characters</title>
-    <link href="http://yoursite.com/2016/12/12/leetcode-longest-substring-without-repeating-characters/"/>
-    <id>http://yoursite.com/2016/12/12/leetcode-longest-substring-without-repeating-characters/</id>
+    <link href="http://yoursite.com/2016/12/12/leetcode-3-longest-substring-without-repeating-characters/"/>
+    <id>http://yoursite.com/2016/12/12/leetcode-3-longest-substring-without-repeating-characters/</id>
     <published>2016-12-12T06:09:24.000Z</published>
     <updated>2016-12-12T06:11:50.000Z</updated>
     
@@ -142,11 +177,11 @@
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
-    
       <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
     
       <category term="TwoPointers" scheme="http://yoursite.com/tags/TwoPointers/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
     
   </entry>
   
@@ -734,8 +769,8 @@ vector&amp;lt;int&amp;gt;::difference_type count;
   
   <entry>
     <title>leetcode_game_of_life</title>
-    <link href="http://yoursite.com/2016/12/11/leetcode-game-of-life/"/>
-    <id>http://yoursite.com/2016/12/11/leetcode-game-of-life/</id>
+    <link href="http://yoursite.com/2016/12/11/leetcode-289-game-of-life/"/>
+    <id>http://yoursite.com/2016/12/11/leetcode-289-game-of-life/</id>
     <published>2016-12-11T11:37:16.000Z</published>
     <updated>2016-12-12T13:34:06.000Z</updated>
     
@@ -764,8 +799,8 @@ vector&amp;lt;int&amp;gt;::difference_type count;
   
   <entry>
     <title>leetcode_majority_elements_ii</title>
-    <link href="http://yoursite.com/2016/12/11/leetcode-majority-elements-ii/"/>
-    <id>http://yoursite.com/2016/12/11/leetcode-majority-elements-ii/</id>
+    <link href="http://yoursite.com/2016/12/11/leetcode-229-majority-elements-ii/"/>
+    <id>http://yoursite.com/2016/12/11/leetcode-229-majority-elements-ii/</id>
     <published>2016-12-11T11:05:10.000Z</published>
     <updated>2016-12-11T11:10:53.000Z</updated>
     
@@ -788,8 +823,8 @@ vector&amp;lt;int&amp;gt;::difference_type count;
   
   <entry>
     <title>leetcode_maximal_rectangle</title>
-    <link href="http://yoursite.com/2016/12/11/leetcode-maximal-rectangle/"/>
-    <id>http://yoursite.com/2016/12/11/leetcode-maximal-rectangle/</id>
+    <link href="http://yoursite.com/2016/12/11/leetcode-85-maximal-rectangle/"/>
+    <id>http://yoursite.com/2016/12/11/leetcode-85-maximal-rectangle/</id>
     <published>2016-12-11T10:02:41.000Z</published>
     <updated>2016-12-11T10:04:41.000Z</updated>
     
@@ -808,16 +843,16 @@ vector&amp;lt;int&amp;gt;::difference_type count;
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
-      <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
-    
       <category term="DynamicProgramming" scheme="http://yoursite.com/tags/DynamicProgramming/"/>
+    
+      <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
     
   </entry>
   
   <entry>
     <title>leetcode_insert_delete_getrandom_O_1_duplicates_allowed</title>
-    <link href="http://yoursite.com/2016/12/10/leetcode-insert-delete-getrandom-O-1-duplicates-allowed/"/>
-    <id>http://yoursite.com/2016/12/10/leetcode-insert-delete-getrandom-O-1-duplicates-allowed/</id>
+    <link href="http://yoursite.com/2016/12/10/leetcode-381-insert-delete-getrandom-O-1-duplicates-allowed/"/>
+    <id>http://yoursite.com/2016/12/10/leetcode-381-insert-delete-getrandom-O-1-duplicates-allowed/</id>
     <published>2016-12-10T04:55:07.000Z</published>
     <updated>2016-12-10T07:00:35.000Z</updated>
     
@@ -843,8 +878,8 @@ vector&amp;lt;int&amp;gt;::difference_type count;
   
   <entry>
     <title>leetcode_insert_delete_getrandom_O_1</title>
-    <link href="http://yoursite.com/2016/12/10/leetcode-insert-delete-getrandom-O-1/"/>
-    <id>http://yoursite.com/2016/12/10/leetcode-insert-delete-getrandom-O-1/</id>
+    <link href="http://yoursite.com/2016/12/10/leetcode-380-insert-delete-getrandom-O-1/"/>
+    <id>http://yoursite.com/2016/12/10/leetcode-380-insert-delete-getrandom-O-1/</id>
     <published>2016-12-10T04:54:55.000Z</published>
     <updated>2016-12-10T05:10:01.000Z</updated>
     
@@ -872,8 +907,8 @@ vector&amp;lt;int&amp;gt;::difference_type count;
   
   <entry>
     <title>leetcode_find_the_duplicate_number</title>
-    <link href="http://yoursite.com/2016/12/09/leetcode-find-the-duplicate-number/"/>
-    <id>http://yoursite.com/2016/12/09/leetcode-find-the-duplicate-number/</id>
+    <link href="http://yoursite.com/2016/12/09/leetcode-287-find-the-duplicate-number/"/>
+    <id>http://yoursite.com/2016/12/09/leetcode-287-find-the-duplicate-number/</id>
     <published>2016-12-09T11:21:31.000Z</published>
     <updated>2016-12-09T11:25:29.000Z</updated>
     
@@ -890,11 +925,11 @@ vector&amp;lt;int&amp;gt;::difference_type count;
     </summary>
     
     
+      <category term="BinarySearch" scheme="http://yoursite.com/tags/BinarySearch/"/>
+    
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-      <category term="BinarySearch" scheme="http://yoursite.com/tags/BinarySearch/"/>
     
       <category term="TwoPointer" scheme="http://yoursite.com/tags/TwoPointer/"/>
     
@@ -1011,8 +1046,8 @@ vector&amp;lt;int&amp;gt;::difference_type count;
   
   <entry>
     <title>leetcode_find_all_duplicates_in_an_array</title>
-    <link href="http://yoursite.com/2016/12/09/leetcode-find-all-duplicates-in-an-array/"/>
-    <id>http://yoursite.com/2016/12/09/leetcode-find-all-duplicates-in-an-array/</id>
+    <link href="http://yoursite.com/2016/12/09/leetcode-442-find-all-duplicates-in-an-array/"/>
+    <id>http://yoursite.com/2016/12/09/leetcode-442-find-all-duplicates-in-an-array/</id>
     <published>2016-12-09T09:21:09.000Z</published>
     <updated>2016-12-09T10:12:53.000Z</updated>
     
@@ -1071,32 +1106,6 @@ vector&amp;lt;int&amp;gt;::difference_type count;
     
     </summary>
     
-    
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode_summary_ranges</title>
-    <link href="http://yoursite.com/2016/12/09/leetcode-summary-ranges/"/>
-    <id>http://yoursite.com/2016/12/09/leetcode-summary-ranges/</id>
-    <published>2016-12-09T08:16:45.000Z</published>
-    <updated>2016-12-09T08:19:02.000Z</updated>
-    
-    <content type="html">&lt;p&gt;难度：Meidum&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;遍历数组，维持一个start、一个end，查看当前元素与end+1是否相等。相等，则继续；不相等，则push进结果集，重新记下start和end。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vector&amp;lt;string&amp;gt; summaryRanges(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        vector&amp;lt;string&amp;gt; ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (nums.size() == 0)   return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int start = nums[0];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        int end = nums[0];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        for(int i = 1; i &amp;lt; nums.size(); i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(nums[i] == end+1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                end = end+1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                string s = (start != end)?(to_string(start)+&amp;quot;-&amp;gt;&amp;quot;+to_string(end)):to_string(start);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                ret.push_back(s);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                start = nums[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                end = nums[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string s = (start != end)?(to_string(start)+&amp;quot;-&amp;gt;&amp;quot;+to_string(end)):to_string(start);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        ret.push_back(s);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return ret;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;0ms,8.04%&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;难度：Meidum&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
